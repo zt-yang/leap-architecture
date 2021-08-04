@@ -13,6 +13,7 @@ args = parser.parse_args()
 
 planner_names = {'fd': 'FastDownward', 'pp': 'PyperPlan'}
 
+
 def myprint(text = ''):
 	if args.verbose: print(text)
 
@@ -57,9 +58,9 @@ def run_strategist(strategist, domain, problem):
 
 def get_planner_command(domain, problem):
 	if args.planner == 'fd':
-		return f"downward/fast-downward.py --alias lama-first {domain} {problem}"
+		return f"planners/downward/fast-downward.py --alias lama-first {domain} {problem}"
 	elif args.planner == 'pp':
-		return f"pyperplan/src/run.py -H hff -s gbf {domain} {problem}"
+		return f"planners/pyperplan/src/run.py -H hff -s gbf {domain} {problem}"
 	else:
 		print(f'unknown planner {args.planner}')
 
@@ -108,6 +109,7 @@ def process_planner_output(output, problem, keywords=[]):
 def get_plan(problems, output_name):
 	index = 0
 	myprint(f'\nStep 3: Plan with {planner_names[args.planner]}')
+
 	for subproblem in problems:
 		index += 1
 		myprint(f'---------------- Subproblem {index} ----------------')
