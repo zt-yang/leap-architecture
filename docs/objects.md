@@ -13,21 +13,21 @@
 
 	- [ burner ]
 
-	- — can be switchedon / switchedoff —
+	- ~~ can be switchedon / switchedoff ~~
 
 - worktop
 
 	- [ kitchentop sink ]
 
-- — can be on / pickup / putdown —
+- ~~ can be on / pickup / putdown ~~
 
 ### furniture
 
 - [ ucup1 ucup2 dcup1 dcup2 drawer1 fridge ]
 
-- — can be in / takeout / putaway —
+- ~~ can be in / takeout / putaway ~~
 
-- — can be open / closed —
+- ~~ can be open / closed ~~
 
 ## movable
 
@@ -45,13 +45,13 @@
 
 	- [ oil nutmilk cream vinegar ]
 
-	- — can be poured —
+	- ~~ can be poured ~~
 
 - seasoning
 
 	- [ salt pepper paprika onionpowder shreddedcheddarcheese chives ]
 
-	- — can be sprinkled —
+	- ~~ can be sprinkled ~~
 
 - dressing
 
@@ -71,7 +71,7 @@
 
 		- [ frypan bakingpan pot ]
 
-		- — can be used to fry —
+		- ~~ can be used to fry ~~
 
 	- normalcontainer
 
@@ -79,7 +79,7 @@
 
 			- [ smallbowl mediumbowl bigbowl mixingbowl ramekins ]
 
-			- — can be used to beat / crack egg —
+			- ~~ can be used to beat / crack egg ~~
 
 		- liquidcontainer
 
@@ -87,17 +87,17 @@
 
 		- [ plate1 salter ]
 
-	- — can be used to transfer —
+	- ~~ can be used to transfer ~~
 
 	- containercover
 
 		- [ pancover ]
 
-		- — can be coveredon —
+		- ~~ can be coveredon ~~
 
 - normalutensil
 
-	- — can be used for beating eggs —
+	- ~~ can be used for beating eggs ~~
 
 	- measureutensil
 
@@ -123,5 +123,5 @@
 
 ### robot
 
-- [robothand]
+- [ robothand ]
 

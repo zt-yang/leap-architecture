@@ -1,41 +1,69 @@
 from os.path import join
 
-levels = {'#': 0, '##': 1, '###': 2, '-': 3, '\t-': 4, '\t\t-': 5, '\t\t\t-': 6}
+def get_defined_objects():
 
-last_parent = {v: '' for v in levels.values()}
-types = {}
-objects = {}
-comments = {}
+    levels = {'#': 0, '##': 1, '###': 2, '-': 3, '\t-': 4, '\t\t-': 5, '\t\t\t-': 6}
 
-for line in open(join('..', 'docs', 'objects.md'), "r+").readlines():
-	if line != '\n':
-		level = line[:line.index(' ')]
-		text = line.replace(level+' ', '').replace('\n', '')
-		level = levels[level]
-		print(level, text)
+    last_parent = {v: '' for v in levels.values()}
+    types = {}
+    objects = {}
+    comments = {}
 
-		if level != 0:
-			last_level = level - 1
-			last_text = last_parent[last_level]
+    for line in open(join('..', 'docs', 'objects.md'), "r+").readlines():
+        if line != '\n':
+            level = line[:line.index(' ')]
+            text = line.replace(level+' ', '').replace('\n', '')
+            level = levels[level]
+            print(level, text)
 
-			if '—' not in last_text:
-				temp = types
-				if '[' in last_text:
-					temp = objects
-					
-				if last_text not in types:
-					temp[last_text] = []
-				temp[last_text].append(text)
+            if level != 0:
+                last_level = level - 1
+                last_text = last_parent[last_level]
 
-			else:
-				comment = ";" + text.replace('-','')
-				comments[last_text] = comment
+                if '~~' not in text:
+                    temp = types
+                    if '[' in text:
+                        temp = objects
+                        text = text.replace('[ ','').replace(' ]','').replace('[','').replace(']','')
+                        
+                    if last_text not in temp:
+                        temp[last_text] = []
+                    temp[last_text].append(text)
 
-		last_parent[level] = text
+                else:
+                    comment = " ;" + text.replace('~~','')
+                    comments[last_text] = comment
 
-for temp in [types, objects]:
-	print()
-	for k, v in temp.items():
-		v = ' '.join(v)
-		line = f"{v} - {k}"
-		print(line)
+            last_parent[level] = text
+
+    lines_types = ['  (:types']
+    lines_objects = ['  (:objects']
+    for temp, lines in [(types, lines_types), (objects, lines_objects)]:
+        for k, v in temp.items():
+            v = ' '.join(v)
+            line = f"{v} - {k}"
+            if k in comments:
+                line += comments[k]
+            lines.append('    '+line)
+        lines.append('  )')
+        lines = [l+'\n' for l in lines]
+        print(lines)
+        print()
+    return lines_types, lines_objects
+
+def replace_lines(filename, startkey, endkey, text, newfilename):
+    newlines = []
+    lines = open(filename, "r+").readlines()
+    STARTED = False
+    FINISHED = False
+    for line in lines:
+        if not STARTED and startkey in line:
+            STARTED = True
+            
+        if STARTED and not FINISHED:
+            if endkey in line: 
+                FINISHED = True
+            else:
+
+
+get_defined_objects()
