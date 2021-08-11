@@ -1,7 +1,6 @@
 from os.path import join
 
 def get_defined_objects():
-
     levels = {'#': 0, '##': 1, '###': 2, '-': 3, '\t-': 4, '\t\t-': 5, '\t\t\t-': 6}
 
     last_parent = {v: '' for v in levels.values()}
@@ -59,11 +58,19 @@ def replace_lines(filename, startkey, endkey, text, newfilename):
     for line in lines:
         if not STARTED and startkey in line:
             STARTED = True
-            
-        if STARTED and not FINISHED:
-            if endkey in line: 
+            for l in text:
+                newlines.append(l)
+
+        if STARTED and not FINISHED: 
+            if endkey in line:
+                newlines.append('\n\n')
+                newlines.append(line)
                 FINISHED = True
-            else:
+        else:
+            newlines.append(line)
+
+    with open(newfilename, "w") as f:
+        f.writelines(newlines)
 
 
-get_defined_objects()
+# get_defined_objects()

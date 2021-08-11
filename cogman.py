@@ -2,19 +2,16 @@
 """
 
 import abc
-
+import planner
 
 class CogMan:
     """An abstract cognitive manager for Leap
     """
-    def __init__(self):
-        self._pre_strategists = []
-        self._pre_strategists_names = []
-
-        self._post_strategists = []
-        self._post_strategists_names = []
-
+    def __init__(self, planner_name):
+        self._planner = planner.get_planner(planner_name)
         self._plan = [(None, True)] ## pairs of (operation, effect/preimage)
+        
+        self._problem = (None, None)
         self._subproblems = [] ## pairs of domain and problem PDDL files
 
     @abc.abstractmethod
@@ -38,9 +35,11 @@ class CogMan:
                 problem : objects, init state, goal state
             Initiate some post-strategists associated with specific pre-
         """
+        self._pre_strategists = []
         raise NotImplementedError("Override me!")
 
     def init_post_strategists(self, domain_file, problem_file, post_strategists_names):
         """ Initiate extra post-strategists based on the given list of names
         """
+        self._post_strategists = []
         raise NotImplementedError("Override me!")
