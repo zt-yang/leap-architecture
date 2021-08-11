@@ -7,7 +7,8 @@
     kitchentop sink - worktop
 
     salt pepper chives - seasoning
-    oliveoil - oil
+    oliveoil butter - oil
+    nutmilk - liquid
     veggies1 veggies2 - ingredient
     egg1 egg2 egg3 egg4 egg5 egg6 egg7 egg8 egg9 egg10 egg11 egg12 - egg
 
@@ -16,13 +17,18 @@
     tablespoon1 tablespoon2 - measureutensil
     whisk1 whisk2 - whiskutensil
 
-    plate1 plate2 salter1 salter2 shaker1 shaker2 container1 container2 - normalcontainer
+    plate1 plate2 - plate
+    salter1 salter2 shaker1 shaker2 container1 container2 - normalcontainer
     oilbottle1 oilbottle2 milkbottle1 milkbottle2 - liquidcontainer
     smallbowl1 smallbowl2 bigbowl1 bigbowl2 - specialcontainer
     frypan1 frypan2 - cookingcontainer
     robot - agent
 
     one two three four - number
+
+    gram cup - measureunit
+
+    kitchen - env 
 
   )
 
@@ -64,6 +70,7 @@
     (in fridge veggies2)
     (in fridge milkbottle1)
     (in fridge milkbottle2)
+    (in fridge butter)
 
     (on kitchentop salter1)
     (on kitchentop salter2)
@@ -93,6 +100,7 @@
     (inside shaker1 pepper)
     (inside container1 chives)
     (inside oilbottle1 oliveoil)
+    (inside milkbottle1 nutmilk)
 
     ; ----------------------
     ; properties of ingredients
@@ -110,6 +118,8 @@
     (raw egg11)
     (raw egg12)
     (sauteed veggies1)
+    (is-butter butter)
+    (is-cookingcontainer frypan1)
 
     ; ----------------------
     ; properties of agent

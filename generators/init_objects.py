@@ -72,5 +72,5 @@ def replace_lines(filename, startkey, endkey, text, newfilename):
     with open(newfilename, "w") as f:
         f.writelines(newlines)
 
-
-# get_defined_objects()
+if __name__ == "__main__":
+    get_defined_objects()

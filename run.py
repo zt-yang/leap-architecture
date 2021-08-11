@@ -1,6 +1,9 @@
 import argparse
 import re
+import errno
 import os
+import signal
+import functools
 from os.path import join
 import subprocess
 import glob
@@ -38,8 +41,7 @@ def get_output_name():
 
 def get_pddl(expdir, parentdir = "domains"):
     """ search for the domain and problem file in all sub-directories of domains/ 
-        then copy them to experiments/ directory
-    """
+        then copy them to experiments/ directory """
 
     domains = glob.glob(parentdir + f"/**/{args.domain}", recursive = True)
     problems = glob.glob(parentdir + f"/**/{args.problem}", recursive = True)
@@ -164,7 +166,29 @@ def process_planner_output(output, problem, keywords=[]):
 
     return plan, log, short_log, [csv_columns, csv_log]
 
+class TimeoutError(Exception):
+    pass
 
+def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
+    def decorator(func):
+        def _handle_timeout(signum, frame):
+            raise TimeoutError(error_message)
+
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            signal.signal(signal.SIGALRM, _handle_timeout)
+            signal.alarm(seconds)
+            try:
+                result = func(*args, **kwargs)
+            finally:
+                signal.alarm(0)
+            return result
+
+        return wrapper
+
+    return decorator
+
+@timeout(20) ## , os.strerror(errno.ETIMEDOUT)
 def get_plan(problems, expdir, verbose=False):
     index = 0
     planner_name = planner_names[args.planner]

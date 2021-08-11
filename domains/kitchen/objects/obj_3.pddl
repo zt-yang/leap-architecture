@@ -1,28 +1,34 @@
   (:objects
 
     ucup1 ucup2 dcup1 dcup2 drawer1 fridge - furniture
-
+ 
     burner - appliance
 
     kitchentop sink - worktop
 
     salt pepper chives - seasoning
-    oliveoil - oil
+    oliveoil butter - oil
+    nutmilk - liquid
     veggies1 - ingredient
     egg1 egg2 egg3 egg4 egg5 egg6 egg7 egg8 egg9 egg10 egg11 egg12 - egg
 
     knife1 fork1 - normalutensil
     spatula1 - cookingutensil
-    tablespoon1 - measureutensil
+    tablespoon1 tablespoon2 - measureutensil
     whisk1 - whiskutensil
 
-    plate1 salter1 shaker1 container1 - normalcontainer
-    oilbottle1 milkbottle - liquidcontainer
+    plate1 - plate
+    salter1 shaker1 container1 - normalcontainer
+    oilbottle1 milkbottle1 - liquidcontainer
     smallbowl1 bigbowl1 - specialcontainer
     frypan1 - cookingcontainer
     robot - agent
 
     one two three four - number
+
+    gram cup - measureunit
+
+    kitchen - env 
 
   )
 
@@ -45,6 +51,7 @@
     (in dcup1 frypan1)
     (in dcup2 oilbottle1)
     (in dcup2 container1)
+
     (in fridge egg1)
     (in fridge egg2)
     (in fridge egg3)
@@ -58,11 +65,14 @@
     (in fridge egg11)
     (in fridge egg12)
     (in fridge veggies1)
+    (in fridge milkbottle1)
+    (in fridge butter)
 
     (on kitchentop salter1)
     (on kitchentop shaker1)
 
     (on kitchentop tablespoon1)
+    (on kitchentop tablespoon2)
     (on kitchentop fork1)
     (on kitchentop spatula1)
     (on kitchentop whisk1)
@@ -78,6 +88,7 @@
     (inside shaker1 pepper)
     (inside container1 chives)
     (inside oilbottle1 oliveoil)
+    (inside milkbottle1 nutmilk)
 
     ; ----------------------
     ; properties of ingredients
@@ -95,6 +106,8 @@
     (raw egg11)
     (raw egg12)
     (sauteed veggies1)
+    (is-butter butter)
+    ;(is-cookingcontainer frypan1)
 
     ; ----------------------
     ; properties of agent

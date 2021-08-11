@@ -17,8 +17,8 @@
 
       (beaten egg1)
       (fried egg1)
+      (is-buttery egg1)
       (folded egg1)
-      (not (burned egg1))
       
     )
   )

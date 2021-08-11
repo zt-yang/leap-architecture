@@ -17,19 +17,11 @@
 
       (beaten egg1)
       (fried egg1)
+      (is-buttery egg1)
       (folded egg1)
       
       (fried veggies1)
       
-      (has-seasoning egg1 salt tablespoon1 two)
-      (seasoning-mixed egg1 salt)
-
-      (has-seasoning egg1 pepper tablespoon1 two)
-      (seasoning-mixed egg1 pepper)
-      
-      (has-seasoning egg1 chives tablespoon1 two)
-      (seasoning-mixed egg1 chives)
-
     )
   )
 )
