@@ -423,10 +423,10 @@
   ( :action crack-egg   ; a special case of adding ingredients
       :parameters ( ?param1 - egg ?param2 - specialcontainer ?param3 - agent )
       :precondition( and
-           ( raw ?param1 )
-           ( holding ?param1 ?param3 )
-           ( on kitchentop ?param2 )
-        )
+         ( raw ?param1 )
+         ( holding ?param1 ?param3 )
+         ( on kitchentop ?param2 )
+      )
       :effect( and
          ( not ( raw ?param1 ) )
          ( not ( holding ?param1 ?param3 ) )

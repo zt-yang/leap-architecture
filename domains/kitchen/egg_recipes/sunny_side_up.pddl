@@ -11,4 +11,5 @@
       ( exist-sunny-side-up kitchen )
     )
   )
+  (:metric minimize (total-cost))
 )

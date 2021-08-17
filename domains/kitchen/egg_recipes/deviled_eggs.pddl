@@ -11,4 +11,5 @@
       (exist-deviled-egg kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

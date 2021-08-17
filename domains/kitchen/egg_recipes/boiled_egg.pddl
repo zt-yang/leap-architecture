@@ -11,4 +11,5 @@
       (exist-boiled-egg kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

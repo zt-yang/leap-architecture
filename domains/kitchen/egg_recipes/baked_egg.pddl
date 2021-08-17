@@ -11,4 +11,5 @@
       (exist-baked-egg kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

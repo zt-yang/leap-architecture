@@ -11,4 +11,5 @@
       (exist-omelette kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

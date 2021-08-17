@@ -11,4 +11,5 @@
       (exist-scrambled-eggs kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

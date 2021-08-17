@@ -11,4 +11,5 @@
       (exist-quiche kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

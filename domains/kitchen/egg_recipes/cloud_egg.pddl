@@ -11,4 +11,5 @@
       (exist-cloud-egg kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

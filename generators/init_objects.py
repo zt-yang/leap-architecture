@@ -63,7 +63,8 @@ def replace_lines(filename, startkey, endkey, text, newfilename):
 
         if STARTED and not FINISHED: 
             if endkey in line:
-                newlines.append('\n\n')
+                if not "don't delete this line" in line:
+                    newlines.append('\n\n')
                 newlines.append(line)
                 FINISHED = True
         else:
@@ -71,6 +72,23 @@ def replace_lines(filename, startkey, endkey, text, newfilename):
 
     with open(newfilename, "w") as f:
         f.writelines(newlines)
+
+def get_action_by_name(new_action_name, action_pddl):
+    definition = []
+    lines = open(action_pddl, "r+").readlines()
+    STARTED = False
+    for line in lines:
+        if not STARTED and f':action {new_action_name}' in line:
+            STARTED = True
+            definition.append(line)
+
+        elif STARTED:
+            if ':action' in line: 
+                definition = definition[:-1]
+                break
+            definition.append(line)
+            
+    return definition
 
 if __name__ == "__main__":
     get_defined_objects()

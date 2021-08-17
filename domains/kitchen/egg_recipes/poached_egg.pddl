@@ -11,4 +11,5 @@
       (exist-poached-egg kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

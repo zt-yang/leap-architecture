@@ -11,4 +11,5 @@
       (exist-egg-in-hole kitchen)
     )
   )
+  (:metric minimize (total-cost))
 )

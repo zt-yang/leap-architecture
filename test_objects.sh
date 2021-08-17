@@ -18,4 +18,4 @@ python run.py kitchen_1.pddl omelette_5.pddl -o obj_4.pddl -v 0 -e 'experiments/
 ## obj_eggs.pddl contains all objects for making 10 egg recipes
 python run.py kitchen_1.pddl omelette_5.pddl -o obj_eggs.pddl -v 0 -e 'experiments/omelette_objects'
 
-python generators/post_experiments.py experiments/omelette_objects
+python generators/post_experiments.py experiments/omelette_objects -sh test_objects.sh

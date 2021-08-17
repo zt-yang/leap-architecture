@@ -1,37 +1,48 @@
   (:objects
 
+    ; --- level 1 physical objects
     ucup1 ucup2 dcup1 dcup2 drawer1 fridge - furniture
- 
     burner - appliance
-
     kitchentop sink - worktop
+    kitchen - env 
+    robot - agent
 
+    ; --- level 2 ingredients
     salt pepper chives - seasoning
+    ;whitevinegar - vinegar
     oliveoil butter - oil
-    nutmilk - liquid
+    water nutmilk - liquid
+    faucet - liquidtap
     veggies1 - ingredient
     egg1 egg2 egg3 egg4 egg5 egg6 egg7 egg8 egg9 egg10 egg11 egg12 - egg
-    bread1 - bread
+    bread1 toast1 - bread
 
-    cutter1 - cuttingutensil
+    ; --- level 2 utensils
+    holecutter1 - cuttingutensil
+    slottedspoon1 - spoon 
     knife1 fork1 - normalutensil
     spatula1 - cookingutensil
     tablespoon1 tablespoon2 - measureutensil
     whisk1 - whiskutensil
 
+    ; --- level 2 containers
     plate1 - plate
     salter1 shaker1 container1 - normalcontainer
-    oilbottle1 milkbottle1 - liquidcontainer
+    oilbottle1 milkbottle1 mediumbottle1 - liquidcontainer
     smallbowl1 bigbowl1 - specialcontainer
-    frypan1 - cookingcontainer
+
+    ; --- level 3 cooking containers
+    frypan1 - pan ; for reducing, sauteing, searing, or frying
+    ;pot1 - pot ; for simmering, poaching, or boiling
     pancover1 - containercover
-    robot - agent
 
+    ; --- level 2 abstract objects
     one two three four - number
-
-    gram cup - measureunit
-
-    kitchen - env 
+    gram cup drop - measureunit
+    circle - shape
+    low medium high - level
+    ;outerside innerside - part
+    ;hard soft - hardnesslevel
 
   )
 
@@ -47,12 +58,16 @@
     (closed ucup1)
     (closed ucup2)
     (switchedoff burner)
+    (default-level burner low)
+    (turnedoff faucet)
 
     ; ----------------------
     ; stored in places that cannot move
     ; ----------------------
     (in dcup1 frypan1)
+    (in dcup1 pot1)
     (in dcup2 oilbottle1)
+    (in dcup2 mediumbottle1)
     (in dcup2 container1)
 
     (in fridge egg1)
@@ -70,14 +85,19 @@
     (in fridge veggies1)
     (in fridge milkbottle1)
     (in fridge butter)
-    (in fridge bread1)
+
+    (on kitchentop faucet)
+    (on kitchentop bread1)
+    (on kitchentop toast1)
 
     (on kitchentop salter1)
     (on kitchentop shaker1)
 
     (on kitchentop tablespoon1)
     (on kitchentop tablespoon2)
+    (on kitchentop holecutter1)
     (on kitchentop fork1)
+    (on kitchentop slottedspoon1)
     (on kitchentop spatula1)
     (on kitchentop whisk1)
 
@@ -92,7 +112,9 @@
     (inside shaker1 pepper)
     (inside container1 chives)
     (inside oilbottle1 oliveoil)
+    (inside mediumbottle1 whitevinegar)
     (inside milkbottle1 nutmilk)
+    (inside faucet water)
 
     ; ----------------------
     ; properties of ingredients
@@ -111,7 +133,7 @@
     (raw egg12)
     (sauteed veggies1)
     (is-butter butter)
-    ;(is-cookingcontainer frypan1)
+    (has-shape holecutter1 circle)
 
     ; ----------------------
     ; for recipes other than omelette
@@ -124,4 +146,6 @@
     ; ----------------------
     (handsfull robot)
     (holding fork1 robot)
+
+    (= (total-cost) 0)
   )
