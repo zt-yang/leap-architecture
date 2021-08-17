@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>Num of Objects - LEAPdocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Num of Objects";
+    var mkdocs_page_input_path = "exp-objects.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LEAPdocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../experiments/">Planning Complexity</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Experiments</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Num of Objects</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-operators/">Num of Operators</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-egg-recipes/">All Egg Recipes</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Domains</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../domain-kitchen.md">Kitchen</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">LEAPdocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Experiments &raquo;</li>
+        
+      
+    
+    <li>Num of Objects</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="more-objects-search-time-increases-linearly">More objects -&gt; Search time increases linearly<a class="headerlink" href="#more-objects-search-time-increases-linearly" title="Permanent link">#</a></h1>
+<p><code>test_objects.sh</code> tests the effect of increasing the number of objects on search complexity, with the same <code>kitchen_1.pddl</code> and <code>omelette_5.pddl</code>, i.e. full omelette:
+* obj_1.pddl contains the bare minimum set of objects
+* obj_2.pddl contains some alternative objects 
+* obj_3.pddl contains 12 eggs
+* obj_4.pddl contains multiples (two) of every object
+* obj_5.pddl contains multiples (ten) of every object
+* obj_eggs.pddl contains all objects for making 10 egg recipes</p>
+<pre><code>     t  problem_name      var    op    axiom    plan    parse     search    state
+------  --------------  -----  ----  -------  ------  -------  ---------  -------
+085837  obj_1.pddl         66  1004       11      48    0.61   0.0164124      243
+085839  obj_2.pddl         72  1626       14      53    1.448  0.0181531      215
+085843  obj_3.pddl        102  3086       44      53    3.889  0.0320748      215
+085855  obj_4.pddl        116  9510       46      50   11.723  0.0407923      219
+085909  obj_eggs.pddl     115  5416      102      50   13.549  0.031977       219
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../exp-goals/" class="btn btn-neutral float-right" title="Num of Goal Predicates">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../setup-mkdocs/" class="btn btn-neutral" title="Set up MkDocs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../setup-mkdocs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../exp-goals/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
