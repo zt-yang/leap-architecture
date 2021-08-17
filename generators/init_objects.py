@@ -8,7 +8,7 @@ def get_defined_objects():
     objects = {}
     comments = {}
 
-    for line in open(join('..', 'docs', 'objects.md'), "r+").readlines():
+    for line in open(join('..', 'generators', 'objects.md'), "r+").readlines():
         if line != '\n':
             level = line[:line.index(' ')]
             text = line.replace(level+' ', '').replace('\n', '')

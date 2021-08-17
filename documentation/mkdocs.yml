@@ -1,0 +1,26 @@
+nav:
+    - Project:
+      - LEAP Architecture: index.md
+      - Planning Complexity: experiments.md
+    - Set it up: 
+      - Set up the Repository: setup-repository.md
+      - Set up MkDocs: setup-mkdocs.md
+    - Experiments: 
+      - Num of Objects: exp-objects.md
+      - Num of Goal Predicates: exp-goals.md
+      - Num of Operators: exp-operators.md
+      - All Egg Recipes: exp-egg-recipes.md
+    - Domains: 
+      - Kitchen: domain-kitchen.md
+
+site_name: LEAPdocs
+theme: readthedocs
+# theme:
+#     name: null
+#     custom_dir: '/miniconda3/lib/python3.7/site-packages/mkdocs/themes/readthediary/'
+
+site_favicon: css/favicon.ico
+extra_css: [css/extra.css]
+markdown_extensions:
+    - toc:
+        permalink: "#"

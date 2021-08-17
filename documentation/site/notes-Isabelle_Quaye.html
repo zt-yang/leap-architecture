@@ -1,0 +1,86 @@
+<meta charset="utf-8" emacsmode="-*- markdown -*-">
+**Predicting player moves and Observer types and styles**
+<center>**Isabelle Quaye**</center>
+
+Overview
+===============================================================================
+
+Predicting what a player will do next is tricky because we have no way of knowing for certain. 
+Yet when we do make such predictions, we seldom find that we are very far off from what actually happens. 
+To analyse the process and means by which predictions are made, I watched a series of video clips from two different players. 
+These clippings belonged to three different test runs of a search and rescue mission from each of these two players.
+For each video clipping per test run, I followed this procedure:
+
+1. I watch the video and then write down a prediction of what will happen next.
+2. I then play the video and compare my prediction to what actually happens. 
+3. I give the prediction a label of wrong or correct and move on to the next video.
+4. I repeat this procedure until I have worked my way through all the clippings in the test run.
+5. I give myself a score depending on which videos out of the set I was able to predict correctly with the exception of the first clipping. 
+
+I also give some time between players to make sure that my predictions aren't biased or skewed by the previous player's test runs. 
+             
+Accuracy results and Discussion of the results
+===============================================================================
+
+My Accuracy Results overall
+-------------------------------------------------------------------------------
+|        | Player6 | Player10 |
+|--------|---------|----------|
+| Test 2  | 75%     | 80%      |
+| Test 3  | 57.1%   | 60%      |
+| Test 5 | 64.2%   | 65%      |
+
+
+Discussion of results
+-------------------------------------------------------------------------------
+The results show that I performed better in predicting the test runs from Player6 than I did for Player10. 
+Player6's gameplay seemed to change more drastically and more frequently than player10's over the course of the same test run.
+Furthermore, for each of the players, my accuracy seemed to follow the same pattern of being high initially, dropping and then increasing again, resting around the same value for both players.
+The reason for this can be credited to many factors, but just to name a few :
+1. The maze layout and style which changes from one test run to the other.
+2. The observer testing or trying out new observational techniques between test runs and eventually finding a balance that works. 
+Looking at the results, it is difficult to notice the change in accuracy within a given test run. One thing that I noticed is that for all 6 test runs, my accuracy increased as the test run progressed and then declined towards the end.
+Graph of such a  distribution can be found [here](https://docs.google.com/document/d/1uCcy197bcW_wb9yEEqDBbO1ABsDw8HbRtFsIHOXy4SY/edit?usp=sharing).
+
+One explanation for this variation in accuracy is :Initially, I do not know much about the player. Yet as the test run progresses and I observe them, make wrong predictions and learn their action patterns my accuracy improves. Towards the end, when the player realizes that they are running out of time, their action pattern changes and is most likely less predictable than before.
+
+
+Observational and Prediction Styles
+===============================================================================
+I can pick out three main observational patterns or observer types. In reality, oberservers seldom fall into one of these categories completely. They may be a blend of one or more observer types, choosing one strategy over the other depending on the amount of information available to them at the time. 
+Heuristic-driven observer
+-------------------------------------------------------------------------------
+This observer depends heavily on observable characteristics to give them a clue as to what the player will do next. For example:
+1. In what direction was the player last facing when the clip ended?
+2. What side of the hall is the player walking down?
+3. What was the last thing the player saw before the clip ended?
+4. How much time does the player have left?
+Based on these and other subtle heuristics, such an observer will then make a deduction as to what the player will do next.
+
+Past-driven observer
+-------------------------------------------------------------------------------
+This observer depends heavily on matching the current scenario a player finds themselves in with one they have faced in a previous clip. Once such an observer identifies a similar scenario from the player's past, they then make a prediction based on what the player did in that last scenario.
+This is likely to not always be right because people don't always react in the same way when presented with the same situation.
+
+Learning-driven observer
+-------------------------------------------------------------------------------
+Such an observer bases their predictions solely on some identified action pattern. As with the past-driven observer, the learning-driven observer bases their predictions on what they have observed in the player's past clips. However, unlike 
+the past-driven observer, they make predictions based on their own hypothesis formed of the player by watching their past clips. In a sense, they form a model or opinion of the player's biases anbd inclinations and predict their next move based on this. 
+This isn't always right either because profiles are seldom perfectly spot on. 
+
+
+
+
+Notes on the experiment
+===============================================================================
+A few notes on the experiment are:
+1. Is it pssible to increase the number of test-runs and players to see if the pattern of the results seen is indeed valid? 
+2. How relevant are the patterns observed in the results?
+3. Trying out longer test runs per player to see if the accuracy distribution is consistent with what we observed for the test runs above.
+4. Repeating the trials with clippings that are cut in different places from the original video to see how accuracy compares and whether accuracy is affected by where the video is clipped.
+5. Repeating the trials where observers are asked to predict which player profile a player is most likely to be based ion clippings of a video from a particular player. 
+
+
+
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://casual-effects.com/markdeep/latest/markdeep.min.js?" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>Weekly readings - Minedocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Weekly readings";
+    var mkdocs_page_input_path = "literature-weekly.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Minedocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-meetings/">Weekly meeting notes (to Week 8)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Weekly plans (up to Week 4)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-behavior/">(New!) Human behavior</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-vision/">Vision - Team coacher agents</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-SAR/">Task - Search and rescue missions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-team/">Team - Minecraft UROP</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-gridworld/">Set up gridworld</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-Malmo/">Set up Malmo</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Run it once</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tut-planning/">Planning-related test cases</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Read it through</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Weekly readings</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#week-5-7">Week 5-7:</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#for-anna-and-isabelle">For Anna and Isabelle</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#for-darren">For Darren</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week-3-bayesian-inverse-reinforcement-learning-for-christian-only">Week 3: Bayesian Inverse Reinforcement Learning (For Christian Only)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week-2-inverse-planning">Week 2: Inverse Planning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#week-1-mdp-dynamic-programming-reinforcement-learning">Week 1: MDP, Dynamic Programming, Reinforcement Learning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../data-trajectory/">Dataset I - human trajectories</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Know it exists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tools-map-generator/">Map Generator - Minecraft tools</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-git/">Git - Common nightmares</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-review-literature/">How to read papers</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Minedocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Read it through &raquo;</li>
+        
+      
+    
+    <li>Weekly readings</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="weekly-readings">Weekly readings<a class="headerlink" href="#weekly-readings" title="Permanent link">#</a></h1>
+<h2 id="week-5-7">Week 5-7:<a class="headerlink" href="#week-5-7" title="Permanent link">#</a></h2>
+<h3 id="for-anna-and-isabelle">For Anna and Isabelle<a class="headerlink" href="#for-anna-and-isabelle" title="Permanent link">#</a></h3>
+<ol>
+<li><a href="https://www.pnas.org/content/pnas/113/45/12868.full.pdf">Adaptive integration of habits into depth-limited planning defines a habitual-goal–directed spectrum</a><ul>
+<li>A relevant paper on how human planning combines goal-directed calculation and habitual estimation, and how the combination is changed when given time pressure.</li>
+<li>I think Isabelle's implementation may incorporate the notion of "depth of planning" and Anna's implementation may incorporate the notion of "habitual values."</li>
+</ul>
+</li>
+</ol>
+<h3 id="for-darren">For Darren<a class="headerlink" href="#for-darren" title="Permanent link">#</a></h3>
+<ol>
+<li>
+<p><a href="https://drops.dagstuhl.de/opus/volltexte/2019/11114/pdf/LIPIcs-COSIT-2019-22.pdf">Planning and Explanations with a Learned Spatial Model</a></p>
+<ul>
+<li>A paper relevant to your recommendation system, especially Section 2 and 3</li>
+<li>"SemaFORR’s spatial model is hierarchical, graph-oriented, and has well-defined semantics, all features observed in the models that people generate."</li>
+<li>"SemaFORR demonstrates the power of a cognitive spatial model to inform both planning and user-friendly explanations, and to support autonomous navigation through the complexities of a large realistic world."</li>
+</ul>
+</li>
+<li>
+<p><a href="https://www.researchgate.net/publication/221608017_A_location_representation_for_generating_descriptive_walking_directions">A location representation for generating descriptive walking directions</a></p>
+<ul>
+<li>A paper relevant to the advise given to human rescuers. Instead of recommending "Walk ten feet and turn right," it's more intuitive to use landmarks such as "Walk to the end of the hallway and turn right"</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="week-3-bayesian-inverse-reinforcement-learning-for-christian-only">Week 3: Bayesian Inverse Reinforcement Learning (For Christian Only)<a class="headerlink" href="#week-3-bayesian-inverse-reinforcement-learning-for-christian-only" title="Permanent link">#</a></h2>
+<ol>
+<li>
+<p><a href="https://papers.nips.cc/paper/4737-nonparametric-bayesian-inverse-reinforcement-learning-for-multiple-reward-functions.pdf">Nonparametric Bayesian Inverse Reinforcement Learning for Multiple Reward Functions</a>. Note from Tejas: As you read the paper could you please annotate it or make notes elsewhere for us to understand which technical areas you might not be familiar with and provide you with extra reading resources? Feel free to reach at anytime with your questions.  It might be useful to document all your queries and reading progress in an Overleaf document and share it with us so that I can answer them periodically.</p>
+</li>
+<li>
+<p>(Optional, not for discussing this Thursday)</p>
+<ul>
+<li>It might also be worth going over the following paper on Bayesian IRL: <a href="https://www.aaai.org/Papers/IJCAI/2007/IJCAI07-416.pdf">Bayesian Inverse Reinforcement Learning</a>.</li>
+<li>In recent times deep learning has also been used for IRL.  Here is an example of a paper where they apply IRL for planning using planetary rovers (with an application to some gridworld settings): <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8629318">Rover-IRL: Inverse Reinforcement Learning With Soft Value Iteration Networks for Planetary Rover Path Planning</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="week-2-inverse-planning">Week 2: Inverse Planning<a class="headerlink" href="#week-2-inverse-planning" title="Permanent link">#</a></h2>
+<ol>
+<li>
+<p>Baker, Chris, Rebecca Saxe, and Joshua Tenenbaum. <a href="http://csjarchive.cogsci.rpi.edu/proceedings/2007/docs/p779.pdf">"Goal inference as inverse planning."</a>, 2007.</p>
+</li>
+<li>
+<p>Baker, Chris, Rebecca Saxe, and Joshua Tenenbaum. <a href="http://aiweb.cs.washington.edu/research/projects/aiweb/media/papers/cogsci2011.pdf">"Bayesian theory of mind: Modeling joint belief-desire attribution."</a>, 2011.</p>
+</li>
+</ol>
+<h2 id="week-1-mdp-dynamic-programming-reinforcement-learning">Week 1: MDP, Dynamic Programming, Reinforcement Learning<a class="headerlink" href="#week-1-mdp-dynamic-programming-reinforcement-learning" title="Permanent link">#</a></h2>
+<p>Several resources to learn the same thing. You can choose one to follow and the other two to skim through:</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Markov_decision_process">Wikipedia page on Markov Decision Process</a> (Up to Section 3 Algorithms)</li>
+<li>Stanford lecture on MDP and Value Iteration: Lecture 7: <a href="https://www.youtube.com/watch?v=9g32v7bK3Co">Markov Decision Processes - Value Iteration | Stanford CS221: AI (Autumn 2019)</a>.</li>
+<li>Blog on <a href="https://maelfabien.github.io/rl/#">Introduction to Reinforcement Learning</a>, which is based on David Silver's lectures on reinforcement learning,</li>
+</ol>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">#</a></h2>
+<p>We've assumed that you know:</p>
+<ul>
+<li>Python: able to read and write with the help of Google/ Slack Overflow</li>
+<li>Object oriented programming: able to define a class with associated variables and functions in Python</li>
+<li>Data structures: know about list, dictionary</li>
+<li>git management: know how to add, commit, push, and revert</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../data-trajectory/" class="btn btn-neutral float-right" title="Dataset I - human trajectories">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../tut-planning/" class="btn btn-neutral" title="Planning-related test cases"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../tut-planning/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../data-trajectory/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

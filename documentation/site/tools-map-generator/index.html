@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>Map Generator - Minecraft tools - Minedocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Map Generator - Minecraft tools";
+    var mkdocs_page_input_path = "tools-map-generator.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Minedocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-meetings/">Weekly meeting notes (to Week 8)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Weekly plans (up to Week 4)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-behavior/">(New!) Human behavior</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-vision/">Vision - Team coacher agents</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-SAR/">Task - Search and rescue missions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-team/">Team - Minecraft UROP</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-gridworld/">Set up gridworld</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-Malmo/">Set up Malmo</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Run it once</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tut-planning/">Planning-related test cases</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Read it through</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../literature-weekly/">Weekly readings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../data-trajectory/">Dataset I - human trajectories</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Know it exists</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Map Generator - Minecraft tools</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#extract-2d-maps">Extract 2D maps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#visualize-human-trajectories">Visualize human trajectories</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-git/">Git - Common nightmares</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-review-literature/">How to read papers</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Minedocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Know it exists &raquo;</li>
+        
+      
+    
+    <li>Map Generator - Minecraft tools</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="minecraft-world-map-generator">Minecraft world - Map Generator<a class="headerlink" href="#minecraft-world-map-generator" title="Permanent link">#</a></h1>
+<p>Note: The tools documented on this page has been migrated to git repository <a href="https://github.com/zt-yang/ASIST-MC-toolbox">https://github.com/zt-yang/ASIST-MC-toolbox</a></p>
+<hr />
+<p>We have a tool <code>tom-minecraft/world-builder/</code> for extracting the 2D floor plan of structures built in Minecraft and for visualizing human trajectory data on the map as a mp4 file.</p>
+<p>This folder includes the following components:</p>
+<ul>
+<li><code>run_map_generator.ipynb</code> is the place to run the codes</li>
+<li><code>map_generator.py</code> defines the functions used by <code>run_map_generator.ipynb</code></li>
+<li><code>outputs/</code> stores the outputmaps and traces</li>
+<li><code>resources/</code> stores the icons and distionaries used to generate the maps</li>
+<li><code>Singleplayer/</code> is the the Minecraft world folder to be extracted from</li>
+<li><code>MCWorldLib.egg</code> is a package we use for extracting region files (<a href="https://github.com/MestreLion/mcworldlib">Github</a>)</li>
+</ul>
+<h2 id="extract-2d-maps">Extract 2D maps<a class="headerlink" href="#extract-2d-maps" title="Permanent link">#</a></h2>
+<p>The input to map_generator.py include two parts:</p>
+<ul>
+<li>Minecraft world folder that's located in your Malmo folder <code>MalmoPlatform/Minecraft/run/saves/</code> (using Malmo) or <code>/Users/USER_NAME/Library/Application\ Support/minecraft/saves/</code> (using licenced Minecraft Java Version).</li>
+</ul>
+<pre><code>world = mc.load('Singleplayer')
+region = world.regions[-5,0]
+</code></pre>
+
+<p>Inside the <code>Singleplayer/region</code> folder, there are <code>.mca</code> files. Each <code>.mca</code> file specifies 32 x 32 chunks. Each chunk specifies 16 x 16 x 16 blocks. In the above example, we located an SAR building in <code>r.-5.0.mca</code>, which we found using online tool <a href="https://pessimistress.github.io/minecraft/">Chunk viewer</a> (as shown in the image below). On the interface, adjust the bar on the left to the highest, click the minimap on the bottom right side, and navigate to the light-colored areas representing artificial structures. After we found the .mca file, we need to further narrow down the blocks.</p>
+<p><img alt="" src="imgs/tools-chunk.png" /></p>
+<ul>
+<li>the second part of the input is the ranges of x,y,z that specify the region of interests. This can be found by locating the building in the .mca file, then record down the coordinates of the top right and bottom left corner block on the ground (as the yellow/blue block shown in the image above). Then record down the lowest and highest level as y values.</li>
+</ul>
+<pre><code>x_low = -2176  # x of the bottom left block
+x_high = -2097  # x of the top right block
+z_low = 144     # z of the top right block
+z_high = 207  # z of the bottom left block
+y_low = 52
+y_high = 54
+</code></pre>
+
+<p>The outputs include three parts:</p>
+<ul>
+<li>
+<p>images of the 2D floor plans on different levels of the region of interest at <code>world-builder/outputs/*_map.png</code> where * = 0,1,2,9
+<img alt="" src="imgs/tools-map.png" /></p>
+</li>
+<li>
+<p>a json file specifying the block type of all blocks within the region of interest at <code>world-builder/outputs/blocks_in_building.json</code></p>
+</li>
+</ul>
+<pre><code># key = &quot;x,y,z&quot;, value = block_type
+&quot;-2152,52,160&quot;: &quot;air&quot;,
+&quot;-2151,52,160&quot;: &quot;stained_hardened_clay&quot;,
+&quot;-2150,52,160&quot;: &quot;anvil&quot;, ...
+</code></pre>
+
+<ul>
+<li>a csv file that represent the region of interest that can be used as input to our gridworld framework at <code>world-builder/outputs/darpa_maze.csv</code>
+<img alt="" src="imgs/tools-csv.png" /></li>
+</ul>
+<h2 id="visualize-human-trajectories">Visualize human trajectories<a class="headerlink" href="#visualize-human-trajectories" title="Permanent link">#</a></h2>
+<p>Given DARPA testbed messages in the following format:</p>
+<pre><code>raw-data 1.58507E+12 {
+  app-id:&quot;TestbedBusInterface&quot;,
+  mission-id:&quot;6483fec4-153c-4994-8f42-a2e9b00d4db3&quot;,
+  routing-key:&quot;testbed-message&quot;,
+  testbed-message:{
+    msg:{
+      trial_id:&quot;6483fec4-153c-4994-8f42-a2e9b00d4db3&quot;,
+      sub_type:&quot;state&quot;, source:&quot;simulator&quot;,
+      timestamp:&quot;2020-03-24T16:07:18.140779Z&quot;
+    },
+    data:{
+      name:&quot;Player396&quot;, entity_type:&quot;human&quot;, life:20.0,
+      x:-2193.5, y:23.0, z:194.6328125,
+      pitch:0.0, yaw:0.0,
+      motion_x:0.0, motion_y:0.0, motion_z:0.11038550616085588
+    }
+  },
+  timestamp:1585066038141
+}
+</code></pre>
+
+<p>The codes visualize the location of the player on the map and infer the object that the player is interacting with.</p>
+<p><img alt="" src="imgs/tools-continuous.png" /></p>
+<p>The codes further discretize the continuous position changes to generate a step by step trajectory that can be used as input to the inverse planning framework.</p>
+<p><img alt="" src="imgs/tools-discretized.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../howto-git/" class="btn btn-neutral float-right" title="Git - Common nightmares">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../data-trajectory/" class="btn btn-neutral" title="Dataset I - human trajectories"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../data-trajectory/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../howto-git/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

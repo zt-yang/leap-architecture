@@ -8,12 +8,12 @@ chmod +x test_objects.sh
 ./test_objects.sh
 
 ## with kitchen_3.pddl and obj_eggs.pddl, i.e. different operators & objects for egg recipes
-chmod +x test_effects.sh
-./test_effects.sh
+#chmod +x test_effects.sh
+#./test_effects.sh
 
 ## with kitchen_3.pddl and obj_eggs.pddl, i.e. all operators & objects for egg recipes
-#chmod +x test_egg_recipes.sh
-#./test_egg_recipes.sh
+chmod +x test_egg_recipes.sh
+./test_egg_recipes.sh
 
 ## with the same omelette.pddl and obj_1.pddl, i.e. minimum objects
 chmod +x test_operators.sh

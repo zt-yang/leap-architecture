@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>Planning-related test cases - Minedocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Planning-related test cases";
+    var mkdocs_page_input_path = "tut-planning.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Minedocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-meetings/">Weekly meeting notes (to Week 8)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Weekly plans (up to Week 4)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-behavior/">(New!) Human behavior</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-vision/">Vision - Team coacher agents</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-SAR/">Task - Search and rescue missions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-team/">Team - Minecraft UROP</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-gridworld/">Set up gridworld</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-Malmo/">Set up Malmo</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Run it once</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Planning-related test cases</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-tabular">1. Tabular</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1a-value-iteration-vi">1a. Value iteration (VI)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-hierarchical">2. Hierarchical</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#2a-vi-vi">2a. VI + VI</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2b-vi-dfs">2b. VI + DFS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2c-vi-mcts">2c. VI + MCTS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-inverse-planning">3. Inverse planning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-experiment-replay">4. Experiment replay</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Read it through</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../literature-weekly/">Weekly readings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../data-trajectory/">Dataset I - human trajectories</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Know it exists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tools-map-generator/">Map Generator - Minecraft tools</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-git/">Git - Common nightmares</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-review-literature/">How to read papers</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Minedocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Run it once &raquo;</li>
+        
+      
+    
+    <li>Planning-related test cases</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="all-test-cases">All test cases<a class="headerlink" href="#all-test-cases" title="Permanent link">#</a></h1>
+<p>When before pushing changes in the <code>gridworld/</code> repository or merging the git changes, we need to make sure that all test cases in <code>gridworld/visualize.py</code> can run successfully.</p>
+<p>To run the test cases, go to <code>gridworld/visualize.py</code>, and uncomment the MODEs between line 30 to line 41 to test different applications of the gridworld codes.</p>
+<pre><code>MODE = 'PLANNING'   ## normal VI
+# MODE = 'HIERARCHICAL_PLANNING'  ## two-level VI
+# MODE = 'TILE_LEVEL_DFS'     ## VI-DFS
+# MODE = 'ROOM_LEVEL_MCTS'     ## VI-MCTS
+# MODE = 'INVERSE_PLANNING'   ## default is two-level VI
+# MODE = 'EXPERIMENT_REPLAY'  ## visualize human trajectory, generate PNG, or PNGs, or GIF
+# MODE = 'REPLAY_IN_MALMO'  ## visualize in Malmo environment
+# MODE = 'REPLAY_DISCRETIZE'  ## generate discretized trajectory file
+# MODE = 'EXPERIMENT_PARAM'   ## test how parameters affect planning algorithms
+# MODE = 'EXPERIMENT_ALGO'    ## test how different algorithms affect planning performance
+# MODE = 'PRINT_MAP'  ## take screenshot of map, random initialize starting location
+# MODE = 'LEARNING'   ## for reinforcement learning
+</code></pre>
+
+<h2 id="1-tabular">1. Tabular<a class="headerlink" href="#1-tabular" title="Permanent link">#</a></h2>
+<h3 id="1a-value-iteration-vi">1a. Value iteration (VI)<a class="headerlink" href="#1a-value-iteration-vi" title="Permanent link">#</a></h3>
+<p>Run <code>visualize.py</code> as it is, you will see:</p>
+<p><img alt="" src="../imgs/test-tabular-systematic.png" /></p>
+<p>Change PLAYER_NAME in line 62 from 'systematic' to 'with_dog' and 'fire_fighter'</p>
+<table>
+<thead>
+<tr>
+<th align="center">PLAYER_NAME = with_dog</th>
+<th align="center">PLAYER_NAME = fire_fighter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="" src="../imgs/test-tabular-with-dog.png" /></td>
+<td align="center"><img alt="" src="../imgs/test-tabular-fire-fighter.png" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-hierarchical">2. Hierarchical<a class="headerlink" href="#2-hierarchical" title="Permanent link">#</a></h2>
+<h3 id="2a-vi-vi">2a. VI + VI<a class="headerlink" href="#2a-vi-vi" title="Permanent link">#</a></h3>
+<p>Comment out line 30 and uncomment line 31 <code># MODE = 'HIERARCHICAL_PLANNING'</code>. Run <code>visualize.py</code> and you will see:</p>
+<p><img alt="" src="../imgs/test-hierarchical.png" /></p>
+<h3 id="2b-vi-dfs">2b. VI + DFS<a class="headerlink" href="#2b-vi-dfs" title="Permanent link">#</a></h3>
+<p>Comment out line 31 and uncomment line 32 <code># MODE = 'TILE_LEVEL_DFS'</code>. Run <code>visualize.py</code> and you will see:</p>
+<p><img alt="" src="../imgs/test-VI-DFS.png" /></p>
+<h3 id="2c-vi-mcts">2c. VI + MCTS<a class="headerlink" href="#2c-vi-mcts" title="Permanent link">#</a></h3>
+<p>Note: Please skip this one for now as I just created a bug that I need to fix.</p>
+<p>Comment out line 32 and uncomment line 33 <code># MODE = 'ROOM_LEVEL_MCTS'</code>. Run <code>visualize.py</code> and you will see:</p>
+<p><img alt="" src="../imgs/test-VI-MCTS.png" /></p>
+<h2 id="3-inverse-planning">3. Inverse planning<a class="headerlink" href="#3-inverse-planning" title="Permanent link">#</a></h2>
+<p>Comment out line 33 and uncomment line 34 <code># MODE = 'INVERSE_PLANNING'</code>.</p>
+<p>Run <code>visualize.py</code> with PLAYER_NAME in line 62 equals to 'fire_fighter' and 'with_dog':</p>
+<table>
+<thead>
+<tr>
+<th align="center">PLAYER_NAME = fire_fighter</th>
+<th align="center">PLAYER_NAME = with_dog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="" src="../imgs/test-inv-fire-fighter.png" /></td>
+<td align="center"><img alt="" src="../imgs/test-inv-with-dog.png" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-experiment-replay">4. Experiment replay<a class="headerlink" href="#4-experiment-replay" title="Permanent link">#</a></h2>
+<p>This mode visualizes all of the human trajectories (e.g., <code>_player10 shaoying_test2.json</code>) in <code>gridworld/trajectories/24by24/</code>:</p>
+<p><img alt="" src="../imgs/test-experiment-replay.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../literature-weekly/" class="btn btn-neutral float-right" title="Weekly readings">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../setup-mkdocs/" class="btn btn-neutral" title="Set up MkDocs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../setup-mkdocs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../literature-weekly/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

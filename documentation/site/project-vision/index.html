@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>Vision - Team coacher agents - Minedocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Vision - Team coacher agents";
+    var mkdocs_page_input_path = "project-vision.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Minedocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-meetings/">Weekly meeting notes (to Week 8)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Weekly plans (up to Week 4)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-behavior/">(New!) Human behavior</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Vision - Team coacher agents</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#agents-that-have-theory-of-mind">Agents that have Theory of Mind</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agents-that-have-bayesian-theory-of-mind">Agents that have Bayesian theory of mind</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agents-that-coach-individuals-based-on-their-planning-model">Agents that coach individuals based on their planning model</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agents-that-coach-teams-with-natural-language">Agents that coach teams with natural language</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#agents-that-learn-lessons-from-stories">Agents that learn lessons from stories</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-SAR/">Task - Search and rescue missions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-team/">Team - Minecraft UROP</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-gridworld/">Set up gridworld</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-Malmo/">Set up Malmo</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Run it once</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tut-planning/">Planning-related test cases</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Read it through</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../literature-weekly/">Weekly readings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../data-trajectory/">Dataset I - human trajectories</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Know it exists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tools-map-generator/">Map Generator - Minecraft tools</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-git/">Git - Common nightmares</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-review-literature/">How to read papers</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Minedocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Project &raquo;</li>
+        
+      
+    
+    <li>Vision - Team coacher agents</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="vision-team-coacher-agents">Vision - Team coacher agents<a class="headerlink" href="#vision-team-coacher-agents" title="Permanent link">#</a></h1>
+<p>To develop socially intelligent team assistants, we need to enable them to infer humans’ strategies, beliefs, and future actions. This page includes the behavior that we wish our agents can demonstrate.</p>
+<p><img alt="" src="../imgs/project-coacher.png" /></p>
+<h2 id="agents-that-have-theory-of-mind">Agents that have Theory of Mind<a class="headerlink" href="#agents-that-have-theory-of-mind" title="Permanent link">#</a></h2>
+<p>Theory of mind is the ability to attribute mental states — beliefs, intentions, desires, emotions, knowledge, etc. — to oneself and to others.</p>
+<blockquote>
+<p>Tom opened a door. He found the way in was blocked by debris. He started clearing the debris.</p>
+<p>Agent: (Belief) Tom believed that there may be victims in the room.</p>
+<p>Agent: (Intention) Tom may wish to break through the debris.</p>
+<p>Agent: (Desire) Tom wants to follow his original search plan (because he didn't just turn away).</p>
+<p>Agent: (Emotion) Tom may feel stressful under time pressure and increasing workload.</p>
+<p>Agent: (Knowledge) Tom knows how to clear debris.</p>
+</blockquote>
+<p><img alt="" src="../imgs/project-tom.png" /></p>
+<h2 id="agents-that-have-bayesian-theory-of-mind">Agents that have Bayesian theory of mind<a class="headerlink" href="#agents-that-have-bayesian-theory-of-mind" title="Permanent link">#</a></h2>
+<p>The following graph may help us understand the inference and prediction process. Given the actions of one player, we want to infer his belief update model and POMDP planning model, then we can make predictions about future actions.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Psychological theory</th>
+<th align="center">Computational implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="" src="../imgs/project-bda.png" /></td>
+<td align="center"><img alt="" src="../imgs/project-bda-implementation.png" /></td>
+</tr>
+</tbody>
+</table>
+<blockquote></blockquote>
+<p>Further readings:</p>
+<ol>
+<li>
+<p>Baker, Chris, Rebecca Saxe, and Joshua Tenenbaum. <a href="http://aiweb.cs.washington.edu/research/projects/aiweb/media/papers/cogsci2011.pdf">"Bayesian theory of mind: Modeling joint belief-desire attribution."</a>, 2011.</p>
+</li>
+<li>
+<p>Baker, Chris, Rebecca Saxe, and Joshua Tenenbaum. <a href="http://csjarchive.cogsci.rpi.edu/proceedings/2007/docs/p779.pdf">"Goal inference as inverse planning."</a>, 2007.</p>
+</li>
+</ol>
+<h2 id="agents-that-coach-individuals-based-on-their-planning-model">Agents that coach individuals based on their planning model<a class="headerlink" href="#agents-that-coach-individuals-based-on-their-planning-model" title="Permanent link">#</a></h2>
+<p>Potential ways for agents to improve singleplayer's taskwork by triggering them to think about their playing style:</p>
+<blockquote>
+<p>Agent: You seem to believe that you have searched every room on the west wing. Are you sure about that?</p>
+<p>Agent: You seem to have no prioritization of which rooms to search first. Do you have a preference?</p>
+<p>Agent: You seem to be fixated on your original plan. Do you have a strong reason to do that?</p>
+</blockquote>
+<h2 id="agents-that-coach-teams-with-natural-language">Agents that coach teams with natural language<a class="headerlink" href="#agents-that-coach-teams-with-natural-language" title="Permanent link">#</a></h2>
+<p>Potential ways for agents to improve teamwork using Theory of Mind:</p>
+<ul>
+<li>Request for help on behalf of a human team member based on the mental states of the other team members</li>
+</ul>
+<blockquote>
+<p>Agent: I think you are capable of helping him because you have the knowledge of clearing debris and I predict that you will have spare time after finishing your tasks.</p>
+</blockquote>
+<ul>
+<li>Explain a human team member's actions in terms of his mental states</li>
+</ul>
+<blockquote>
+<p>Agent: He can't come help you in the next 5 minutes because he is seems to have the intention of searching the west wing.</p>
+</blockquote>
+<p><img alt="" src="../imgs/project-advice.png" /></p>
+<h2 id="agents-that-learn-lessons-from-stories">Agents that learn lessons from stories<a class="headerlink" href="#agents-that-learn-lessons-from-stories" title="Permanent link">#</a></h2>
+<p>Stories include the histories of the human team members, the reports from past missions, and the experience from previous coaching. Stories help us think on higher levels and longer terms, find patterns, and encode knowledge.</p>
+<p>Stories can be generated by the agent based on the inference made and actions observed during a mission. They can be also collected from individual human team members after the mission. With stories, agents may make the following reasoning:</p>
+<blockquote>
+<p>Agent: Based on the previous 20 missions, humans tend to act less and less rationally after 3 minutes.</p>
+<p>Agent: Based on this member's previous 3 missions, he tends to act very greedily in the last minute.</p>
+<p>Agent: Based on my previous interactions with this team, I tend to improve the teamwork more if I give instructions instead of ask questions.</p>
+</blockquote>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../project-SAR/" class="btn btn-neutral float-right" title="Task - Search and rescue missions">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../project-behavior/" class="btn btn-neutral" title="(New!) Human behavior"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../project-behavior/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../project-SAR/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

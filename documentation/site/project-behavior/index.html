@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>(New!) Human behavior - Minedocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "(New!) Human behavior";
+    var mkdocs_page_input_path = "project-behavior.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Minedocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-meetings/">Weekly meeting notes (to Week 8)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Weekly plans (up to Week 4)</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">(New!) Human behavior</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pilot-test-1-maze-of-size-45-by-46-player">Pilot test 1: Maze of size 45 by 46, player</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pilot-test-2-maze-of-size-24-by-24-player">Pilot test 2: Maze of size 24 by 24, player</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pilot-test-3-maze-of-size-24-by-24-observer">Pilot test 3: Maze of size 24 by 24, observer</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-vision/">Vision - Team coacher agents</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-SAR/">Task - Search and rescue missions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-team/">Team - Minecraft UROP</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-gridworld/">Set up gridworld</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-Malmo/">Set up Malmo</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Run it once</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tut-planning/">Planning-related test cases</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Read it through</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../literature-weekly/">Weekly readings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../data-trajectory/">Dataset I - human trajectories</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Know it exists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tools-map-generator/">Map Generator - Minecraft tools</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-git/">Git - Common nightmares</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-review-literature/">How to read papers</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Minedocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Project &raquo;</li>
+        
+      
+    
+    <li>(New!) Human behavior</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="human-behavior-in-minecraft-sar-missions">Human behavior in Minecraft SAR missions<a class="headerlink" href="#human-behavior-in-minecraft-sar-missions" title="Permanent link">#</a></h1>
+<p>In week 2 and 3, we will focus on understanding human behavior. Note that we have a different plan for Anna/Isabelle and for Christian/Darren in Week 2.</p>
+<p>For Anna and Isabelle, you will focus on watching videos from both Pilot test 1 and Pilot test 2.</p>
+<p>For Christian and Darren, you will focus on watching videos from ONLY Pilot test 1, until you have finished participating in ASU Pilot test. That's because the experiment design of our Pilot test 2 may spoil your ASU Pilot experience.</p>
+<p>In week 3, we will move onto Pilot test 2 and 3.</p>
+<hr />
+<h2 id="pilot-test-1-maze-of-size-45-by-46-player">Pilot test 1: Maze of size 45 by 46, player<a class="headerlink" href="#pilot-test-1-maze-of-size-45-by-46-player" title="Permanent link">#</a></h2>
+<p>In Pilot test 1, we want to see how human players behave in a SAR mission given two different goals: (1) triage all victims in the maze, (2) maximize the number of victims triaged within 10 minutes. Victims with different colors take different amount of time. From blue, green, yellow, orange, to red, they take 2, 4, 6, 8, and 10 seconds. Players are allowed to turn on lights, clear blockage, and put out fire.</p>
+<p><img alt="" src="../imgs/pilot-1.png" /></p>
+<p>Resources for your analysis:</p>
+<ul>
+<li>Videos of 10 players searching the maze while thinking aloud: <a href="https://www.dropbox.com/sh/1vm2bme978v7u13/AADt4JNTUVXxiLN_xyFrbYT3a?dl=0">Dropbox link</a></li>
+<li>Minecraft world file - Singleplayer: <a href="https://www.dropbox.com/sh/e0geq503o2amshk/AACJAy_Sb5u3qq-4oXX6aGToa?dl=0">Dropbox link</a></li>
+</ul>
+<p>Please only look at the following example analysis after you've generated your own theories and made your own summaries:</p>
+<ul>
+<li>Example analysis of player 1-5 behavior: <a href="https://docs.google.com/presentation/d/1L9MgpIDIkbv2uAN3bYvPFNBOHeWu2_MUcBuj0-HbOaM/edit#slide=id.g6d2c158114_0_326">Google slides</a></li>
+<li>Example analysis of player 6-10 behavior: <a href="https://docs.google.com/presentation/d/1L9MgpIDIkbv2uAN3bYvPFNBOHeWu2_MUcBuj0-HbOaM/edit#slide=id.g6d2c158114_0_354">Google slides</a></li>
+<li>Example lessons learned from player 1-10 behavior: <a href="https://docs.google.com/presentation/d/1L9MgpIDIkbv2uAN3bYvPFNBOHeWu2_MUcBuj0-HbOaM/edit#slide=id.g6d2c158114_0_287">Google slides</a></li>
+</ul>
+<hr />
+<h3 id="pilot-test-2-maze-of-size-24-by-24-player">Pilot test 2: Maze of size 24 by 24, player<a class="headerlink" href="#pilot-test-2-maze-of-size-24-by-24-player" title="Permanent link">#</a></h3>
+<p>For Christian and Darren, please stop reading further until have finished participating in ASU Pilot test. The experiment design of our Pilot test 2 may spoil your ASU Pilot experience.</p>
+<p>In Pilot test 2, we want to see how human players behave in SAR missions that have tight time constraints and different initial training conditions. The time limit of each player depends on his game expertise and ranges from 2-3 min. Each player will go through all three training conditions as described below:</p>
+<p><img alt="" src="../imgs/pilot-2.png" /></p>
+<p><img alt="" src="../imgs/project-pilot-2.png" /></p>
+<p>Resources for your analysis:</p>
+<ul>
+<li>Videos of 14 players searching five mazes of size 24 by 24: <a href="https://www.dropbox.com/sh/7x8ead9anakvsqj/AAAXNtvJUX-nRbLwhDVTCjbxa?dl=0">Dropbox link</a></li>
+<li>Maps of the five test mazes: <a href="https://www.dropbox.com/sh/ccw2yx5iee8fm4l/AADbSXfafBHktU4KF8NpRlOta?dl=0">Dropbox link</a> (includes both the wall-only version presented to the players for planning beforehand and the actual maps)</li>
+<li>Summary of player time limit, game competency, and scores: <a href="https://docs.google.com/presentation/d/1B0QpVHhIzCS9TTBK2Zx0is_RO2cJgxnxIxmmc64cX3M/edit#slide=id.g74a80aa3b7_1_0">Google slides</a></li>
+<li>Summary of player reported strategies and preferences: <a href="https://docs.google.com/presentation/d/1B0QpVHhIzCS9TTBK2Zx0is_RO2cJgxnxIxmmc64cX3M/edit#slide=id.g73957fb8bb_1_79">Google slides</a></li>
+<li>Download human trajectory dataset (visualized traces on maps): <a href="https://www.dropbox.com/s/tgoas12z2t50rio/Pilot%202%20trajectories%20-%20png.zip?dl=0">Dropbox link (2.28 MB)</a></li>
+<li>Description of the human trajectory dataset: <a href="../data-trajectory/">Dataset I - Human trajectory</a></li>
+</ul>
+<p>Please only look at the following example analysis after you've generated your own theories and made your own summaries:</p>
+<ul>
+<li>Analysis of player behaviors: <a href="https://docs.google.com/presentation/d/1B0QpVHhIzCS9TTBK2Zx0is_RO2cJgxnxIxmmc64cX3M/edit#slide=id.g74a80aa3b7_1_97">Google slides</a></li>
+<li>Categorization of player behaviors: <a href="https://docs.google.com/presentation/d/1RXMbrn1qvFAdB7Xm-xXjeHYyLpsaFo-nNeTyMh-uCUk/edit#slide=id.g772d6496c2_0_811">Google slides</a></li>
+</ul>
+<hr />
+<h3 id="pilot-test-3-maze-of-size-24-by-24-observer">Pilot test 3: Maze of size 24 by 24, observer<a class="headerlink" href="#pilot-test-3-maze-of-size-24-by-24-observer" title="Permanent link">#</a></h3>
+<p>In Pilot test 3, we want to see how good are humans in predicting actions?</p>
+<p><img alt="" src="../imgs/project-pilot-3.png" /></p>
+<ul>
+<li>Video clips of 2 players searching three mazes of size 24 by 24: <a href="https://www.dropbox.com/sh/7x8ead9anakvsqj/AAAXNtvJUX-nRbLwhDVTCjbxa?dl=0">Player 6</a>, <a href="[Player 6](https://www.dropbox.com/sh/7x8ead9anakvsqj/AAAXNtvJUX-nRbLwhDVTCjbxa?dl=0)">Player 10</a>,</li>
+<li>Raw data of prediction questions, answers, and commentary: <a href="https://docs.google.com/spreadsheets/d/1rT4H0OONnfuTJHy88t7uk_XbUpz87oeR79LFQmvTIQg/edit?usp=sharing">Google sheet</a></li>
+<li>Analysis of observer predictions: <a href="https://docs.google.com/presentation/d/1RXMbrn1qvFAdB7Xm-xXjeHYyLpsaFo-nNeTyMh-uCUk/edit#slide=id.g772d6496c2_0_335">Google slides</a></li>
+</ul>
+<!---
+### Pilot test 4: Maze of size 50 by 90, player
+
+It's a 10-minute game with 3 minutes to plan with the map (in the below Dropbox link)
+
+* Minecraft world file - DARPA Pilot: [Dropbox link](https://www.dropbox.com/sh/e0geq503o2amshk/AACJAy_Sb5u3qq-4oXX6aGToa?dl=0)
+* Pilot study [questionaires](https://asu.co1.qualtrics.com/jfe/form/SV_0Mm2h0drxwLCI73) designed by Arizona State University
+--->
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../project-vision/" class="btn btn-neutral float-right" title="Vision - Team coacher agents">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../project-plans/" class="btn btn-neutral" title="Weekly plans (up to Week 4)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../project-plans/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../project-vision/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

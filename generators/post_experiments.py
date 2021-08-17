@@ -9,6 +9,7 @@ from datetime import datetime
 parser = argparse.ArgumentParser()
 parser.add_argument(dest="exp_dir", type=str, default='experiments')
 parser.add_argument('-sh',dest="exp_sh", type=str, default=None)
+parser.add_argument('-r',dest="replace", action='store_true')
 args = parser.parse_args()
 
 def summarize_csv(exp_dir):
@@ -56,6 +57,12 @@ def save_copy(exp_dir, save_dir):
     exp_name = exp_dir[exp_dir.rfind('/')+1:]
     dt = datetime.now().strftime("%m%d-%H%M%S")
     save_dir = join(save_dir, f'{exp_name}-{dt}')
+
+    ## delete all previous experiments with this name
+    if args.replace:
+        previous_dirs = [join(save_dir, f) for f in listdir(save_dir) if f"{exp_name}-" in f]
+        for each in previous_dirs:
+            shutil.rmtree(each)
 
     runs = [join(exp_dir, f) for f in listdir(exp_dir) if isdir(join(exp_dir, f))]
     failed_runs = len(runs)

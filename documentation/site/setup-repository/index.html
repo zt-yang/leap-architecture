@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>Set up the repository - Minedocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Set up the repository";
+    var mkdocs_page_input_path = "setup-repository.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Minedocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Welcome</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-meetings/">Weekly meeting notes (to Week 8)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Weekly plans (up to Week 4)</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-behavior/">(New!) Human behavior</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-vision/">Vision - Team coacher agents</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-SAR/">Task - Search and rescue missions</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-team/">Team - Minecraft UROP</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Set up the repository</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#optional-install-pycharm-ide-for-debugging">(Optional) Install PyCharm IDE for debugging</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#optional-for-macos-install-iterm2-for-splitting-panels">(Optional for MacOS) Install iTerm2 for splitting panels</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#optional-for-macos-install-zsh-for-tab-completion">(Optional for MacOS) Install zsh for tab completion</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#important-components-of-the-repository">Important components of the repository</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#first-level-folders">First-level folders</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gridworld-folder">gridworld folder</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-gridworld/">Set up gridworld</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-Malmo/">Set up Malmo</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Run it once</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tut-planning/">Planning-related test cases</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Read it through</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../literature-weekly/">Weekly readings</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../data-trajectory/">Dataset I - human trajectories</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Know it exists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../tools-map-generator/">Map Generator - Minecraft tools</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-git/">Git - Common nightmares</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../howto-review-literature/">How to read papers</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Minedocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Set it up &raquo;</li>
+        
+      
+    
+    <li>Set up the repository</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="set-up-the-repository-and-documentation">Set up the repository and documentation<a class="headerlink" href="#set-up-the-repository-and-documentation" title="Permanent link">#</a></h1>
+<p>To clone the GenesisCore repository, you need to send <a href="mailto:ztyang@mit.edu">Yang</a> your GitHub username to be invited as a collaborator.</p>
+<p>Open terminal and go to your favorite work directory (e.g., ~/Documents) to clone the project:</p>
+<pre><code>git clone git@github.com:zt-yang/tom-minecraft.git
+</code></pre>
+
+<h2 id="optional-install-pycharm-ide-for-debugging">(Optional) Install PyCharm IDE for debugging<a class="headerlink" href="#optional-install-pycharm-ide-for-debugging" title="Permanent link">#</a></h2>
+<p>I use <a href="https://www.jetbrains.com/pycharm/download/#section=mac">PyCharm</a> for more efficient debugging. It's free to use the Professional version after requesting student license.</p>
+<h2 id="optional-for-macos-install-iterm2-for-splitting-panels">(Optional for MacOS) Install iTerm2 for splitting panels<a class="headerlink" href="#optional-for-macos-install-iterm2-for-splitting-panels" title="Permanent link">#</a></h2>
+<p>I use <a href="https://www.iterm2.com/">iTerm2</a> as a replacement for Terminal because it supports multiple tabs and flexible panels when you right click.</p>
+<p><img alt="" src="../imgs/setup-iterm2.png" /></p>
+<h2 id="optional-for-macos-install-zsh-for-tab-completion">(Optional for MacOS) Install zsh for tab completion<a class="headerlink" href="#optional-for-macos-install-zsh-for-tab-completion" title="Permanent link">#</a></h2>
+<p>I use <a href="https://ohmyz.sh/">zsh</a> for configuring my terminal/iTerm2 app to make my command line experience more efficient. I love its command completion feature, which should be enabled by default.</p>
+<h2 id="important-components-of-the-repository">Important components of the repository<a class="headerlink" href="#important-components-of-the-repository" title="Permanent link">#</a></h2>
+<h3 id="first-level-folders">First-level folders<a class="headerlink" href="#first-level-folders" title="Permanent link">#</a></h3>
+<pre><code>/gridworld        ## main folder for our project
+/world-builder    ## extract 2D map from Minecraft world folder
+/documentation    ## run `mkdocs serve` to see the site offline
+...
+</code></pre>
+
+<h3 id="gridworld-folder">gridworld folder<a class="headerlink" href="#gridworld-folder" title="Permanent link">#</a></h3>
+<pre><code>MalmoPython.so    ## Malmo package file for MacOS
+MalmoPython.pyd   ## Malmo package file for Windows
+</code></pre>
+
+<p>(under construction)</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../setup-gridworld/" class="btn btn-neutral float-right" title="Set up gridworld">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../project-team/" class="btn btn-neutral" title="Team - Minecraft UROP"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../project-team/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../setup-gridworld/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

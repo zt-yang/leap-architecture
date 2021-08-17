@@ -62,7 +62,7 @@ def get_pddl(expdir, parentdir = "domains"):
     ## replace (:types in domain and (:objects in problem 
     if args.use_objects != None:
 
-        ## with those defined in docs/objects.md
+        ## with those defined in generators/objects.md
         if '.md' in args.use_objects:
             new_types, new_objects = get_defined_objects()
             replace_lines(domains[0], '(:types', '(:predicates', new_types, domain)
