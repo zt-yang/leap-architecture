@@ -26,7 +26,7 @@ python run.py kitchen_egg_4.pddl sunny_side_up.pddl -o obj_egg_4.pddl -v 0 -e 'e
 
 python run.py kitchen_egg_4.pddl egg_in_hole.pddl -o obj_egg_4.pddl -v 0 -e 'experiments/egg_recipes' -a 'crack-egg-3'
 
-## poached_egg.pddl specifies boiled egg on toast
+## poached_egg.pddl specifies boiled egg with vinegar
 python run.py kitchen_3.pddl poached_egg.pddl -o obj_eggs.pddl -v 0 -e 'experiments/egg_recipes'
 
 python generators/post_experiments.py experiments/egg_recipes -sh test_egg_recipes.sh
