@@ -53,14 +53,9 @@
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../experiments/">Planning Complexity</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
                     </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Set it up</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Experiments</span></p>
@@ -79,6 +74,13 @@
                 <p class="caption"><span class="caption-text">Domains</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
                     </li>
                 </ul>
       </div>
@@ -118,12 +120,14 @@
             <div class="section">
               
                 <h1 id="more-operators-search-time-increases-linearly">More operators -&gt; Search time increases linearly<a class="headerlink" href="#more-operators-search-time-increases-linearly" title="Permanent link">#</a></h1>
-<p><code>test_operators</code> tests the effect of increasing the number of operators (for multiple recipes) on search complexity, with the same <code>omelette.pddl</code> and <code>obj_1.pddl</code>, i.e. minimum plan length &amp; objects:
-* kitchen_1.pddl contains all operators for omelette recipe
-* kitchen_2.pddl contains all operators for omelette + maintanance goals
-* kitchen_3.pddl contains all operators &amp; definitions for 10 egg recipes
-* kitchen_4.pddl contains all operators &amp; definitions for 10 egg recipes, with different action costs that reflect time costs
-* kitchen_5.pddl contains all operators &amp; definitions for egg &amp; baking recipes, with different action costs that reflect time costs</p>
+<p><code>test_operators</code> tests the effect of increasing the number of operators (for multiple recipes) on search complexity, with the same <code>omelette.pddl</code> and <code>obj_1.pddl</code>, i.e. minimum plan length &amp; objects:</p>
+<ul>
+<li>kitchen_1.pddl contains all operators for omelette recipe</li>
+<li>kitchen_2.pddl contains all operators for omelette + maintanance goals</li>
+<li>kitchen_3.pddl contains all operators &amp; definitions for 10 egg recipes</li>
+<li>kitchen_4.pddl contains all operators &amp; definitions for 10 egg recipes, with different action costs that reflect time costs</li>
+<li>kitchen_5.pddl contains all operators &amp; definitions for egg &amp; baking recipes, with different action costs that reflect time costs</li>
+</ul>
 <pre><code>     t  problem_name                                           var    op    axiom    plan    parse     search    state
 ------  ---------------------------------------------------  -----  ----  -------  ------  -------  ---------  -------
 090721  kitchen_1-omelette_5-obj_1.pddl-omelette_5.pddl         66  1004       11      48    0.659  0.0181792      243

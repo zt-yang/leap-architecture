@@ -53,20 +53,27 @@
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../experiments/">Planning Complexity</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
                     </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Set it up</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Experiments</span></p>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Num of Objects</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#conclusion-1-search-time-increases-linearly-with-alternative-utensils">Conclusion 1: Search time increases linearly with alternative utensils</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note-1-use-axioms-to-define-recipe">Note 1: Use Axioms to define recipe</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#definition-of-an-omelette-in-kitchen_1pddl">Definition of an omelette in kitchen_1.pddl</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note-2-objects-init-and-goals-in-omelette_5pddl">Note 2: Objects, Init, and Goals in omelette_5.pddl</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#note-3-the-objects-duplicated-in-obj_4pddl-and-obj_5pddl">Note 3: the Objects Duplicated in obj_4.pddl and obj_5.pddl</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
@@ -79,6 +86,13 @@
                 <p class="caption"><span class="caption-text">Domains</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
                     </li>
                 </ul>
       </div>
@@ -117,21 +131,213 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="more-objects-search-time-increases-linearly">More objects -&gt; Search time increases linearly<a class="headerlink" href="#more-objects-search-time-increases-linearly" title="Permanent link">#</a></h1>
-<p><code>test_objects.sh</code> tests the effect of increasing the number of objects on search complexity, with the same <code>kitchen_1.pddl</code> and <code>omelette_5.pddl</code>, i.e. full omelette:
-* obj_1.pddl contains the bare minimum set of objects
-* obj_2.pddl contains some alternative objects 
-* obj_3.pddl contains 12 eggs
-* obj_4.pddl contains multiples (two) of every object
-* obj_5.pddl contains multiples (ten) of every object
-* obj_eggs.pddl contains all objects for making 10 egg recipes</p>
-<pre><code>     t  problem_name      var    op    axiom    plan    parse     search    state
-------  --------------  -----  ----  -------  ------  -------  ---------  -------
-085837  obj_1.pddl         66  1004       11      48    0.61   0.0164124      243
-085839  obj_2.pddl         72  1626       14      53    1.448  0.0181531      215
-085843  obj_3.pddl        102  3086       44      53    3.889  0.0320748      215
-085855  obj_4.pddl        116  9510       46      50   11.723  0.0407923      219
-085909  obj_eggs.pddl     115  5416      102      50   13.549  0.031977       219
+                <h1 id="more-objects-search-time-increases-linearly-with-alternative-utensils">More objects -&gt; Search time increases linearly with alternative utensils<a class="headerlink" href="#more-objects-search-time-increases-linearly-with-alternative-utensils" title="Permanent link">#</a></h1>
+<p><code>test_objects.sh</code> tests the effect of increasing the number of objects on search complexity by adding objects to <code>obj_0.pddl</code>, with the same set of operators in <code>kitchen_1.pddl</code> and the same goal definition in <code>omelette_5.pddl</code>, i.e. a full omelette:</p>
+<ul>
+<li><code>obj_0.pddl</code> contains the bare minimum set of objects --&gt; <a href="#note-2-objects-init-and-goals-in-omelette_5pddl">[Note 2]</a></li>
+<li><code>obj_1.pddl</code> adds 3 extranuous objects (i.e. pot/pan, bread/veggies, oliveoil/butter) </li>
+<li><code>obj_2.pddl</code> adds 3 alternative objects (i.e. knife/fork, bigbowl/smallbowl, saltedbutter/butter)</li>
+<li><code>obj_3.pddl</code> contains 10 eggs and 10 veggies (the goal mentions egg1 and veggie1) --&gt; <a href="#note-1-use-axioms-to-define-recipe">[Note 1]</a></li>
+<li><code>obj_4.pddl</code> contains multiples (2) of every utensil (11) --&gt; <a href="#note-3-the-objects-duplicated-in-obj_4pddl-and-obj_5pddl">[Note 3]</a></li>
+<li><code>obj_5.pddl</code> contains multiples (10) of every utensil (11) --&gt; <a href="#conclusion-1-search-time-increases-linearly-with-alternative-utensils">[Conclusion 1]</a> </li>
+<li><code>obj_eggs_0.pddl</code> contains the bare minimum set of objects for making 10 egg recipes</li>
+</ul>
+<pre><code>     t  problem_name      var     op    axiom    plan    parse     search    state
+------  --------------  -----  -----  -------  ------  -------  ---------  -------
+142459  obj_0.pddl         56    932       11      48    0.483  0.0119011 *    177 
+142501  obj_1.pddl         61   1522       13      55    1.211  0.0194257      348 
+142502  obj_2.pddl         60   1280       13      54    0.898  0.0389651 *    580
+142505  obj_3.pddl         92   2930       46      48    2.721  0.0209925      181 
+142507  obj_4.pddl        119   2849       11      63    1.701  0.0684566 *    678 
+142546  obj_5.pddl        429  56083       11      53   37.081  0.596486  *    907 
+</code></pre>
+
+<h2 id="conclusion-1-search-time-increases-linearly-with-alternative-utensils">Conclusion 1: Search time increases linearly with alternative utensils<a class="headerlink" href="#conclusion-1-search-time-increases-linearly-with-alternative-utensils" title="Permanent link">#</a></h2>
+<p>Looking at line 1, line 3 (added 3 alternative utensil), line 5 (duplicated number of utensils by 2), and line 6 (duplicated number of utensils by 10), we notice that </p>
+<ul>
+<li>search time increases almost linearly</li>
+<li>number of operators increases more than linearly</li>
+<li>number of axioms doesn't change</li>
+<li>plan lengths are different (strange)</li>
+</ul>
+<h2 id="note-1-use-axioms-to-define-recipe">Note 1: Use Axioms to define recipe<a class="headerlink" href="#note-1-use-axioms-to-define-recipe" title="Permanent link">#</a></h2>
+<p>Note that 10 eggs and 10 veggies only has a small effect when the goal mentions only the existance of egg and veggies, as opposed to mentioning <code>egg1</code> and <code>veggie1</code>:</p>
+<ul>
+<li><code>obj_0.pddl</code> + <code>omelette_5.pddl</code> (<code>obj_0.pddl</code> contains the bare minimum set of objects)</li>
+<li><code>obj_3.pddl</code> + <code>omelette_5.pddl</code> (<code>obj_3.pddl</code> contains 10 eggs and 10 veggies)</li>
+<li><code>obj_3.pddl</code> + <code>omelette_5b.pddl</code>, which contains goal <code>(exist-omelette kitchen)</code> </li>
+</ul>
+<pre><code>     t  problem_name               var    op    axiom    plan    parse     search    state
+------  -----------------------  -----  ----  -------  ------  -------  ---------  -------
+144457  obj_0, omelette_5.pddl      56   932       11      48    0.495  0.0104259      177
+144500  obj_3, omelette_5.pddl      92  2930       46      48    2.709  0.0198585      181
+144504  obj_3, omelette_5b.pddl    269  3524       83      49    2.763  0.0517935      409
+</code></pre>
+
+<h3 id="definition-of-an-omelette-in-kitchen_1pddl">Definition of an omelette in <code>kitchen_1.pddl</code><a class="headerlink" href="#definition-of-an-omelette-in-kitchen_1pddl" title="Permanent link">#</a></h3>
+<pre><code>  ( :derived ( exist-omelette ?env - env )
+    ( exists 
+      ( ?egg1 - egg ?veggies1 - ingredient ?plate1 - plate ?p - normalcontainer )
+      ( and 
+        ( inside ?plate1 ?egg1 )
+        ( beaten ?egg1 )
+        ( fried ?egg1 )
+        ( folded ?egg1 )
+        ( is-buttery ?egg1 )
+
+        ( fried ?veggies1 )
+        ( sauteed ?veggies1 )
+
+        ( has-seasoning ?egg1 nutmilk cup two )
+
+        ( has-seasoning ?egg1 chives tablespoon1 two )
+        ( seasoning-mixed ?egg1 chives )
+
+        ( has-seasoning ?egg1 salt gram two )
+        ( seasoning-mixed ?egg1 salt )
+
+        ( has-seasoning ?egg1 pepper gram two )
+        ( seasoning-mixed ?egg1 pepper )
+      )
+    )
+  )
+</code></pre>
+
+<h2 id="note-2-objects-init-and-goals-in-omelette_5pddl">Note 2: Objects, Init, and Goals in <code>omelette_5.pddl</code><a class="headerlink" href="#note-2-objects-init-and-goals-in-omelette_5pddl" title="Permanent link">#</a></h2>
+<pre><code>(define (problem Omelette)
+  (:domain Kitchen)
+
+  (:objects
+
+    ucup1 ucup2 dcup1 dcup2 drawer1 fridge - furniture
+    burner - appliance
+    kitchentop sink - worktop
+
+    salt pepper chives - seasoning
+    butter - oil
+    nutmilk - liquid
+    veggies1 - ingredient
+    egg1 - egg
+
+    fork1 - normalutensil
+    spatula1 - cookingutensil
+    tablespoon1 - measureutensil
+    whisk1 - whiskutensil
+
+    plate1 - plate
+    salter1 shaker1 container1 - normalcontainer
+    milkbottle1 - liquidcontainer
+    smallbowl1 - specialcontainer
+    frypan1 - cookingcontainer
+    robot - agent
+
+    one two three four - number
+    gram cup - measureunit
+    kitchen - env 
+
+  )
+
+  (:init
+
+    ; ----------------------
+    ; properties of places that cannot move
+    ; ----------------------
+    (closed drawer1)
+    (closed dcup1)
+    (closed fridge)
+    (closed dcup2)
+    (closed ucup1)
+    (closed ucup2)
+    (switchedoff burner)
+
+    ; ----------------------
+    ; stored in places that cannot move
+    ; ----------------------
+    (in dcup1 frypan1)
+    (in dcup2 container1)
+
+    (in fridge egg1)
+    (in fridge veggies1)
+    (in fridge milkbottle1)
+    (in fridge butter)
+
+    (on kitchentop salter1)
+    (on kitchentop shaker1)
+    (on kitchentop tablespoon1)
+    (on kitchentop fork1)
+    (on kitchentop spatula1)
+    (on kitchentop whisk1)
+    (on kitchentop plate1)
+    (on kitchentop smallbowl1)
+
+    ; ----------------------
+    ; stored in movables
+    ; ----------------------
+    (inside salter1 salt)
+    (inside shaker1 pepper)
+    (inside container1 chives)
+    (inside milkbottle1 nutmilk)
+
+    ; ----------------------
+    ; properties of ingredients
+    ; ----------------------
+    (raw egg1)
+    (sauteed veggies1)
+    (is-butter butter)
+
+  )
+
+  (:goal
+    (and
+      (closed ucup1)
+      (closed ucup2)
+      (closed dcup1)
+      (closed dcup2)
+      (closed drawer1)
+      (closed fridge)
+      (switchedoff burner)
+
+      (beaten egg1)
+      (fried egg1)
+      (folded egg1)
+      (is-buttery egg1)
+
+      (fried veggies1)
+
+      (has-seasoning egg1 salt gram four)
+      (seasoning-mixed egg1 salt)
+
+      (has-seasoning egg1 pepper gram four)
+      (seasoning-mixed egg1 pepper)
+
+      (has-seasoning egg1 chives tablespoon1 two)
+      (seasoning-mixed egg1 chives)
+
+      (has-seasoning egg1 nutmilk cup two)
+    )
+  )
+)
+</code></pre>
+
+<h2 id="note-3-the-objects-duplicated-in-obj_4pddl-and-obj_5pddl">Note 3: the Objects Duplicated in <code>obj_4.pddl</code> and <code>obj_5.pddl</code><a class="headerlink" href="#note-3-the-objects-duplicated-in-obj_4pddl-and-obj_5pddl" title="Permanent link">#</a></h2>
+<pre><code>    (in dcup1 frypan2)
+    (in dcup2 container2)
+
+    (in fridge milkbottle2)
+
+    (on kitchentop salter2)
+    (on kitchentop shaker2)
+    (on kitchentop tablespoon2)
+    (on kitchentop fork2)
+    (on kitchentop spatula2)
+    (on kitchentop whisk2)
+    (on kitchentop plate2)
+    (on kitchentop smallbowl2)
+
+    (inside salter2 salt)
+    (inside shaker2 pepper)
+    (inside container2 chives)
+    (inside milkbottle2 nutmilk)
 </code></pre>
               
             </div>
@@ -143,7 +349,7 @@
         <a href="../exp-goals/" class="btn btn-neutral float-right" title="Num of Goal Predicates">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../setup-mkdocs/" class="btn btn-neutral" title="Set up MkDocs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../project-minutes/" class="btn btn-neutral" title="Minutes & Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -169,7 +375,7 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../setup-mkdocs/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../project-minutes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../exp-goals/" style="color: #fcfcfc">Next &raquo;</a></span>

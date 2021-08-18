@@ -53,14 +53,9 @@
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../experiments/">Planning Complexity</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
                     </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Set it up</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Experiments</span></p>
@@ -79,6 +74,13 @@
                 <p class="caption"><span class="caption-text">Domains</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
                     </li>
                 </ul>
       </div>
@@ -118,14 +120,16 @@
             <div class="section">
               
                 <h1 id="more-goal-predicates-search-time-increases-more-than-linearly">More goal predicates -&gt; Search time increases more than linearly<a class="headerlink" href="#more-goal-predicates-search-time-increases-more-than-linearly" title="Permanent link">#</a></h1>
-<p><code>test_goals.sh</code> tests the effect of increasing the number of goal predicates on search complexity, with the same <code>kitchen_1</code>.pddl and <code>obj_1</code>.pddl, i.e. minimum operators &amp; objects:
-* omelette_1.pddl has only eggs
-* omelette_2.pddl adds veggies
-* omelette_3.pddl adds salt and pepper
-* omelette_4.pddl adds nutmilk and chives
-* omelette_5.pddl contains all positive goal predicates without any use of axioms
-* omelette_6.pddl contains one negative goal predicate
-* omelette_6.pddl contains two negative goal predicates</p>
+<p><code>test_goals.sh</code> tests the effect of increasing the number of goal predicates on search complexity, with the same <code>kitchen_1</code>.pddl and <code>obj_1</code>.pddl, i.e. minimum operators &amp; objects:</p>
+<ul>
+<li>omelette_1.pddl has only eggs</li>
+<li>omelette_2.pddl adds veggies</li>
+<li>omelette_3.pddl adds salt and pepper</li>
+<li>omelette_4.pddl adds nutmilk and chives</li>
+<li>omelette_5.pddl contains all positive goal predicates without any use of axioms</li>
+<li>omelette_6.pddl contains one negative goal predicate</li>
+<li>omelette_7.pddl contains two negative goal predicates</li>
+</ul>
 <pre><code>     t  problem_name       var    op    axiom    plan    parse      search    state
 ------  ---------------  -----  ----  -------  ------  -------  ----------  -------
 085529  omelette_1.pddl     39   700        8      16    0.632  0.0016525        29

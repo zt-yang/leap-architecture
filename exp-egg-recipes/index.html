@@ -53,14 +53,9 @@
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../experiments/">Planning Complexity</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
                     </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Set it up</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Experiments</span></p>
@@ -79,6 +74,13 @@
                 <p class="caption"><span class="caption-text">Domains</span></p>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
                     </li>
                 </ul>
       </div>
@@ -118,12 +120,14 @@
             <div class="section">
               
                 <h1 id="different-recipes-search-time-corresponds-to-of-axioms-and-depth-of-search-instead-of-of-operators-or-length-of-plan">Different recipes -&gt; Search time corresponds to # of axioms and depth of search, instead of # of operators or length of plan<a class="headerlink" href="#different-recipes-search-time-corresponds-to-of-axioms-and-depth-of-search-instead-of-of-operators-or-length-of-plan" title="Permanent link">#</a></h1>
-<p><code>test_egg_recipes.sh</code> tests the search complexity of 10 different egg-related recipes, with the same <code>kitchen_3.pddl</code> and <code>obj_eggs.pddl</code>, i.e. with all definitions and objects for egg recipes:
-* scrambled_eggs.pddl specifies beaten, scrambled eggs
-* omelette.pddl specifies beaten, folded eggs with veggies
-* sunny_side_up.pddl specifies fried, steamed eggs on frypan
-* egg_in_hole.pddl specifies fried egg in the hole of a bread
-* poached_egg.pddl specifies boiled egg with vinegar</p>
+<p><code>test_egg_recipes.sh</code> tests the search complexity of 10 different egg-related recipes, with the same <code>kitchen_3.pddl</code> and <code>obj_eggs.pddl</code>, i.e. with all definitions and objects for egg recipes:</p>
+<ul>
+<li>scrambled_eggs.pddl specifies beaten, scrambled eggs</li>
+<li>omelette.pddl specifies beaten, folded eggs with veggies</li>
+<li>sunny_side_up.pddl specifies fried, steamed eggs on frypan</li>
+<li>egg_in_hole.pddl specifies fried egg in the hole of a bread</li>
+<li>poached_egg.pddl specifies boiled egg with vinegar</li>
+</ul>
 <pre><code>     t  problem_name                                                       var    op    axiom    plan    parse     search    state
 ------  ---------------------------------------------------------------  -----  ----  -------  ------  -------  ---------  -------
 085358  kitchen_egg_4-scrambled_eggs-obj_egg_4.pddl-scrambled_eggs.pddl    312  6677      161      43    9.846  0.120834       749
@@ -133,7 +137,8 @@
 085447  kitchen_3-poached_egg-obj_eggs.pddl-poached_egg.pddl               368  4944      137      25   14.394  0.0189829      144
 </code></pre>
 
-<p>Comparing the goal defintion of Omelette (0.12s), Sunny Side Up (0.27s), and Egg in a Hole (2.14s)</p>
+<p>Comparing the goal definition and search tree of Omelette (0.12s), Sunny Side Up (0.27s), and Egg in a Hole (2.14s)</p>
+<p><img alt="Search tree of Scrambled Eggs" src="../imgs/scrambled-eggs.png" /></p>
 <pre><code>( :derived ( exist-omelette ?env - env )
     ( exists 
       ( ?egg1 - egg ?veggies1 - ingredient ?plate1 - plate )

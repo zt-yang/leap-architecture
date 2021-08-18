@@ -10,7 +10,7 @@
   
   <link rel="shortcut icon" href="../css/favicon.ico">
   
-  <title>Set up the Repository - LEAPdocs</title>
+  <title>Minutes & Notes - LEAPdocs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -20,8 +20,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Set up the Repository";
-    var mkdocs_page_input_path = "setup-repository.md";
+    var mkdocs_page_name = "Minutes & Notes";
+    var mkdocs_page_input_path = "project-minutes.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -50,12 +50,14 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <p class="caption"><span class="caption-text">Project</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Minutes & Notes</a>
+    <ul class="current">
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Experiments</span></p>
@@ -75,12 +77,8 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Set it up</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Set up the Repository</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#planners-setup">Planners setup</a>
-    </li>
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
                     </li>
@@ -106,11 +104,11 @@
     
       
         
-          <li>Set it up &raquo;</li>
+          <li>Project &raquo;</li>
         
       
     
-    <li>Set up the Repository</li>
+    <li>Minutes & Notes</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -121,20 +119,18 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="set-up-the-repository">Set up the Repository<a class="headerlink" href="#set-up-the-repository" title="Permanent link">#</a></h1>
-<p>To clone the LEAP repository, you need to send <a href="mailto:ztyang@mit.edu">Yang</a> your GitHub username to be invited as a collaborator.</p>
-<p>Open terminal and go to your favorite work directory (e.g., ~/Documents) to clone the project:</p>
-<pre><code>git clone git@github.com:zt-yang/leap-architecture.git
-</code></pre>
+                <h1 id="minutes">Minutes<a class="headerlink" href="#minutes" title="Permanent link">#</a></h1>
+<p>Link to the editable Google Doc is <a href="https://docs.google.com/document/d/1Pt2BSAiA0zpJMGXBNI6ZCVyyikF4sSMPj1gf2W4Z3RI/edit#heading=h.1nzyfazaea6b">here</a>.</p>
+<iframe src="https://docs.google.com/document/d/e/2PACX-1vS6_7ij79RzSDRZLu4AGHFbFDebjelqk4YpUIN-UBV0TNN8J7GiM5khVXL8_8WdF-R9S9BIk0gSW4AD/pub?embedded=true" width='120%' height='800px' ></iframe>
 
-<h2 id="planners-setup">Planners setup<a class="headerlink" href="#planners-setup" title="Permanent link">#</a></h2>
-<p>Add FastDownward or PyperPlan as git submodules:</p>
-<pre><code>git submodule add https://github.com/aibasel/downward.git
-git submodule add https://github.com/aibasel/pyperplan.git
-git submodule init
-git submodule update
-./downward/build.py release
-</code></pre>
+<!--
+style='-webkit-transform:scale(0.9);
+  -moz-transform:scale(0.9);
+  -o-transform:scale(0.9);
+  transform:scale(0.9); position: absolute; left: 400px; display: block;'
+-->
+
+<p>Link to the editable Google Doc is <a href="https://docs.google.com/document/d/1Pt2BSAiA0zpJMGXBNI6ZCVyyikF4sSMPj1gf2W4Z3RI/edit#heading=h.1nzyfazaea6b">here</a>.</p>
               
             </div>
           </div>
@@ -142,10 +138,10 @@ git submodule update
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../setup-mkdocs/" class="btn btn-neutral float-right" title="Set up MkDocs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../exp-objects/" class="btn btn-neutral float-right" title="Num of Objects">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../domain-kitchen/" class="btn btn-neutral" title="Kitchen"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../project-plans/" class="btn btn-neutral" title="Plans & Priorities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -171,10 +167,10 @@ git submodule update
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../domain-kitchen/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../project-plans/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../setup-mkdocs/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../exp-objects/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
