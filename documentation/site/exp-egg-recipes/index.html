@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../css/favicon.ico">
+  
+  <title>All Egg Recipes - LEAPdocs</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../css/extra.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "All Egg Recipes";
+    var mkdocs_page_input_path = "exp-egg-recipes.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> LEAPdocs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Project</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Experiments</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-objects/">Num of Objects</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-operators/">Num of Operators</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">All Egg Recipes</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Domains</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Set it up</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">LEAPdocs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Experiments &raquo;</li>
+        
+      
+    
+    <li>All Egg Recipes</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="different-recipes-search-time-corresponds-to-of-axioms-and-depth-of-search-instead-of-of-operators-or-length-of-plan">Different recipes -&gt; Search time corresponds to # of axioms and depth of search, instead of # of operators or length of plan<a class="headerlink" href="#different-recipes-search-time-corresponds-to-of-axioms-and-depth-of-search-instead-of-of-operators-or-length-of-plan" title="Permanent link">#</a></h1>
+<p><code>test_egg_recipes.sh</code> tests the search complexity of 10 different egg-related recipes, with the same <code>kitchen_3.pddl</code> and <code>obj_eggs.pddl</code>, i.e. with all definitions and objects for egg recipes:</p>
+<ul>
+<li>scrambled_eggs.pddl specifies beaten, scrambled eggs</li>
+<li>omelette.pddl specifies beaten, folded eggs with veggies</li>
+<li>sunny_side_up.pddl specifies fried, steamed eggs on frypan</li>
+<li>egg_in_hole.pddl specifies fried egg in the hole of a bread</li>
+<li>poached_egg.pddl specifies boiled egg with vinegar</li>
+</ul>
+<pre><code>     t  problem_name                                                       var    op    axiom    plan    parse     search    state
+------  ---------------------------------------------------------------  -----  ----  -------  ------  -------  ---------  -------
+085358  kitchen_egg_4-scrambled_eggs-obj_egg_4.pddl-scrambled_eggs.pddl    312  6677      161      43    9.846  0.120834       749
+085408  kitchen_egg_4-omelette-obj_egg_4.pddl-omelette.pddl                350  6680      161      52   10.03   0.119653       711
+085419  kitchen_egg_4-sunny_side_up-obj_egg_4.pddl-sunny_side_up.pddl      142  4560      125      28   10.377  0.272117      2501
+085432  kitchen_egg_4-egg_in_hole-obj_egg_4.pddl-crack                     202  3234      172      50   10.129  2.14165      24498
+085447  kitchen_3-poached_egg-obj_eggs.pddl-poached_egg.pddl               368  4944      137      25   14.394  0.0189829      144
+</code></pre>
+
+<p>Comparing the goal definition and search tree of Omelette (0.12s), Sunny Side Up (0.27s), and Egg in a Hole (2.14s)</p>
+<p><img alt="Search tree of Scrambled Eggs" src="../imgs/scrambled-eggs.png" /></p>
+<pre><code>( :derived ( exist-omelette ?env - env )
+    ( exists 
+      ( ?egg1 - egg ?veggies1 - ingredient ?plate1 - plate )
+      ( and 
+        ( inside ?plate1 ?egg1 )
+        ( beaten ?egg1 )
+        ( fried ?egg1 )
+        ( folded ?egg1 )
+        ( is-buttery ?egg1 )
+
+        ( fried ?veggies1 )
+        ( sauteed ?veggies1 )
+
+        ( has-seasoning ?egg1 nutmilk cup two )
+
+        ( has-seasoning ?egg1 chives tablespoon2 two )
+        ( seasoning-mixed ?egg1 chives )
+
+        ( has-seasoning ?egg1 salt gram two )
+        ( seasoning-mixed ?egg1 salt )
+
+        ( has-seasoning ?egg1 pepper gram two )
+        ( seasoning-mixed ?egg1 pepper )
+      )
+    )
+  )
+
+  ( :derived ( exist-sunny-side-up ?env - env )
+    ( exists 
+      ( ?egg1 - egg ?plate1 - plate )
+      ( and 
+        ( inside ?plate1 ?egg1 )
+        ( fried ?egg1 )
+        ;( is-buttery ?egg1 )  ; SHOW: weirdly cannot use butter here
+        ( steamed ?egg1 ) 
+        ( has-seasoning ?egg1 salt gram one )
+        ( has-seasoning ?egg1 pepper gram one )
+      )
+    )
+  )
+
+  ( :derived ( exist-egg-in-hole ?env - env )
+    ( exists 
+      ( ?egg1 - egg ?bread1 - bread ?plate1 - plate )
+      ( and 
+        ( inside ?plate1 ?bread1 )
+        ( has-hole ?bread1 circle )
+        ( in-hole ?egg1 ?bread1 ) 
+        ( fried ?bread1 )
+        ; ( fried ?egg1 ) ; cannot achieve this because egg1 not in frypan but in the hole of bread which is on frypan
+        ( is-buttery ?bread1 ) 
+        ( has-seasoning ?egg1 salt gram one )
+        ( has-seasoning ?egg1 pepper gram one )
+      )
+    )
+  )
+</code></pre>
+
+<p>The plan of making an omelette (length = 52):</p>
+<pre><code>open fridge (0)
+getout egg1 fridge robot (0)
+close fridge (0)
+crack-egg egg1 bigbowl1 robot (0)
+open fridge (0)
+getout milkbottle1 fridge robot (0)
+getout butter fridge robot (0)
+getout veggies1 fridge robot (0)
+close fridge (0)
+add-ingredient butter smallbowl1 robot (0)
+add-ingredient veggies1 smallbowl1 robot (0)
+pour bigbowl1 nutmilk milkbottle1 cup robot (0)
+pour bigbowl1 nutmilk milkbottle1 cup robot (0)
+putdown fork1 burner robot (0)
+pickup bigbowl1 kitchentop robot (0)
+putdown milkbottle1 burner robot (0)
+pickup salter1 kitchentop robot (0)
+sprinkle egg1 salt salter1 cup robot (0)
+sprinkle egg1 salt salter1 gram robot (0)
+sprinkle egg1 salt salter1 gram robot (0)
+putdown salter1 burner robot (0)
+pickup shaker1 kitchentop robot (0)
+sprinkle egg1 pepper shaker1 cup robot (0)
+sprinkle egg1 pepper shaker1 gram robot (0)
+sprinkle egg1 pepper shaker1 gram robot (0)
+putdown shaker1 burner robot (0)
+pickup smallbowl1 kitchentop robot (0)
+transfer butter smallbowl1 frypan1 robot (0)
+transfer veggies1 smallbowl1 frypan1 robot (0)
+open dcup1 (0)
+getout frypan1 dcup1 robot (0)
+close dcup1 (0)
+putdown frypan1 burner robot (0)
+pickup tablespoon2 kitchentop robot (0)
+season egg1 chives container1 tablespoon2 robot (0)
+season egg1 chives container1 tablespoon2 robot (0)
+putdown tablespoon2 burner robot (0)
+pickup fork1 kitchentop robot (0)
+putdown fork1 burner robot (0)
+pickup fork1 burner robot (0)
+mix egg1 fork1 bigbowl1 robot (10)
+switchon burner frypan1 (0)
+fry veggies1 frypan1 burner butter (0)
+transfer egg1 bigbowl1 frypan1 robot (0)
+fry egg1 frypan1 burner butter (0)
+switchoff burner frypan1 (0)
+putdown fork1 burner robot (0)
+pickup frypan1 burner robot (0)
+putdown smallbowl1 burner robot (0)
+pickup spatula1 kitchentop robot (0)
+fold egg1 frypan1 spatula1 robot (0)
+transfer egg1 frypan1 plate1 robot (0)
+</code></pre>
+
+<p>The plan of making an sunny-side-up (length = 28):</p>
+<pre><code>open fridge (0)
+getout egg1 fridge robot (0)
+close fridge (0)
+crack-egg egg1 smallbowl1 robot (0)
+open dcup2 (0)
+getout oilbottle1 dcup2 robot (0)
+close dcup2 (0)
+transfer oliveoil oilbottle1 frypan1 robot (0)
+open dcup1 (0)
+getout frypan1 dcup1 robot (0)
+getout pancover1 dcup1 robot (0)
+close dcup1 (0)
+putdown frypan1 burner robot (0)
+pickup smallbowl1 kitchentop robot (0)
+transfer egg1 smallbowl1 frypan1 robot (0)
+switchon burner frypan1 (0)
+fry egg1 frypan1 burner oliveoil (0)
+puton pancover1 frypan1 robot (0)
+steam egg1 frypan1 burner (0)
+switchoff burner frypan1 (0)
+pickup frypan1 burner robot (0)
+transfer egg1 frypan1 plate1 robot (0)
+putdown fork1 burner robot (0)
+pickup salter1 kitchentop robot (0)
+sprinkle egg1 salt salter1 gram robot (0)
+putdown smallbowl1 burner robot (0)
+pickup shaker1 kitchentop robot (0)
+sprinkle egg1 pepper shaker1 gram robot (0)
+</code></pre>
+
+<p>The plan of making an egg-in-hole (length = 50):</p>
+<pre><code>putdown fork1 burner robot (0)
+pickup holecutter1 kitchentop robot (0)
+make-hole bread1 holecutter1 circle robot (1)
+open fridge (0)
+getout butter fridge robot (0)
+getout egg1 fridge robot (0)
+close fridge (0)
+crack-egg-3 egg1 bread1 robot (1)
+add-ingredient butter smallbowl1 robot (0)
+open dcup1 (0)
+getout frypan1 dcup1 robot (0)
+close dcup1 (0)
+putdown frypan1 burner robot (0)
+pickup salter1 kitchentop robot (0)
+sprinkle egg1 salt salter1 gram robot (0)
+putdown salter1 burner robot (0)
+pickup shaker1 kitchentop robot (0)
+sprinkle egg1 pepper shaker1 gram robot (0)
+putdown shaker1 burner robot (0)
+pickup bread1 kitchentop robot (0)
+add-ingredient bread1 smallbowl1 robot (0)
+putdown holecutter1 burner robot (0)
+pickup smallbowl1 kitchentop robot (0)
+transfer bread1 smallbowl1 plate1 robot (0)
+putdown smallbowl1 burner robot (0)
+pickup plate1 kitchentop robot (0)
+open dcup2 (0)
+getout oilbottle1 dcup2 robot (0)
+close dcup2 (0)
+transfer oliveoil oilbottle1 frypan1 robot (0)
+putdown plate1 burner robot (0)
+pickup smallbowl1 burner robot (0)
+transfer butter smallbowl1 frypan1 robot (0)
+putdown smallbowl1 burner robot (0)
+pickup plate1 burner robot (0)
+transfer bread1 plate1 frypan1 robot (0)
+putdown plate1 burner robot (0)
+pickup frypan1 burner robot (0)
+transfer bread1 frypan1 plate1 robot (0)
+putdown oilbottle1 burner robot (0)
+pickup plate1 burner robot (0)
+putdown frypan1 burner robot (0)
+pickup fork1 burner robot (0)
+switchon burner frypan1 (0)
+transfer bread1 plate1 frypan1 robot (0)
+fry bread1 frypan1 burner butter (0)
+switchoff burner frypan1 (0)
+putdown fork1 burner robot (0)
+pickup frypan1 burner robot (0)
+transfer bread1 frypan1 plate1 robot (0)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../domain-kitchen/" class="btn btn-neutral float-right" title="Kitchen">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../exp-operators/" class="btn btn-neutral" title="Num of Operators"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../exp-operators/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../domain-kitchen/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

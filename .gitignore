@@ -1,3 +1,9 @@
-docs/diagram.graffle
-docs/objects.mindnode
+**/*.log
+**/*.graffle
+**/*.mindnode
+**/.DS_Store
+**/__pycache__/
+documentation/docs/imgs/diagram.graffle
+generators/objects.mindnode
+
 experiments/

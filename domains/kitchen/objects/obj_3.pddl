@@ -1,33 +1,29 @@
   (:objects
 
     ucup1 ucup2 dcup1 dcup2 drawer1 fridge - furniture
- 
     burner - appliance
-
     kitchentop sink - worktop
 
     salt pepper chives - seasoning
-    oliveoil butter - oil
+    butter - oil
     nutmilk - liquid
-    veggies1 - ingredient
-    egg1 egg2 egg3 egg4 egg5 egg6 egg7 egg8 egg9 egg10 egg11 egg12 - egg
+    veggies1 veggies2 veggies3 veggies4 veggies5 veggies6 veggies7 veggies8 veggies9 veggies10 - ingredient
+    egg1 egg2 egg3 egg4 egg5 egg6 egg7 egg8 egg9 egg10 - egg
 
-    knife1 fork1 - normalutensil
+    fork1 - normalutensil
     spatula1 - cookingutensil
-    tablespoon1 tablespoon2 - measureutensil
+    tablespoon1 - measureutensil
     whisk1 - whiskutensil
 
     plate1 - plate
     salter1 shaker1 container1 - normalcontainer
-    oilbottle1 milkbottle1 - liquidcontainer
-    smallbowl1 bigbowl1 - specialcontainer
-    frypan1 - cookingcontainer
+    milkbottle1 - liquidcontainer
+    smallbowl1 - specialcontainer
+    frypan1 - pan
     robot - agent
 
     one two three four - number
-
     gram cup - measureunit
-
     kitchen - env 
 
   )
@@ -49,7 +45,6 @@
     ; stored in places that cannot move
     ; ----------------------
     (in dcup1 frypan1)
-    (in dcup2 oilbottle1)
     (in dcup2 container1)
 
     (in fridge egg1)
@@ -62,24 +57,29 @@
     (in fridge egg8)
     (in fridge egg9)
     (in fridge egg10)
-    (in fridge egg11)
-    (in fridge egg12)
+
     (in fridge veggies1)
+    (in fridge veggies2)
+    (in fridge veggies3)
+    (in fridge veggies4)
+    (in fridge veggies5)
+    (in fridge veggies6)
+    (in fridge veggies7)
+    (in fridge veggies8)
+    (in fridge veggies9)
+    (in fridge veggies10)
+
     (in fridge milkbottle1)
     (in fridge butter)
 
     (on kitchentop salter1)
     (on kitchentop shaker1)
-
     (on kitchentop tablespoon1)
-    (on kitchentop tablespoon2)
     (on kitchentop fork1)
     (on kitchentop spatula1)
     (on kitchentop whisk1)
-
     (on kitchentop plate1)
     (on kitchentop smallbowl1)
-    (on kitchentop bigbowl1)
 
     ; ----------------------
     ; stored in movables
@@ -87,7 +87,6 @@
     (inside salter1 salt)
     (inside shaker1 pepper)
     (inside container1 chives)
-    (inside oilbottle1 oliveoil)
     (inside milkbottle1 nutmilk)
 
     ; ----------------------
@@ -103,15 +102,17 @@
     (raw egg8)
     (raw egg9)
     (raw egg10)
-    (raw egg11)
-    (raw egg12)
     (sauteed veggies1)
+    (sauteed veggies2)
+    (sauteed veggies3)
+    (sauteed veggies4)
+    (sauteed veggies5)
+    (sauteed veggies6)
+    (sauteed veggies7)
+    (sauteed veggies8)
+    (sauteed veggies9)
+    (sauteed veggies10)
+    
     (is-butter butter)
-    ;(is-cookingcontainer frypan1)
 
-    ; ----------------------
-    ; properties of agent
-    ; ----------------------
-    (handsfull robot)
-    (holding fork1 robot)
   )

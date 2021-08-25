@@ -24,4 +24,4 @@ python run.py kitchen_1.pddl omelette_6.pddl -o obj_1.pddl -v 0 -e 'experiments/
 ## omelette_7.pddl contains two negative goal predicates
 python run.py kitchen_1.pddl omelette_7.pddl -o obj_1.pddl -v 0 -e 'experiments/omelette_goals'
 
-python generators/post_experiments.py experiments/omelette_goals -sh test_goals.sh
+python generators/post_experiments.py experiments/omelette_goals -sh test_goals.sh -r

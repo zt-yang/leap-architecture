@@ -127,6 +127,7 @@
       :effect( and
          ( not ( closed ?param1 ) )
          ( opened ?param1 )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -138,6 +139,7 @@
       :effect( and
          ( not ( opened ?param1 ) )
          ( closed ?param1 )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -160,6 +162,7 @@
                     ( burned-utensil ?u ?a )
             )
          )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -172,6 +175,7 @@
       :effect( and 
          ( not ( switchedon ?a ) )
          ( switchedoff ?a )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -189,6 +193,7 @@
           ( not ( on ?param2 ?param1 ) )
           ( holding ?param1 ?param3 )
           ( handsfull ?param3 )
+          ( increase ( total-cost ) 1 )
       )
   )
 
@@ -211,6 +216,7 @@
                     ( burned-utensil ?param1 ?a )
             )
          )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -224,6 +230,7 @@
          ( not ( holding ?param1 ?param3 ) )
          ( not ( handsfull ?param3 ) )
          ( on ?param2 ?param1 )
+         ( increase ( total-cost ) 1 )
       )
   )
            
@@ -237,6 +244,7 @@
          ( not ( in ?param2 ?param1 ) )
          ( holding ?param1 ?param3 ) 
          ( handsfull ?param3 )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -251,6 +259,7 @@
          ( not ( holding ?param1 ?param3 ) )
          ( not ( handsfull ?param3 ) )
          ( in ?param2 ?param1 )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -263,6 +272,7 @@
       :effect( and
          ( not ( inside ?param2 ?param1 ) )
          ( inside ?param3 ?param1 )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -280,6 +290,7 @@
           ( when ( has-seasoning ?i ?s ?u three ) ( has-seasoning ?i ?s ?u four ) )
           ( when ( has-seasoning ?i ?s ?u four ) ( has-seasoning ?i ?s ?u five ) )
           ( when ( has-seasoning ?i ?s ?u five ) ( has-seasoning ?i ?s ?u six ) )
+          ( increase ( total-cost ) 1 )
       )
   )
 
@@ -297,6 +308,7 @@
           ( when ( has-seasoning ?i ?s ?u three ) ( has-seasoning ?i ?s ?u four ) )
           ( when ( has-seasoning ?i ?s ?u four ) ( has-seasoning ?i ?s ?u five ) )
           ( when ( has-seasoning ?i ?s ?u five ) ( has-seasoning ?i ?s ?u six ) )
+          ( increase ( total-cost ) 1 )
       )
   )
 
@@ -308,7 +320,7 @@
       )
       :effect( and
         ( forall ( ?i - ingredient ) 
-          ( when (inside ?to ?i)
+          ( when ( inside ?to ?i )
             ( and 
               ( on-ingredient ?i ?l ) 
               ( has-seasoning ?i ?l ?u one )
@@ -320,6 +332,7 @@
             )
           ) 
         )
+        ( increase ( total-cost ) 1 )
       )
   )
 
@@ -333,6 +346,7 @@
       :effect( and
          ( not ( holding ?param1 ?param3 ) )
          ( inside ?param2 ?param1 )
+         ( increase ( total-cost ) 1 )
 
          ;( when (and 
          ;              ( is-egg ?param1 )
@@ -344,17 +358,21 @@
   )
 
   ( :action crack-egg   ; a special case of adding ingredients
-      :parameters ( ?param1 - egg ?param2 - specialcontainer ?param3 - agent )
+      :parameters ( ?param1 - egg ?param2 - moveable ?param3 - agent )
       :precondition( and
          ( raw ?param1 )
          ( holding ?param1 ?param3 )
          ( on kitchentop ?param2 )
+         ( can-hold ?param2 )
       )
       :effect( and
          ( not ( raw ?param1 ) )
          ( not ( holding ?param1 ?param3 ) )
          ( inside ?param2 ?param1 )
          ( cracked ?param1 )
+         ( when ( has-space ?param2 ) ( inside ?param2 ?param1 ) )
+         ( when ( has-hole ?param2 circle ) ( in-hole ?param1 ?param2 ) )
+         ( increase ( total-cost ) 1 )
       )
   )
   ; don't delete this line: for substituting crack-egg effects
@@ -391,6 +409,7 @@
          ( fried ?i ) 
          ( when ( is-butter ?o ) ( is-buttery ?i ))
          ( when ( steamed ?i ) ( not ( is-buttery ?i ) ))
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -404,6 +423,7 @@
       )
       :effect( and
          ( steamed ?i )
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -416,6 +436,7 @@
       )
       :effect( and
          ( folded ?i ) 
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -428,6 +449,7 @@
       )
       :effect( and
          ( scrambled ?i ) 
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -448,7 +470,7 @@
                       (seasoning-mixed ?param1 ?s)
               ) 
           )
-          ( increase (total-cost) 10 )
+          ( increase (total-cost) 1 )
       )
   )
 
@@ -457,13 +479,14 @@
       :precondition( and
          ( impossible ?param1 )
          ( cracked ?param1 )
-         ( not (cooked ?param1 ) ) ; for no beaten in fry
+         ( not ( cooked ?param1 ) ) ; for no beaten in fry
          ( inside ?param3 ?param1 )
          ( holding ?param2 ?param4 )
       )
      :effect( and
          ( not ( cracked ?param1 ) )
          ( beaten ?param1 ) 
+         ( increase ( total-cost ) 1 )
       )
   )
 
@@ -577,7 +600,7 @@
 
         ( has-seasoning ?egg1 nutmilk cup two )
 
-        ( has-seasoning ?egg1 chives tablespoon2 one )
+        ( has-seasoning ?egg1 chives tablespoon1 one )
         ( seasoning-mixed ?egg1 chives )
 
         ( has-seasoning ?egg1 salt gram one )
@@ -591,7 +614,7 @@
 
   ( :derived ( exist-omelette ?env - env )
     ( exists 
-      ( ?egg1 - egg ?veggies1 - ingredient ?plate1 - plate ?p - normalcontainer )
+      ( ?egg1 - egg ?veggies1 - ingredient ?plate1 - plate )
       ( and 
         ( inside ?plate1 ?egg1 )
         ( beaten ?egg1 )
@@ -604,7 +627,7 @@
 
         ( has-seasoning ?egg1 nutmilk cup two )
 
-        ( has-seasoning ?egg1 chives tablespoon2 two )
+        ( has-seasoning ?egg1 chives tablespoon1 two )
         ( seasoning-mixed ?egg1 chives )
 
         ( has-seasoning ?egg1 salt gram two )
@@ -622,7 +645,7 @@
       ( and 
         ( inside ?plate1 ?egg1 )
         ( fried ?egg1 )
-        ;( is-buttery ?egg1 )  ; SHOW: weirdly cannot use butter here
+        ( is-buttery ?egg1 )  ; SHOW: weirdly cannot use butter here
         ( steamed ?egg1 ) 
         ( has-seasoning ?egg1 salt gram one )
         ( has-seasoning ?egg1 pepper gram one )
@@ -638,7 +661,6 @@
         ( has-hole ?bread1 circle )
         ( in-hole ?egg1 ?bread1 ) 
         ( fried ?bread1 )
-        ; ( fried ?egg1 ) ; cannot achieve this because egg1 not in frypan but in the hole of bread which is on frypan
         ( is-buttery ?bread1 ) 
         ( has-seasoning ?egg1 salt gram one )
         ( has-seasoning ?egg1 pepper gram one )

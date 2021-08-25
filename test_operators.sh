@@ -15,4 +15,4 @@ python run.py kitchen_egg_4.pddl omelette.pddl -o obj_egg_4.pddl -v 0 -e 'experi
 ## kitchen_4.pddl contains all operators for egg and baking recipes
 # python run.py kitchen_4.pddl omelette.pddl -o obj_1.pddl -v 0 -e 'experiments/kitchen_operators'
 
-python generators/post_experiments.py experiments/kitchen_operators -sh test_operators.sh
+python generators/post_experiments.py experiments/kitchen_operators -sh test_operators.sh -r

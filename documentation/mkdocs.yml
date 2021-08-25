@@ -1,17 +1,25 @@
 nav:
     - Project:
       - LEAP Architecture: index.md
-      - Planning Complexity: experiments.md
+      # - Plans & Priorities: project-plans.md
+      - Minutes & Notes: project-minutes.md
+    - Domains: 
+      - Kitchen: domain-kitchen.md
+      - Grocery: domain-grocery.md
+      - Logistics: domain-logistics.md
+      # - Restaurant: domain-restaurant.md
+      # - Housework: domain-housework.md
+    - Experiments: 
+      - Num of Objects: exp-objects.md
+      - All Egg Recipes: exp-egg-recipes.md
+      - Two Dishes: exp-two-dishes.md
+      - Customers Happy: exp-customer-happy.md
+      # - Num of Goal Predicates: exp-goals.md
+      # - Num of Operators: exp-operators.md
     - Set it up: 
       - Set up the Repository: setup-repository.md
       - Set up MkDocs: setup-mkdocs.md
-    - Experiments: 
-      - Num of Objects: exp-objects.md
-      - Num of Goal Predicates: exp-goals.md
-      - Num of Operators: exp-operators.md
-      - All Egg Recipes: exp-egg-recipes.md
-    - Domains: 
-      - Kitchen: domain-kitchen.md
+      - Editor's Notes: setup-notes.md
 
 site_name: LEAPdocs
 theme: readthedocs

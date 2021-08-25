@@ -11,17 +11,21 @@ from datetime import datetime
 import shutil
 import multiprocessing
 
-from generators.init_objects import get_defined_objects, replace_lines, get_action_by_name
+from generators.init_objects import get_defined_objects, replace_lines, comment_line, get_action_by_name, merge_domains, merge_objects
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument(dest="domain")
 parser.add_argument(dest="problem")
 parser.add_argument('-p', dest="planner", type=str, default='fd')
+parser.add_argument('-po', dest="planner_option", type=str, default="lama-first")
 parser.add_argument('-o', dest="use_objects", type=str, default=None)
 parser.add_argument('-s', dest="strategists", type=str, default=None)
 parser.add_argument('-v', dest="verbose", type=int, default=1)
 parser.add_argument('-e', dest="exp_dir", type=str, default='experiments')
 parser.add_argument('-a', dest="action_sub", type=str, default=None)
+parser.add_argument('-g', dest="goal_ignore", type=str, default=None)
+parser.add_argument('-t', dest="timeout", type=int, default=300)
 args = parser.parse_args()
 
 planner_names = {'fd': 'FastDownward', 'pp': 'PyperPlan'}
@@ -35,14 +39,33 @@ def myprint(text = ''):
 
 
 def get_output_name():
-    to_print = f'   dmn={args.domain}\tprb={args.problem}'
-    name = f"{args.domain.replace('.pddl','')}-{args.problem.replace('.pddl','')}-{args.planner}"
+    dt = datetime.now().strftime("%H%M%S")
+    to_print = f' {dt}  dmn={args.domain}\tprb={args.problem}'
+    name = f"dmn={args.domain.replace('.pddl','')}-prb={args.problem.replace('.pddl','')}"
+
+    if args.planner == 'fd':
+        planner_option = args.planner_option.replace('-','_')
+        name += f'-pln={planner_option}'
+        to_print += f'\tpln={planner_option}'
+    else:
+        name += f'-pln={args.planner}'
+        to_print += f'\tpln={args.planner}'
+
+
     if args.use_objects != None: 
-        name += f'-{args.use_objects}'
+        name += f'-obj={args.use_objects}'
         to_print += f'\tobj={args.use_objects}'
+
     if args.action_sub != None: 
-        name += f'-{args.action_sub}'
-        to_print += f'\topt+{args.action_sub}'
+        action_sub = args.action_sub.replace('-','_')
+        name += f'-op={action_sub}'
+        to_print += f'\top={action_sub}'
+
+    if args.goal_ignore != None: 
+        goal_ignore = args.goal_ignore.replace('-','_')
+        name += f'-gi={goal_ignore}'
+        to_print += f'\tgi={goal_ignore}'
+
     if args.verbose == 0: print(to_print)
     return name
 
@@ -50,14 +73,23 @@ def get_output_name():
 def get_pddl(expdir, parentdir = "domains"):
     """ prepare the domain and problem pddl files of original task """
 
-    ## find the domain and problem file in all sub-directories of domains/
-    domains = glob.glob(parentdir + f"/**/{args.domain}", recursive = True)
-    problems = glob.glob(parentdir + f"/**/{args.problem}", recursive = True)
-    myprint(f'\nStep 1: Prepare input pddl files in experiment directory {parentdir}\n  Found domain: {domains} \n  Found problem: {problems}')
-
     ## prepare to copy them to one of experiments/ subdirectory
     domain = join(expdir, args.domain)
     problem = join(expdir, args.problem)
+
+    ## find the domain and problem file in all sub-directories of domains/
+    given_domains = args.domain.split('+')
+    found_domains = [glob.glob(parentdir + f"/**/{d}", recursive = True)[0] for d in given_domains]
+    found_problem = glob.glob(parentdir + f"/**/{args.problem}", recursive = True)[0]
+    myprint(f'\nStep 1: Prepare input pddl files in experiment directory {parentdir}\n  Found domain: {found_domains} \n  Found problem: {found_problem}')
+
+
+    ## TODO: if given multiple domain files, merge parts into one and copy to expdir
+    if len(found_domains) > 1:
+        domain = merge_domains(found_domains, expdir)
+    else:
+        shutil.copy(found_domains[0], domain)
+
 
     ## replace (:types in domain and (:objects in problem 
     if args.use_objects != None:
@@ -65,18 +97,26 @@ def get_pddl(expdir, parentdir = "domains"):
         ## with those defined in generators/objects.md
         if '.md' in args.use_objects:
             new_types, new_objects = get_defined_objects()
-            replace_lines(domains[0], '(:types', '(:predicates', new_types, domain)
-            replace_lines(problems[0], '(:objects', '(:init', new_objects, problem)
+            replace_lines(domain, '(:types', '(:predicates', new_types, domain)
+            replace_lines(found_problem, '(:objects', '(:init', new_objects, problem)
         
         ## with those pddl subfiles in domains/../objects
         elif '.pddl' in args.use_objects:
-            files = glob.glob(parentdir + f"/**/{args.use_objects}", recursive = True)
-            new_objects_env = open(files[0], "r+").readlines()
-            replace_lines(problems[0], '(:objects', '(:goal', new_objects_env, problem)
-            shutil.copy(domains[0], domain)
+
+            given_objects = args.use_objects.split('+')
+            found_objects = [glob.glob(parentdir + f"/**/{d}", recursive = True)[0] for d in given_objects]
+
+            ## TODO: if given multiple object files, merge files and copy to expdir
+            if len(found_objects) > 1:
+                obj_file = merge_objects(found_objects, expdir)
+            else:
+                obj_file = found_objects[0]
+
+            new_objects_env = open(obj_file, "r+").readlines()
+            replace_lines(found_problem, '(:objects', '(:goal', new_objects_env, problem)
+
     else:
-        shutil.copy(domains[0], domain)
-        shutil.copy(problems[0], problem)
+        shutil.copy(found_problem, problem)
 
     ## replace (:action in domain
     if args.action_sub != None:
@@ -93,6 +133,10 @@ def get_pddl(expdir, parentdir = "domains"):
         startkey = f":action {action_name}"
         endkey = f"; don't delete this line: for substituting {action_name} effects"
         replace_lines(domain, startkey, endkey, new_action, domain)
+
+    ## delete all lines with the specified goal predicate in domain after a start key
+    if args.goal_ignore != None:
+        comment_line(domain, '; -------- recipes',  args.goal_ignore, domain)
     
     return domain, problem
 
@@ -128,10 +172,30 @@ def run_strategist(strategist, domain, problem):
 
 ## planners/downward/fast-downward.py --alias lama-first experiments/omelette_objects/0810-100058-omelette_3+/kitchen.pddl experiments/omelette_objects/0810-100058-omelette_3+/omelette_3.pddl
 def get_planner_command(domain, problem):
+
+    aliases = ["seq-sat-fd-autotune-1", "seq-sat-fd-autotune-2", 
+                "seq-sat-lama-2011", "lama", "lama-first", 
+                "seq-opt-bjolp", "seq-opt-lmcut"]
     if args.planner == 'fd':
-        return f"planners/downward/fast-downward.py --alias lama-first {domain} {problem}"
+        if args.planner_option in aliases:
+            return f"planners/downward/fast-downward.py --alias {args.planner_option} {domain} {problem}"
+
+        else: ## customer search options
+            planner_options = {}
+            planner_options['v1'] = [
+                '--evaluator',
+                    '"hlm=lmcount(lm_factory=lm_reasonable_orders_hps(lm_rhw()),pref=false)"',
+                "--evaluator", 
+                    '"hff=ff()"',
+                "--search", 
+                    '"lazy_greedy([hff,hlm],preferred=[hff,hlm], reopen_closed=false)"'
+            ]
+            planner_option = ' '.join( planner_options[args.planner_option] )
+            return f"planners/downward/fast-downward.py {domain} {problem} {planner_option}"
+    
     elif args.planner == 'pp':
         return f"planners/pyperplan/src/run.py -H hff -s gbf {domain} {problem}"
+    
     else:
         print(f'unknown planner {args.planner}')
 
@@ -143,7 +207,7 @@ def process_planner_output(output, problem, keywords=[]):
         output = ''.join(output).split('\n')
     log = []
     short_log = ''
-    csv_columns = ['timestamp', 'problem_name', 'var_count', 'op_count', 'axiom_count', 'plan_length', 'translation_time', 'search_time', 'state_expanded']
+    csv_columns = ['timestamp', 'problem_name', 'var_count', 'op_count', 'axiom_count', 'plan_length', 'plan_cost', 'translation_time', 'search_time', 'state_expanded']
     csv_log = [ datetime.now().strftime("%H%M%S"), problem[problem.index('/')+1:] ]
     csv_log.extend(['']*len(csv_columns[2:]))
 
@@ -155,8 +219,8 @@ def process_planner_output(output, problem, keywords=[]):
         os.remove(solution_file)
 
     elif args.planner == 'fd':
-        keywords = ['removed', 'necessary', 'Translator derived', 'Translator facts', 'Translator goal facts', 'Done!', 'Plan length', 'Expanded', 'Generated', 'Search time', 'Total time']
-        csv_mapping = ['variables necessary', 'operators necessary', 'rules necessary', 'Plan length', 'Translation time', 'Search time', 'Expanded']
+        keywords = ['removed', 'necessary', 'Translator derived', 'Translator facts', 'Translator goal facts', 'Done!', 'Plan length', 'Plan cost', 'Expanded', 'Generated', 'Search time', 'Total time']
+        csv_mapping = ['variables necessary', 'operators necessary', 'rules necessary', 'Plan length', 'Plan cost', 'Translation time', 'Search time', 'Expanded']
         plan = []
         start = False
 
@@ -209,29 +273,7 @@ def process_planner_output(output, problem, keywords=[]):
 
     return plan, log, short_log, [csv_columns, csv_log]
 
-# class TimeoutError(Exception):
-#     pass
 
-# def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
-#     def decorator(func):
-#         def _handle_timeout(signum, frame):
-#             raise TimeoutError(error_message)
-
-#         @functools.wraps(func)
-#         def wrapper(*args, **kwargs):
-#             signal.signal(signal.SIGALRM, _handle_timeout)
-#             signal.alarm(seconds)
-#             try:
-#                 result = func(*args, **kwargs)
-#             finally:
-#                 signal.alarm(0)
-#             return result
-
-#         return wrapper
-
-#     return decorator
-
-# @timeout(20) ## , os.strerror(errno.ETIMEDOUT)
 def get_plan(problems, expdir, verbose=False):
 
     manager = multiprocessing.Manager()
@@ -257,7 +299,7 @@ def get_plan(problems, expdir, verbose=False):
         ## try planner for an amout of time
         p1 = multiprocessing.Process(target=run_planner, args=(command, return_dict), name='try_planner')
         p1.start()
-        p1.join(timeout=20)
+        p1.join(timeout=args.timeout)
         p1.terminate()
         p1.join()
         if command in return_dict:

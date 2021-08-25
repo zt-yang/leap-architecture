@@ -7,20 +7,20 @@
 /* change the picture behind the search box */
 .wy-side-nav-search {
     z-index: 200;
-    background-image: url(team.png);
+    background-image: url(stata.jpg);
     text-shadow: 2px 2px #000000;
     background-color: #edf0f2;
     background-size: 320px;
     text-align: center;
     padding: 0.809em;
     display: block;
-    color: #fcfcfc;
+    color: #f1c40f;
     margin-bottom: 0.809em;
 }
 
 /* change the border color of the search box */
 .wy-side-nav-search>a, .wy-side-nav-search .wy-dropdown>a {
-    color: #fcfcfc;
+    color: #f1c40f;
     font-size: 119%;
     font-weight: bold;
     display: inline-block;

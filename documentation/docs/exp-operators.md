@@ -1,6 +1,7 @@
 # More operators -> Search time increases linearly
 
 `test_operators` tests the effect of increasing the number of operators (for multiple recipes) on search complexity, with the same `omelette.pddl` and `obj_1.pddl`, i.e. minimum plan length & objects:
+
 * kitchen_1.pddl contains all operators for omelette recipe
 * kitchen_2.pddl contains all operators for omelette + maintanance goals
 * kitchen_3.pddl contains all operators & definitions for 10 egg recipes

@@ -21,4 +21,4 @@ python run.py kitchen_egg_4.pddl egg_in_hole.pddl -o obj_egg_4.pddl -v 0 -e 'exp
 ## egg_in_hole.pddl + crack-egg-4 = LONGER
 python run.py kitchen_egg_4.pddl egg_in_hole.pddl -o obj_egg_4.pddl -v 0 -e 'experiments/egg_effects' -a 'crack-egg-4'
 
-python generators/post_experiments.py experiments/egg_effects -sh test_egg_effects.sh
+python generators/post_experiments.py experiments/egg_effects -sh test_egg_effects.sh -r

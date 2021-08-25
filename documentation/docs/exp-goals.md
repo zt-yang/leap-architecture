@@ -1,13 +1,14 @@
 # More goal predicates -> Search time increases more than linearly
 
 `test_goals.sh` tests the effect of increasing the number of goal predicates on search complexity, with the same `kitchen_1`.pddl and `obj_1`.pddl, i.e. minimum operators & objects:
+
 * omelette_1.pddl has only eggs
 * omelette_2.pddl adds veggies
 * omelette_3.pddl adds salt and pepper
 * omelette_4.pddl adds nutmilk and chives
 * omelette_5.pddl contains all positive goal predicates without any use of axioms
 * omelette_6.pddl contains one negative goal predicate
-* omelette_6.pddl contains two negative goal predicates
+* omelette_7.pddl contains two negative goal predicates
 
 ```
      t  problem_name       var    op    axiom    plan    parse      search    state

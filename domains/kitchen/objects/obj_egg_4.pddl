@@ -9,12 +9,11 @@
 
     ; --- level 2 ingredients
     salt pepper chives - seasoning
-    ;whitevinegar - vinegar
     oliveoil butter - oil
     water nutmilk - liquid
     faucet - liquidtap
     veggies1 - ingredient
-    egg1 egg2 egg3 egg4 egg5 egg6 egg7 egg8 egg9 egg10 egg11 egg12 - egg
+    egg1 - egg
     bread1 toast1 - bread
 
     ; --- level 2 utensils
@@ -22,7 +21,7 @@
     slottedspoon1 - spoon 
     knife1 fork1 - normalutensil
     spatula1 - cookingutensil
-    tablespoon1 tablespoon2 - measureutensil
+    tablespoon1 - measureutensil
     whisk1 - whiskutensil
 
     ; --- level 2 containers
@@ -33,7 +32,6 @@
 
     ; --- level 3 cooking containers
     frypan1 - pan ; for reducing, sauteing, searing, or frying
-    ;pot1 - pot ; for simmering, poaching, or boiling
     pancover1 - containercover
 
     ; --- level 2 abstract objects
@@ -41,8 +39,6 @@
     gram cup drop - measureunit
     circle - shape
     low medium high - level
-    ;outerside innerside - part
-    ;hard soft - hardnesslevel
 
   )
 
@@ -65,23 +61,11 @@
     ; stored in places that cannot move
     ; ----------------------
     (in dcup1 frypan1)
-    (in dcup1 pot1)
     (in dcup2 oilbottle1)
     (in dcup2 mediumbottle1)
     (in dcup2 container1)
 
     (in fridge egg1)
-    (in fridge egg2)
-    (in fridge egg3)
-    (in fridge egg4)
-    (in fridge egg5)
-    (in fridge egg6)
-    (in fridge egg7)
-    (in fridge egg8)
-    (in fridge egg9)
-    (in fridge egg10)
-    (in fridge egg11)
-    (in fridge egg12)
     (in fridge veggies1)
     (in fridge milkbottle1)
     (in fridge butter)
@@ -94,7 +78,6 @@
     (on kitchentop shaker1)
 
     (on kitchentop tablespoon1)
-    (on kitchentop tablespoon2)
     (on kitchentop holecutter1)
     (on kitchentop fork1)
     (on kitchentop slottedspoon1)
@@ -112,7 +95,6 @@
     (inside shaker1 pepper)
     (inside container1 chives)
     (inside oilbottle1 oliveoil)
-    (inside mediumbottle1 whitevinegar)
     (inside milkbottle1 nutmilk)
     (inside faucet water)
 
@@ -120,17 +102,6 @@
     ; properties of ingredients
     ; ----------------------
     (raw egg1)
-    (raw egg2)
-    (raw egg3)
-    (raw egg4)
-    (raw egg5)
-    (raw egg6)
-    (raw egg7)
-    (raw egg8)
-    (raw egg9)
-    (raw egg10)
-    (raw egg11)
-    (raw egg12)
     (sauteed veggies1)
     (is-butter butter)
     (has-shape holecutter1 circle)
@@ -140,12 +111,6 @@
     ; ----------------------
     (matching-size pancover1 frypan1)
     (in dcup1 pancover1)
-
-    ; ----------------------
-    ; properties of agent
-    ; ----------------------
-    (handsfull robot)
-    (holding fork1 robot)
 
     (= (total-cost) 0)
   )
