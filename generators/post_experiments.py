@@ -45,8 +45,8 @@ def summarize_csv(exp_dir):
 
             row_names = []
             for line in new_keys:
-                line = line[1:]
-                key = line[line.index('-')+1:]
+                key = line[1:]
+                if '-' in key: key = key[key.index('-')+1:]
                 key = key.replace('.pddl','').replace('-',', ')
                 key = key.replace('dmn=','').replace('prb=','').replace('obj=','')
                 row_names.append(key)        

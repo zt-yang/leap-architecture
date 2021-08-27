@@ -51,3 +51,6 @@ chmod +x test_customer_happy.sh
 
 chmod +x test_merge.sh
 ./test_merge.sh
+
+chmod +x test_grocery.sh
+./test_grocery.sh

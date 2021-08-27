@@ -1,0 +1,800 @@
+{
+    "types": {
+        "area": [
+            "harvard-campus",
+            "central-square",
+            "cambridge-port",
+            "mit-campus",
+            "longfellow-bridge",
+            "beacon-hill",
+            "north-end",
+            "chinatown",
+            "newburry-st",
+            "harvard-bridge",
+            "berklee-campus",
+            "bu-campus",
+            "bu-bridge",
+            "allston"
+        ],
+        "parkinglot": [
+            "parkinglot001",
+            "parkinglot002",
+            "parkinglot003",
+            "parkinglot004",
+            "parkinglot005",
+            "parkinglot006",
+            "parkinglot007",
+            "parkinglot008",
+            "parkinglot009",
+            "parkinglot010",
+            "parkinglot011",
+            "parkinglot012",
+            "parkinglot013",
+            "parkinglot014",
+            "parkinglot101",
+            "parkinglot102",
+            "parkinglot103",
+            "parkinglot201",
+            "parkinglot202",
+            "parkinglot203",
+            "parkinglot204",
+            "parkinglot205",
+            "parkinglot206",
+            "parkinglot207",
+            "parkinglot208",
+            "parkinglot209",
+            "parkinglot301",
+            "parkinglot302",
+            "parkinglot303",
+            "parkinglot304",
+            "parkinglot305",
+            "parkinglot306",
+            "parkinglot307",
+            "parkinglot308",
+            "parkinglot309"
+        ],
+        "location": [
+            "ashdown",
+            "peabody",
+            "stata",
+            "brothers-market",
+            "wholefoods-cs",
+            "wholefoods-cp",
+            "wholefoods-bh",
+            "wholefoods-bc",
+            "traderjoes-ns",
+            "star-market-ns",
+            "cmart-at",
+            "cmart-ct",
+            "chocolate-shop-hc",
+            "chocolate-shop-bh",
+            "chocolate-shop-ns",
+            "butchers-shop-bh",
+            "butchers-shop-ne",
+            "mikes-pastry-hc",
+            "mikes-pastry-ne",
+            "modern-pastry-ne",
+            "meixin-pastry-ct"
+        ],
+        "building": [
+            "home",
+            "friends-home",
+            "office"
+        ],
+        "store": [
+            "market1",
+            "market2",
+            "market3",
+            "market4",
+            "market5",
+            "market6",
+            "market7",
+            "market8",
+            "market9",
+            "shop1",
+            "shop2",
+            "shop3",
+            "shop4",
+            "shop5",
+            "shop6",
+            "shop7",
+            "shop8",
+            "shop9"
+        ],
+        "car": [
+            "car1"
+        ],
+        "credit-card": [
+            "card1"
+        ],
+        "ingredient": [
+            "veggies1",
+            "egg1",
+            "lambchop1"
+        ],
+        "furniture": [
+            "fridge1"
+        ],
+        "agent": [
+            "robot"
+        ]
+    },
+    "obj_types": {
+        "harvard-campus": "area",
+        "central-square": "area",
+        "cambridge-port": "area",
+        "mit-campus": "area",
+        "longfellow-bridge": "area",
+        "beacon-hill": "area",
+        "north-end": "area",
+        "chinatown": "area",
+        "newburry-st": "area",
+        "harvard-bridge": "area",
+        "berklee-campus": "area",
+        "bu-campus": "area",
+        "bu-bridge": "area",
+        "allston": "area",
+        "parkinglot001": "parkinglot",
+        "parkinglot002": "parkinglot",
+        "parkinglot003": "parkinglot",
+        "parkinglot004": "parkinglot",
+        "parkinglot005": "parkinglot",
+        "parkinglot006": "parkinglot",
+        "parkinglot007": "parkinglot",
+        "parkinglot008": "parkinglot",
+        "parkinglot009": "parkinglot",
+        "parkinglot010": "parkinglot",
+        "parkinglot011": "parkinglot",
+        "parkinglot012": "parkinglot",
+        "parkinglot013": "parkinglot",
+        "parkinglot014": "parkinglot",
+        "ashdown": "location",
+        "peabody": "location",
+        "stata": "location",
+        "home": "building",
+        "friends-home": "building",
+        "office": "building",
+        "parkinglot101": "parkinglot",
+        "parkinglot102": "parkinglot",
+        "parkinglot103": "parkinglot",
+        "brothers-market": "location",
+        "wholefoods-cs": "location",
+        "wholefoods-cp": "location",
+        "wholefoods-bh": "location",
+        "wholefoods-bc": "location",
+        "traderjoes-ns": "location",
+        "star-market-ns": "location",
+        "cmart-at": "location",
+        "cmart-ct": "location",
+        "market1": "store",
+        "market2": "store",
+        "market3": "store",
+        "market4": "store",
+        "market5": "store",
+        "market6": "store",
+        "market7": "store",
+        "market8": "store",
+        "market9": "store",
+        "parkinglot201": "parkinglot",
+        "parkinglot202": "parkinglot",
+        "parkinglot203": "parkinglot",
+        "parkinglot204": "parkinglot",
+        "parkinglot205": "parkinglot",
+        "parkinglot206": "parkinglot",
+        "parkinglot207": "parkinglot",
+        "parkinglot208": "parkinglot",
+        "parkinglot209": "parkinglot",
+        "chocolate-shop-hc": "location",
+        "chocolate-shop-bh": "location",
+        "chocolate-shop-ns": "location",
+        "butchers-shop-bh": "location",
+        "butchers-shop-ne": "location",
+        "mikes-pastry-hc": "location",
+        "mikes-pastry-ne": "location",
+        "modern-pastry-ne": "location",
+        "meixin-pastry-ct": "location",
+        "shop1": "store",
+        "shop2": "store",
+        "shop3": "store",
+        "shop4": "store",
+        "shop5": "store",
+        "shop6": "store",
+        "shop7": "store",
+        "shop8": "store",
+        "shop9": "store",
+        "parkinglot301": "parkinglot",
+        "parkinglot302": "parkinglot",
+        "parkinglot303": "parkinglot",
+        "parkinglot304": "parkinglot",
+        "parkinglot305": "parkinglot",
+        "parkinglot306": "parkinglot",
+        "parkinglot307": "parkinglot",
+        "parkinglot308": "parkinglot",
+        "parkinglot309": "parkinglot",
+        "car1": "car",
+        "card1": "credit-card",
+        "veggies1": "ingredient",
+        "egg1": "ingredient",
+        "lambchop1": "ingredient",
+        "fridge1": "furniture",
+        "robot": "agent"
+    },
+    "objects_by_type": {
+        "area": {
+            "harvard-campus": [
+                5,
+                "(adj-area-1 harvard-campus central-square)",
+                "(adj-loc-1 harvard-campus mikes-pastry-hc)",
+                "(adj-loc-1 harvard-campus chocolate-shop-hc)",
+                "(adj-loc-1 harvard-campus peabody)",
+                "(contain-loc harvard-campus parkinglot001)"
+            ],
+            "central-square": [
+                5,
+                "(adj-area-1 harvard-campus central-square)",
+                "(adj-area-1 central-square cambridge-port)",
+                "(adj-area-1 central-square mit-campus)",
+                "(adj-loc-1 central-square wholefoods-cs)",
+                "(contain-loc central-square parkinglot002)"
+            ],
+            "cambridge-port": [
+                5,
+                "(adj-area-1 central-square cambridge-port)",
+                "(adj-area-1 mit-campus cambridge-port)",
+                "(adj-area-1 cambridge-port bu-bridge)",
+                "(adj-loc-1 cambridge-port wholefoods-cp)",
+                "(contain-loc cambridge-port parkinglot003)"
+            ],
+            "mit-campus": [
+                8,
+                "(adj-area-1 central-square mit-campus)",
+                "(adj-area-1 mit-campus cambridge-port)",
+                "(adj-area-1 mit-campus harvard-bridge)",
+                "(adj-area-1 mit-campus longfellow-bridge)",
+                "(adj-loc-1 mit-campus ashdown)",
+                "(adj-loc-1 mit-campus stata)",
+                "(adj-loc-1 mit-campus brothers-market)",
+                "(contain-loc mit-campus parkinglot004)"
+            ],
+            "longfellow-bridge": [
+                3,
+                "(adj-area-1 mit-campus longfellow-bridge)",
+                "(adj-area-1 longfellow-bridge beacon-hill)",
+                "(contain-loc longfellow-bridge parkinglot005)"
+            ],
+            "beacon-hill": [
+                8,
+                "(adj-area-1 longfellow-bridge beacon-hill)",
+                "(adj-area-1 beacon-hill north-end)",
+                "(adj-area-1 beacon-hill chinatown)",
+                "(adj-area-1 beacon-hill newburry-st)",
+                "(adj-loc-1 beacon-hill wholefoods-bh)",
+                "(adj-loc-1 beacon-hill butchers-shop-bh)",
+                "(adj-loc-1 beacon-hill chocolate-shop-bh)",
+                "(contain-loc beacon-hill parkinglot006)"
+            ],
+            "north-end": [
+                5,
+                "(adj-area-1 beacon-hill north-end)",
+                "(adj-loc-1 north-end butchers-shop-ne)",
+                "(adj-loc-1 north-end modern-pastry-ne)",
+                "(adj-loc-1 north-end mikes-pastry-ne)",
+                "(contain-loc north-end parkinglot007)"
+            ],
+            "chinatown": [
+                6,
+                "(adj-area-1 beacon-hill chinatown)",
+                "(adj-area-1 chinatown newburry-st)",
+                "(adj-area-1 chinatown newburry-st)",
+                "(adj-loc-1 chinatown meixin-pastry-ct)",
+                "(adj-loc-1 chinatown cmart-ct)",
+                "(contain-loc chinatown parkinglot008)"
+            ],
+            "newburry-st": [
+                9,
+                "(adj-area-1 beacon-hill newburry-st)",
+                "(adj-area-1 chinatown newburry-st)",
+                "(adj-area-1 newburry-st harvard-bridge)",
+                "(adj-area-1 newburry-st berklee-campus)",
+                "(adj-area-1 chinatown newburry-st)",
+                "(adj-loc-1 newburry-st star-market-ns)",
+                "(adj-loc-1 newburry-st traderjoes-ns)",
+                "(adj-loc-1 newburry-st chocolate-shop-ns)",
+                "(contain-loc newburry-st parkinglot009)"
+            ],
+            "harvard-bridge": [
+                5,
+                "(adj-area-1 mit-campus harvard-bridge)",
+                "(adj-area-1 newburry-st harvard-bridge)",
+                "(adj-area-1 berklee-campus harvard-bridge)",
+                "(adj-area-1 bu-campus harvard-bridge)",
+                "(contain-loc harvard-bridge parkinglot010)"
+            ],
+            "berklee-campus": [
+                6,
+                "(adj-area-1 newburry-st berklee-campus)",
+                "(adj-area-1 berklee-campus harvard-bridge)",
+                "(adj-area-1 berklee-campus bu-campus)",
+                "(adj-area-1 allston berklee-campus)",
+                "(adj-loc-1 berklee-campus wholefoods-bc)",
+                "(contain-loc berklee-campus parkinglot011)"
+            ],
+            "bu-campus": [
+                4,
+                "(adj-area-1 berklee-campus bu-campus)",
+                "(adj-area-1 bu-campus harvard-bridge)",
+                "(adj-area-1 bu-campus bu-bridge)",
+                "(contain-loc bu-campus parkinglot012)"
+            ],
+            "bu-bridge": [
+                4,
+                "(adj-area-1 bu-campus bu-bridge)",
+                "(adj-area-1 cambridge-port bu-bridge)",
+                "(adj-area-1 allston bu-bridge )",
+                "(contain-loc bu-bridge parkinglot013)"
+            ],
+            "allston": [
+                4,
+                "(adj-area-1 allston bu-bridge )",
+                "(adj-area-1 allston berklee-campus)",
+                "(adj-loc-1 allston cmart-at)",
+                "(contain-loc allston parkinglot014)"
+            ]
+        },
+        "parkinglot": {
+            "parkinglot001": [
+                1,
+                "(contain-loc harvard-campus parkinglot001)"
+            ],
+            "parkinglot002": [
+                1,
+                "(contain-loc central-square parkinglot002)"
+            ],
+            "parkinglot003": [
+                1,
+                "(contain-loc cambridge-port parkinglot003)"
+            ],
+            "parkinglot004": [
+                1,
+                "(contain-loc mit-campus parkinglot004)"
+            ],
+            "parkinglot005": [
+                1,
+                "(contain-loc longfellow-bridge parkinglot005)"
+            ],
+            "parkinglot006": [
+                1,
+                "(contain-loc beacon-hill parkinglot006)"
+            ],
+            "parkinglot007": [
+                1,
+                "(contain-loc north-end parkinglot007)"
+            ],
+            "parkinglot008": [
+                1,
+                "(contain-loc chinatown parkinglot008)"
+            ],
+            "parkinglot009": [
+                1,
+                "(contain-loc newburry-st parkinglot009)"
+            ],
+            "parkinglot010": [
+                1,
+                "(contain-loc harvard-bridge parkinglot010)"
+            ],
+            "parkinglot011": [
+                1,
+                "(contain-loc berklee-campus parkinglot011)"
+            ],
+            "parkinglot012": [
+                1,
+                "(contain-loc bu-campus parkinglot012)"
+            ],
+            "parkinglot013": [
+                1,
+                "(contain-loc bu-bridge parkinglot013)"
+            ],
+            "parkinglot014": [
+                1,
+                "(contain-loc allston parkinglot014)"
+            ],
+            "parkinglot101": [
+                2,
+                "(contain-loc ashdown parkinglot101)",
+                "(parked-at car1 parkinglot101)"
+            ],
+            "parkinglot102": [
+                1,
+                "(contain-loc peabody parkinglot102)"
+            ],
+            "parkinglot103": [
+                1,
+                "(contain-loc stata parkinglot103)"
+            ],
+            "parkinglot201": [
+                1,
+                "(contain-loc brothers-market parkinglot201)"
+            ],
+            "parkinglot202": [
+                1,
+                "(contain-loc wholefoods-cs parkinglot202)"
+            ],
+            "parkinglot203": [
+                1,
+                "(contain-loc wholefoods-cp parkinglot203)"
+            ],
+            "parkinglot204": [
+                1,
+                "(contain-loc wholefoods-bh parkinglot204)"
+            ],
+            "parkinglot205": [
+                1,
+                "(contain-loc wholefoods-bc parkinglot205)"
+            ],
+            "parkinglot206": [
+                1,
+                "(contain-loc traderjoes-ns parkinglot206)"
+            ],
+            "parkinglot207": [
+                1,
+                "(contain-loc star-market-ns parkinglot207)"
+            ],
+            "parkinglot208": [
+                1,
+                "(contain-loc cmart-at parkinglot208)"
+            ],
+            "parkinglot209": [
+                1,
+                "(contain-loc cmart-ct parkinglot209)"
+            ],
+            "parkinglot301": [
+                1,
+                "(contain-loc chocolate-shop-hc parkinglot301)"
+            ],
+            "parkinglot302": [
+                1,
+                "(contain-loc chocolate-shop-bh parkinglot302)"
+            ],
+            "parkinglot303": [
+                1,
+                "(contain-loc chocolate-shop-ns parkinglot303)"
+            ],
+            "parkinglot304": [
+                1,
+                "(contain-loc butchers-shop-bh parkinglot304)"
+            ],
+            "parkinglot305": [
+                1,
+                "(contain-loc butchers-shop-ne parkinglot305)"
+            ],
+            "parkinglot306": [
+                1,
+                "(contain-loc mikes-pastry-hc parkinglot306)"
+            ],
+            "parkinglot307": [
+                1,
+                "(contain-loc mikes-pastry-ne parkinglot307)"
+            ],
+            "parkinglot308": [
+                1,
+                "(contain-loc modern-pastry-ne parkinglot308)"
+            ],
+            "parkinglot309": [
+                1,
+                "(contain-loc meixin-pastry-ct parkinglot309)"
+            ]
+        },
+        "location": {
+            "ashdown": [
+                3,
+                "(adj-loc-1 mit-campus ashdown)",
+                "(contain-loc ashdown parkinglot101)",
+                "(contain-loc ashdown home)"
+            ],
+            "peabody": [
+                3,
+                "(adj-loc-1 harvard-campus peabody)",
+                "(contain-loc peabody parkinglot102)",
+                "(contain-loc peabody friends-home)"
+            ],
+            "stata": [
+                3,
+                "(adj-loc-1 mit-campus stata)",
+                "(contain-loc stata parkinglot103)",
+                "(contain-loc stata office)"
+            ],
+            "brothers-market": [
+                3,
+                "(adj-loc-1 mit-campus brothers-market)",
+                "(contain-loc brothers-market parkinglot201)",
+                "(contain-loc brothers-market market1)"
+            ],
+            "wholefoods-cs": [
+                3,
+                "(adj-loc-1 central-square wholefoods-cs)",
+                "(contain-loc wholefoods-cs parkinglot202)",
+                "(contain-loc wholefoods-cs market2)"
+            ],
+            "wholefoods-cp": [
+                3,
+                "(adj-loc-1 cambridge-port wholefoods-cp)",
+                "(contain-loc wholefoods-cp parkinglot203)",
+                "(contain-loc wholefoods-cp market3)"
+            ],
+            "wholefoods-bh": [
+                3,
+                "(adj-loc-1 beacon-hill wholefoods-bh)",
+                "(contain-loc wholefoods-bh parkinglot204)",
+                "(contain-loc wholefoods-bh market4)"
+            ],
+            "wholefoods-bc": [
+                3,
+                "(adj-loc-1 berklee-campus wholefoods-bc)",
+                "(contain-loc wholefoods-bc parkinglot205)",
+                "(contain-loc wholefoods-bc market5)"
+            ],
+            "traderjoes-ns": [
+                3,
+                "(adj-loc-1 newburry-st traderjoes-ns)",
+                "(contain-loc traderjoes-ns parkinglot206)",
+                "(contain-loc traderjoes-ns market6)"
+            ],
+            "star-market-ns": [
+                3,
+                "(adj-loc-1 newburry-st star-market-ns)",
+                "(contain-loc star-market-ns parkinglot207)",
+                "(contain-loc star-market-ns market7)"
+            ],
+            "cmart-at": [
+                3,
+                "(adj-loc-1 allston cmart-at)",
+                "(contain-loc cmart-at parkinglot208)",
+                "(contain-loc cmart-at market8)"
+            ],
+            "cmart-ct": [
+                3,
+                "(adj-loc-1 chinatown cmart-ct)",
+                "(contain-loc cmart-ct parkinglot209)",
+                "(contain-loc cmart-ct market9)"
+            ],
+            "chocolate-shop-hc": [
+                3,
+                "(adj-loc-1 harvard-campus chocolate-shop-hc)",
+                "(contain-loc chocolate-shop-hc parkinglot301)",
+                "(contain-loc chocolate-shop-hc shop1)"
+            ],
+            "chocolate-shop-bh": [
+                3,
+                "(adj-loc-1 beacon-hill chocolate-shop-bh)",
+                "(contain-loc chocolate-shop-bh parkinglot302)",
+                "(contain-loc chocolate-shop-bh shop2)"
+            ],
+            "chocolate-shop-ns": [
+                3,
+                "(adj-loc-1 newburry-st chocolate-shop-ns)",
+                "(contain-loc chocolate-shop-ns parkinglot303)",
+                "(contain-loc chocolate-shop-ns shop3)"
+            ],
+            "butchers-shop-bh": [
+                3,
+                "(adj-loc-1 beacon-hill butchers-shop-bh)",
+                "(contain-loc butchers-shop-bh parkinglot304)",
+                "(contain-loc butchers-shop-bh shop4)"
+            ],
+            "butchers-shop-ne": [
+                3,
+                "(adj-loc-1 north-end butchers-shop-ne)",
+                "(contain-loc butchers-shop-ne parkinglot305)",
+                "(contain-loc butchers-shop-ne shop5)"
+            ],
+            "mikes-pastry-hc": [
+                3,
+                "(adj-loc-1 harvard-campus mikes-pastry-hc)",
+                "(contain-loc mikes-pastry-hc parkinglot306)",
+                "(contain-loc mikes-pastry-hc shop6)"
+            ],
+            "mikes-pastry-ne": [
+                3,
+                "(adj-loc-1 north-end mikes-pastry-ne)",
+                "(contain-loc mikes-pastry-ne parkinglot307)",
+                "(contain-loc mikes-pastry-ne shop7)"
+            ],
+            "modern-pastry-ne": [
+                3,
+                "(adj-loc-1 north-end modern-pastry-ne)",
+                "(contain-loc modern-pastry-ne parkinglot308)",
+                "(contain-loc modern-pastry-ne shop8)"
+            ],
+            "meixin-pastry-ct": [
+                3,
+                "(adj-loc-1 chinatown meixin-pastry-ct)",
+                "(contain-loc meixin-pastry-ct parkinglot309)",
+                "(contain-loc meixin-pastry-ct shop9)"
+            ]
+        },
+        "building": {
+            "home": [
+                2,
+                "(contain-loc ashdown home)",
+                "(agent-at robot home)"
+            ],
+            "friends-home": [
+                1,
+                "(contain-loc peabody friends-home)"
+            ],
+            "office": [
+                1,
+                "(contain-loc stata office)"
+            ]
+        },
+        "store": {
+            "market1": [
+                4,
+                "(contain-loc brothers-market market1)",
+                "(is-store market1)",
+                "(at-loc veggies1 market1)",
+                "(at-loc egg1 market1)"
+            ],
+            "market2": [
+                4,
+                "(contain-loc wholefoods-cs market2)",
+                "(is-store market2)",
+                "(at-loc veggies1 market2)",
+                "(at-loc egg1 market2)"
+            ],
+            "market3": [
+                4,
+                "(contain-loc wholefoods-cp market3)",
+                "(is-store market3)",
+                "(at-loc veggies1 market3)",
+                "(at-loc egg1 market3)"
+            ],
+            "market4": [
+                4,
+                "(contain-loc wholefoods-bh market4)",
+                "(is-store market4)",
+                "(at-loc veggies1 market4)",
+                "(at-loc egg1 market4)"
+            ],
+            "market5": [
+                4,
+                "(contain-loc wholefoods-bc market5)",
+                "(is-store market5)",
+                "(at-loc veggies1 market5)",
+                "(at-loc egg1 market5)"
+            ],
+            "market6": [
+                4,
+                "(contain-loc traderjoes-ns market6)",
+                "(is-store market6)",
+                "(at-loc veggies1 market6)",
+                "(at-loc egg1 market6)"
+            ],
+            "market7": [
+                4,
+                "(contain-loc star-market-ns market7)",
+                "(is-store market7)",
+                "(at-loc veggies1 market7)",
+                "(at-loc egg1 market7)"
+            ],
+            "market8": [
+                4,
+                "(contain-loc cmart-at market8)",
+                "(is-store market8)",
+                "(at-loc veggies1 market8)",
+                "(at-loc egg1 market8)"
+            ],
+            "market9": [
+                4,
+                "(contain-loc cmart-ct market9)",
+                "(is-store market9)",
+                "(at-loc veggies1 market9)",
+                "(at-loc egg1 market9)"
+            ],
+            "shop1": [
+                2,
+                "(contain-loc chocolate-shop-hc shop1)",
+                "(is-store shop1)"
+            ],
+            "shop2": [
+                2,
+                "(contain-loc chocolate-shop-bh shop2)",
+                "(is-store shop2)"
+            ],
+            "shop3": [
+                2,
+                "(contain-loc chocolate-shop-ns shop3)",
+                "(is-store shop3)"
+            ],
+            "shop4": [
+                3,
+                "(contain-loc butchers-shop-bh shop4)",
+                "(is-store shop4)",
+                "(at-loc lambchop1 shop4)"
+            ],
+            "shop5": [
+                3,
+                "(contain-loc butchers-shop-ne shop5)",
+                "(is-store shop5)",
+                "(at-loc lambchop1 shop5)"
+            ],
+            "shop6": [
+                2,
+                "(contain-loc mikes-pastry-hc shop6)",
+                "(is-store shop6)"
+            ],
+            "shop7": [
+                2,
+                "(contain-loc mikes-pastry-ne shop7)",
+                "(is-store shop7)"
+            ],
+            "shop8": [
+                2,
+                "(contain-loc modern-pastry-ne shop8)",
+                "(is-store shop8)"
+            ],
+            "shop9": [
+                2,
+                "(contain-loc meixin-pastry-ct shop9)",
+                "(is-store shop9)"
+            ]
+        },
+        "car": {
+            "car1": [
+                2,
+                "(agent-owns robot car1)",
+                "(parked-at car1 parkinglot101)"
+            ]
+        },
+        "credit-card": {
+            "card1": [
+                1,
+                "(agent-has robot card1)"
+            ]
+        },
+        "ingredient": {
+            "veggies1": [
+                9,
+                "(at-loc veggies1 market1)",
+                "(at-loc veggies1 market2)",
+                "(at-loc veggies1 market3)",
+                "(at-loc veggies1 market4)",
+                "(at-loc veggies1 market5)",
+                "(at-loc veggies1 market6)",
+                "(at-loc veggies1 market7)",
+                "(at-loc veggies1 market8)",
+                "(at-loc veggies1 market9)"
+            ],
+            "egg1": [
+                9,
+                "(at-loc egg1 market1)",
+                "(at-loc egg1 market2)",
+                "(at-loc egg1 market3)",
+                "(at-loc egg1 market4)",
+                "(at-loc egg1 market5)",
+                "(at-loc egg1 market6)",
+                "(at-loc egg1 market7)",
+                "(at-loc egg1 market8)",
+                "(at-loc egg1 market9)"
+            ],
+            "lambchop1": [
+                2,
+                "(at-loc lambchop1 shop4)",
+                "(at-loc lambchop1 shop5)"
+            ]
+        },
+        "furniture": {
+            "fridge1": [
+                0
+            ]
+        },
+        "agent": {
+            "robot": [
+                3,
+                "(agent-at robot home)",
+                "(agent-has robot card1)",
+                "(agent-owns robot car1)"
+            ]
+        }
+    }
+}

@@ -1,0 +1,453 @@
+{
+    "type_parents": {
+        "physicalobj": "object",
+        "location": "object",
+        "agent": "object",
+        "item": "object",
+        "moveable": "physicalobj",
+        "vehicle": "physicalobj",
+        "bicycle": "vehicle",
+        "car": "vehicle",
+        "airplane": "vehicle",
+        "airport": "location",
+        "parkinglot": "location",
+        "building": "location",
+        "area": "location",
+        "store": "building",
+        "payment-item": "item",
+        "credit-card": "payment-item",
+        "ingredient": "moveable",
+        "utensil": "moveable",
+        "staticobject": "object",
+        "furniture": "staticobject"
+    },
+    "type_ancestors": {
+        "physicalobj": [
+            "object"
+        ],
+        "location": [
+            "object"
+        ],
+        "agent": [
+            "object"
+        ],
+        "item": [
+            "object"
+        ],
+        "moveable": [
+            "physicalobj",
+            "object"
+        ],
+        "vehicle": [
+            "physicalobj",
+            "object"
+        ],
+        "bicycle": [
+            "vehicle",
+            "physicalobj",
+            "object"
+        ],
+        "car": [
+            "vehicle",
+            "physicalobj",
+            "object"
+        ],
+        "airplane": [
+            "vehicle",
+            "physicalobj",
+            "object"
+        ],
+        "airport": [
+            "location",
+            "object"
+        ],
+        "parkinglot": [
+            "location",
+            "object"
+        ],
+        "building": [
+            "location",
+            "object"
+        ],
+        "area": [
+            "location",
+            "object"
+        ],
+        "store": [
+            "building",
+            "location",
+            "object"
+        ],
+        "payment-item": [
+            "item",
+            "object"
+        ],
+        "credit-card": [
+            "payment-item",
+            "item",
+            "object"
+        ],
+        "ingredient": [
+            "moveable",
+            "physicalobj",
+            "object"
+        ],
+        "utensil": [
+            "moveable",
+            "physicalobj",
+            "object"
+        ],
+        "staticobject": [
+            "object"
+        ],
+        "furniture": [
+            "staticobject",
+            "object"
+        ]
+    },
+    "predicates": {
+        "at-loc": [
+            "physicalobj",
+            "location"
+        ],
+        "in-veh": [
+            "moveable",
+            "vehicle"
+        ],
+        "adj-loc-1": [
+            "location",
+            "location"
+        ],
+        "adj-loc-2": [
+            "location",
+            "location"
+        ],
+        "adj-loc": [
+            "location",
+            "location"
+        ],
+        "adj-area-1": [
+            "area",
+            "area"
+        ],
+        "adj-area-2": [
+            "area",
+            "area"
+        ],
+        "adj-area": [
+            "area",
+            "area"
+        ],
+        "contain-loc": [
+            "location",
+            "location"
+        ],
+        "parked": [
+            "vehicle"
+        ],
+        "parked-at": [
+            "vehicle",
+            "location"
+        ],
+        "has-parked": [
+            "agent"
+        ],
+        "agent-at": [
+            "agent",
+            "object"
+        ],
+        "agent-owns": [
+            "agent",
+            "object"
+        ],
+        "agent-has": [
+            "agent",
+            "object"
+        ],
+        "paid": [
+            "moveable"
+        ],
+        "shopping-at": [
+            "agent",
+            "store"
+        ],
+        "is-store": [
+            "store"
+        ],
+        "in": [
+            "furniture",
+            "moveable"
+        ]
+    },
+    "operators": {
+        "pay-grocery": {
+            "params": {
+                "?o": "moveable",
+                "?l": "store",
+                "?p": "payment-item",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ]
+            ],
+            "cost": 1
+        },
+        "enter-building": {
+            "params": {
+                "?b": "building",
+                "?l": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l"
+                ]
+            ],
+            "cost": 1
+        },
+        "exit-building": {
+            "params": {
+                "?b": "building",
+                "?l": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?b"
+                ]
+            ],
+            "cost": 1
+        },
+        "load": {
+            "params": {
+                "?o": "moveable",
+                "?v": "vehicle",
+                "?l": "location"
+            },
+            "pre": [
+                [
+                    "is-store",
+                    "?l"
+                ]
+            ],
+            "eff": [
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ]
+            ],
+            "cost": 1
+        },
+        "unload": {
+            "params": {
+                "?o": "moveable",
+                "?v": "vehicle",
+                "?l": "location"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "in-veh",
+                    "?o",
+                    "?v"
+                ]
+            ],
+            "cost": 1
+        },
+        "park-vehicle": {
+            "params": {
+                "?t": "vehicle",
+                "?p": "parkinglot",
+                "?l": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?t"
+                ],
+                [
+                    "at-loc",
+                    "?t",
+                    "?l"
+                ]
+            ],
+            "cost": 5
+        },
+        "unpark-vehicle": {
+            "params": {
+                "?t": "vehicle",
+                "?p": "parkinglot",
+                "?l": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "at-loc",
+                    "?t",
+                    "?p"
+                ],
+                [
+                    "parked-at",
+                    "?t",
+                    "?p"
+                ]
+            ],
+            "cost": 1
+        },
+        "walk-btw-area": {
+            "params": {
+                "?l1": "area",
+                "?l2": "area",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ]
+            ],
+            "cost": 8
+        },
+        "walk-btw-loc": {
+            "params": {
+                "?l1": "location",
+                "?l2": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ]
+            ],
+            "cost": 2
+        },
+        "walk-within-area": {
+            "params": {
+                "?l": "area",
+                "?l1": "location",
+                "?l2": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ]
+            ],
+            "cost": 4
+        },
+        "walk-within-loc": {
+            "params": {
+                "?l": "location",
+                "?l1": "location",
+                "?l2": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ]
+            ],
+            "cost": 1
+        },
+        "drive-btw-area": {
+            "params": {
+                "?t": "car",
+                "?l1": "area",
+                "?l2": "area",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "at-loc",
+                    "?t",
+                    "?l1"
+                ]
+            ],
+            "cost": 4
+        },
+        "drive-within-area": {
+            "params": {
+                "?t": "car",
+                "?l": "area",
+                "?l1": "location",
+                "?l2": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "at-loc",
+                    "?t",
+                    "?l1"
+                ]
+            ],
+            "cost": 4
+        },
+        "drive-btw-loc": {
+            "params": {
+                "?t": "car",
+                "?l1": "location",
+                "?l2": "location",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "at-loc",
+                    "?t",
+                    "?l1"
+                ]
+            ],
+            "cost": 2
+        },
+        "store-obj": {
+            "params": {
+                "?m": "moveable",
+                "?f": "furniture",
+                "?a": "agent"
+            },
+            "pre": [],
+            "eff": [
+                [
+                    "agent-has",
+                    "?a",
+                    "?m"
+                ]
+            ],
+            "cost": 1
+        }
+    }
+}

@@ -4,6 +4,7 @@ import errno
 import signal
 import functools
 import os
+from os import listdir
 from os.path import join, isfile, isdir
 import subprocess
 import glob
@@ -11,7 +12,7 @@ from datetime import datetime
 import shutil
 import multiprocessing
 
-from generators.init_objects import get_defined_objects, replace_lines, comment_line, get_action_by_name, merge_domains, merge_objects
+from generators.init_objects import get_defined_objects, replace_lines, comment_line, get_action_by_name, merge_domains, merge_objects, check_consistency
 
 
 parser = argparse.ArgumentParser()
@@ -34,8 +35,13 @@ planner_names = {'fd': 'FastDownward', 'pp': 'PyperPlan'}
 def myprint(text = ''):
     """ verbose = 0: print input file names 
         verbose = 1: print plan 
-        verbose = 2: print planner output """
-    if args.verbose == 1: print(text)
+        verbose = 2: print planner output 
+        verbose = 3: print test name and plan for comparing plans """
+    if args.verbose == 1: 
+        print(text)
+
+    elif args.verbose == 3 and ('Plan:' in text or text.endswith(')')):
+        print(text)
 
 
 def get_output_name():
@@ -67,6 +73,7 @@ def get_output_name():
         to_print += f'\tgi={goal_ignore}'
 
     if args.verbose == 0: print(to_print)
+    if args.verbose == 3: print('\n'+to_print)
     return name
 
 
@@ -84,7 +91,7 @@ def get_pddl(expdir, parentdir = "domains"):
     myprint(f'\nStep 1: Prepare input pddl files in experiment directory {parentdir}\n  Found domain: {found_domains} \n  Found problem: {found_problem}')
 
 
-    ## TODO: if given multiple domain files, merge parts into one and copy to expdir
+    ## if given multiple domain files, merge parts into one and copy to expdir
     if len(found_domains) > 1:
         domain = merge_domains(found_domains, expdir)
     else:
@@ -106,7 +113,7 @@ def get_pddl(expdir, parentdir = "domains"):
             given_objects = args.use_objects.split('+')
             found_objects = [glob.glob(parentdir + f"/**/{d}", recursive = True)[0] for d in given_objects]
 
-            ## TODO: if given multiple object files, merge files and copy to expdir
+            ## if given multiple object files, merge files and copy to expdir
             if len(found_objects) > 1:
                 obj_file = merge_objects(found_objects, expdir)
             else:
@@ -114,6 +121,10 @@ def get_pddl(expdir, parentdir = "domains"):
 
             new_objects_env = open(obj_file, "r+").readlines()
             replace_lines(found_problem, '(:objects', '(:goal', new_objects_env, problem)
+
+        ## only one dmn file, check_consistency
+        if len(found_domains) == 1:
+            check_consistency(found_domains[0], found_problem, obj_file)
 
     else:
         shutil.copy(found_problem, problem)
@@ -219,10 +230,13 @@ def process_planner_output(output, problem, keywords=[]):
         os.remove(solution_file)
 
     elif args.planner == 'fd':
-        keywords = ['removed', 'necessary', 'Translator derived', 'Translator facts', 'Translator goal facts', 'Done!', 'Plan length', 'Plan cost', 'Expanded', 'Generated', 'Search time', 'Total time']
+        keywords = ['removed', 'necessary', 'Translator derived', 'Translator facts', 'Translator goal facts', 'Done!', 'Plan length', 'Plan cost', 'Expanded', 'Generated', 'Search time', 'Total time', 'keep searching']
         csv_mapping = ['variables necessary', 'operators necessary', 'rules necessary', 'Plan length', 'Plan cost', 'Translation time', 'Search time', 'Expanded']
-        plan = []
-        start = False
+        plans = []  ## some modes may return multiple plans
+        plans_costs = []  ## costs of multiple plans
+        plan = []  ## contain the optimal plan
+        PLAN_PART = False
+
 
     for line in output:
         
@@ -233,16 +247,26 @@ def process_planner_output(output, problem, keywords=[]):
         elif args.planner == 'fd':
             if 'KB]' in line:
                 line = line[line.index('KB]')+4:]
-            elif start and ' (' in line:
+            
+            elif PLAN_PART and ' (' in line:
                 plan.append(line)
-                line = ''
-            elif 'reasonable' in line:
-                start = True
+                log.append(line)
+
+            if 'Solution found!' in line:
+                PLAN_PART = True
+            
+            if 'Plan length:' in line:
+                PLAN_PART = False
+                plans_costs.append(len(plan))
+                plans.append(plan)
+                plan = []
 
         ## select terminal outputs to be logged
         for keyword in keywords:
-            if keyword in line and line not in log:
+            if keyword in line: ## and line not in log:
                 
+                if keyword == 'Done!': line += '\n' ## finished translating
+                if keyword == 'Generated': line += '\n' ## finished summarizing this plan
                 log.append(line)
 
                 if 'Plan length' in line or ' time' in line or 'wall-clock' in line:
@@ -258,8 +282,32 @@ def process_planner_output(output, problem, keywords=[]):
                             number = re.search(r'\d+', line).group()
                         csv_log[csv_mapping.index(k)+2] = number
 
+    if len(plans) > 1:
+
+        ## save all plans
+        for i in range(len(plans)):
+            with open(join(expdir, f"_plan_{i}.txt"), "w") as f:
+                f.writelines('\n'.join(plans[i]))
+                f.writelines(f'\n; cost = {plans_costs[i]}')
+
+        ## among plans with min cost, choose one plan with the min len
+        min_cost = min(plans_costs)
+        indices = [i for i, cost in enumerate(plans_costs) if cost == min_cost]
+        plans = [plans[i] for i in indices]
+        plans_lens = [len(p) for p in plans]
+        min_len = min(plans_lens)
+        index = [i for i, lens in enumerate(plans_lens) if lens == min_len][0]
+        plan = plans[index]
+
+        ## rename the chosen optimal plan
+        i = indices[index]
+        os.rename(join(expdir, f"_plan_{i}.txt"), join(expdir, f"_plan_{i}_opt.txt"))
+
+    elif args.planner == 'fd':
+        plan = plans[0]
+
     ## if the planner failed but translation was successful, still able to get # of var, op, axiom from output.sas
-    if output == '' and isfile('output.sas'):
+    if args.planner == 'fd' and output == '' and isfile('output.sas'):
         lines = open('output.sas', "r+").readlines()
         count_var, count_op, count_ax = 0, 0, 0
         for line in lines:
@@ -307,22 +355,26 @@ def get_plan(problems, expdir, verbose=False):
         else:
             output = ''
 
-        # output = subprocess.check_output(command, shell=True)
+        ## --------------- collect planner output
         plan, log, short_log, csv_log = process_planner_output(output, problem)
         
+        ## the only plan by LAMA-first / Pyperplan, or shortest plan by LAMA
         plan_print = '\n     '.join(plan)
         myprint(f"\n  Plan: \n     {plan_print}")
-        if verbose:
-            log_print = '\n     '.join(log) 
-            myprint(f'\n\n  Log: \n     {log_print}')
-        myprint(f"\n{short_log}")
-
         with open(join(expdir, f"_output_{index}.txt"), "w") as f:
             f.writelines('\n'.join(plan))
 
+        ## log by LAMA-first / Pyperplan, or all logs + plans by by LAMA
+        if verbose:
+            log_print = '\n     '.join(log) 
+            myprint(f'\n\n  Log: \n     {log_print}')
         with open(join(expdir, f"_{args.planner}_{index}.log"), "w") as f:
             f.writelines('\n'.join(log))
 
+        ## one line summary of translation and search time
+        myprint(f"\n{short_log}")
+
+        ## detailed statistics summarized about the planning process
         csv_file = join(args.exp_dir, f'{datetime.now().strftime("%m%d")}.csv')
         if not isfile(csv_file):
             with open(csv_file,'w') as f:
@@ -330,7 +382,12 @@ def get_plan(problems, expdir, verbose=False):
         with open(csv_file,'a') as f:
             f.write(','.join(csv_log[1]) + '\n')
 
-    if args.planner == 'fd' and isfile('sas_plan'): os.remove('sas_plan')
+        ## delete all sas_plan files because they contain no cost info
+        if args.planner == 'fd': ## and isfile('sas_plan'): 
+            for f in [f for f in listdir('./') if 'sas_plan' in f]:
+                os.remove(f)
+                # f = f.replace('sas_plan. ','')
+                # shutil.move(f, join(expdir, f'_plans_{index}_{f}.txt'))
 
 def start_single_experiment(output_name):
     """ make a new directory in experiments/ by the timestamp"""
