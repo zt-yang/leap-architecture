@@ -1,21 +1,24 @@
 nav:
     - Project:
       - LEAP Architecture: index.md
+      - Test Runs [ NEW ]: project-test.md
       # - Plans & Priorities: project-plans.md
       - Minutes & Notes: project-minutes.md
     - Domains: 
-      - Kitchen: domain-kitchen.md
-      - Grocery: domain-grocery.md
-      - Logistics: domain-logistics.md
+      - Grocery - action costs [ NEW ]: domain-grocery.md
+      - Kitchen - large universe: domain-kitchen.md
+      ## - Logistics: domain-logistics.md
       # - Restaurant: domain-restaurant.md
       # - Housework: domain-housework.md
     - Experiments: 
+      - Num of Goal Predicates [ NEW ]: exp-goals.md
       - Num of Objects: exp-objects.md
       - All Egg Recipes: exp-egg-recipes.md
-      - Two Dishes: exp-two-dishes.md
-      - Customers Happy: exp-customer-happy.md
-      # - Num of Goal Predicates: exp-goals.md
-      # - Num of Operators: exp-operators.md
+      - Two Dishes [ NEW ]: exp-two-dishes.md
+      - Satisfising v.s. Optimizing [ NEW ]: exp-planner-options.md
+      - Merged Domains [ NEW ]: exp-merged-domains.md
+    - Notes:
+      - FastDownward [ NEW ]: notes-fd.md
     - Set it up: 
       - Set up the Repository: setup-repository.md
       - Set up MkDocs: setup-mkdocs.md

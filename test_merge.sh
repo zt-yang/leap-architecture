@@ -3,16 +3,30 @@ echo "Test the search complexity of solving a domain_merged problems and solving
 rm -r experiments/domain_merge
 mkdir experiments/domain_merge
 
-## sub-problem 1: grocery shopping
-python run.py grocery_0.pddl shop_omelette_0.pddl -o obj_grocery_0.pddl -v 0 -e 'experiments/domain_merge'
-
-## sub-problem 2: omelette making (with minimum number of objects)
+## two subproblems and one merged problem, by LAMA-First
+python run.py grocery_costs.pddl shop_veggies.pddl -o obj_grocery_costs.pddl -v 0 -e 'experiments/domain_merge'
 python run.py kitchen_extended.pddl omelette.pddl -o obj_extended.pddl -v 0 -e 'experiments/domain_merge'
+python run.py "grocery_costs.pddl+kitchen_extended.pddl" omelette_extended.pddl -o "obj_grocery_costs.pddl+obj_extended2.pddl" -v 0 -e 'experiments/domain_merge'
 
-## sub-problem 3: kitchen cleaning
-# python run.py housework.pddl clean_kitchen.pddl -o obj_house.pddl -v 0 -e 'experiments/domain_merge'
+## two subproblems and one merged problem, by LAMA
+python run.py grocery_costs.pddl shop_veggies.pddl -o obj_grocery_costs.pddl -v 0 -e 'experiments/domain_merge' -po 'lama'
+python run.py kitchen_extended.pddl omelette.pddl -o obj_extended.pddl -v 0 -e 'experiments/domain_merge' -po 'lama'
+python run.py "grocery_costs.pddl+kitchen_extended.pddl" omelette_extended.pddl -o "obj_grocery_costs.pddl+obj_extended2.pddl" -v 0 -e 'experiments/domain_merge' -po 'lama'
 
-## merged problem: making an omelette while keeping kitchen clean
-python run.py "grocery_0.pddl+kitchen_extended.pddl" omelette_extended.pddl -o "obj_grocery_0.pddl+obj_extended2.pddl" -v 0 -e 'experiments/domain_merge'
+## ---------------------------------
+## make omelette and lambchop
+## ---------------------------------
+
+## two subproblems and one merged problem, by LAMA-First
+python run.py grocery_costs.pddl shop_lambchop.pddl -o obj_grocery_costs.pddl -v 0 -e 'experiments/domain_merge'
+python run.py kitchen_lambchop.pddl omelette.pddl -o obj_lambchop.pddl -v 0 -e 'experiments/domain_merge'
+python run.py kitchen_lambchop.pddl lambchop.pddl -o obj_lambchop.pddl -v 0 -e 'experiments/domain_merge'
+python run.py "grocery_costs.pddl+kitchen_lambchop.pddl" omelette_lambchop.pddl -o "obj_grocery_costs.pddl+obj_lambchop2.pddl" -v 0 -e 'experiments/domain_merge' -t 20
+
+## two subproblems and one merged problem, by LAMA
+python run.py grocery_costs.pddl shop_lambchop.pddl -o obj_grocery_costs.pddl -v 0 -e 'experiments/domain_merge' -po 'lama'
+python run.py kitchen_lambchop.pddl omelette.pddl -o obj_lambchop.pddl -v 0 -e 'experiments/domain_merge' -po 'lama'
+python run.py kitchen_lambchop.pddl lambchop.pddl -o obj_lambchop.pddl -v 0 -e 'experiments/domain_merge' -po 'lama'
+python run.py "grocery_costs.pddl+kitchen_lambchop.pddl" omelette_lambchop.pddl -o "obj_grocery_costs.pddl+obj_lambchop2.pddl" -v 0 -e 'experiments/domain_merge' -t 20 -po 'lama'
 
 python generators/post_experiments.py experiments/domain_merge -sh test_merge.sh -r

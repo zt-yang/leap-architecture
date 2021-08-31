@@ -18,5 +18,5 @@ python run.py kitchen_customer_4.pddl customer_happier.pddl -o obj_customer.pddl
 python run.py kitchen_customer_5.pddl customer_pay.pddl -o obj_customer.pddl -v 0 -e 'experiments/customer_happy'
 python run.py kitchen_customer_6.pddl customer_pay.pddl -o obj_customer.pddl -v 0 -e 'experiments/customer_happy'
 
-python generators/post_experiments.py experiments/customer_happy -sh test_serve_multiple.sh -r
+python generators/post_experiments.py experiments/customer_happy -sh test_customer_happy.sh -r
 

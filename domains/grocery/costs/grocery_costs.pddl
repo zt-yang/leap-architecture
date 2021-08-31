@@ -3,7 +3,7 @@
   (:requirements :adl :derived-predicates :action-costs )
 
   (:types
-    physicalobj location agent item - object
+    physicalobj location agent item cost - object
     moveable vehicle - physicalobj
 
     bicycle car airplane - vehicle
@@ -14,8 +14,14 @@
 
     ;; to merge with kitchen_extended
     ingredient utensil - moveable
+    egg lambchop bread - ingredient
     staticobject - object
     furniture - staticobject
+
+    utensil - moveable
+    container - utensil
+    cookingcontainer - container
+    pot - cookingcontainer
   )
 
   (:predicates
@@ -42,24 +48,60 @@
     (paid ?i - moveable)
     (shopping-at ?a - agent ?l - store)
     (is-store ?l - store)
+    (store-cost ?l - store ?n - cost)
 
     ;; to merge with kitchen_extended
     (in ?x - furniture ?y - moveable)
   )
 
-  (:action pay-grocery
+  (:action pay-grocery-10
     :parameters (?o - moveable ?l - store ?p - payment-item ?a - agent)
     :precondition (and 
       (agent-has ?a ?p)
       (at-loc ?o ?l)
       (shopping-at ?a ?l)
+      (store-cost ?l 10)
     )
     :effect (and 
       (paid ?o)
       (agent-has ?a ?o)
       (agent-owns ?a ?o)
       (not (at-loc ?o ?l))
-      (increase (total-cost) 1)
+      (increase (total-cost) 10)
+    )
+  )
+
+  (:action pay-grocery-20
+    :parameters (?o - moveable ?l - store ?p - payment-item ?a - agent)
+    :precondition (and 
+      (agent-has ?a ?p)
+      (at-loc ?o ?l)
+      (shopping-at ?a ?l)
+      (store-cost ?l 20)
+    )
+    :effect (and 
+      (paid ?o)
+      (agent-has ?a ?o)
+      (agent-owns ?a ?o)
+      (not (at-loc ?o ?l))
+      (increase (total-cost) 20)
+    )
+  )
+
+  (:action pay-grocery-30
+    :parameters (?o - moveable ?l - store ?p - payment-item ?a - agent)
+    :precondition (and 
+      (agent-has ?a ?p)
+      (at-loc ?o ?l)
+      (shopping-at ?a ?l)
+      (store-cost ?l 30)
+    )
+    :effect (and 
+      (paid ?o)
+      (agent-has ?a ?o)
+      (agent-owns ?a ?o)
+      (not (at-loc ?o ?l))
+      (increase (total-cost) 30)
     )
   )
 
@@ -159,7 +201,7 @@
     :effect (and 
       (agent-at ?a ?l2)
       (not (agent-at ?a ?l1))
-      (increase (total-cost) 8)
+      (increase (total-cost) 40)
     )
   )
 
@@ -172,7 +214,7 @@
     :effect (and 
       (agent-at ?a ?l2)
       (not (agent-at ?a ?l1))
-      (increase (total-cost) 2)
+      (increase (total-cost) 10)
     )
   )
 
@@ -186,7 +228,7 @@
     :effect (and 
       (agent-at ?a ?l2)
       (not (agent-at ?a ?l1))
-      (increase (total-cost) 4)
+      (increase (total-cost) 20)
     )
   )
 
@@ -200,7 +242,7 @@
     :effect (and 
       (agent-at ?a ?l2)
       (not (agent-at ?a ?l1))
-      (increase (total-cost) 1)
+      (increase (total-cost) 5)
     )
   )
 

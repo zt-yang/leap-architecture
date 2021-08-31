@@ -1,5 +1,5 @@
 (define (problem OmeletteExtended)
-  (:domain grocery_0ANDkitchen_extended)
+  (:domain grocery_costsANDkitchen_extended)
   
   (:objects kitchen_obj)
 

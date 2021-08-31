@@ -47,7 +47,7 @@
     ; spatial relations
     ; ----------------------
     (in ?x - furniture ?y - moveable)       ; x cannot move
-    (on ?x - surface ?y - moveable)         ; x cannot move
+    (on ?x - object ?y - moveable)         ; x cannot move
     (inside ?x - container ?y - moveable)   ; x can move
     (in-hole ?x - ingredient ?y - ingredient)  
 
@@ -104,9 +104,9 @@
     (chopped ?x - ingredient)
     (is-buttery ?x - ingredient)
 
-    (seasoned-on ?x - ingredient ?y - seasoning)
-    (seasoning-mixed ?x - ingredient ?y - seasoning)
-    (has-seasoning ?i - ingredient ?s - seasoning ?u - measureutensil ?n - number)
+    (seasoned-on ?x - ingredient ?y - ingredient)
+    (seasoning-mixed ?x - ingredient ?y - ingredient)
+    (has-seasoning ?i - ingredient ?s - ingredient ?u - object ?n - number)
 
     (has-hole ?x - ingredient ?y - shape)
     (has-space ?x - specialcontainer)
@@ -391,11 +391,13 @@
       :precondition( and
          ( inside ?from ?l )
          ( holding ?from ?r )
-         ( not ( needs-peeling ?i ) )
       )
       :effect( and
         ( forall ( ?i - ingredient ) 
-          ( when ( inside ?to ?i )
+          ( when ( and
+              ( inside ?to ?i )
+              ( not ( needs-peeling ?i ) )
+            )
             ( and 
               ( seasoned-on ?i ?l ) 
               ( has-seasoning ?i ?l ?u one )

@@ -11,7 +11,7 @@
     appliance worktop - surface
 
     ingredient utensil - moveable
-    egg seasoning liquid bread - ingredient
+    egg seasoning liquid bread garlic lambchop - ingredient
     oil vinegar - liquid
     container normalutensil cookingutensil whiskutensil measureutensil cuttingutensil specializeduensil - utensil
     spoon - normalutensil
@@ -48,6 +48,7 @@
     ; ----------------------
     (in ?x - furniture ?y - moveable)       ; x cannot move
     (on ?x - surface ?y - moveable)         ; x cannot move
+    (obj-on ?x - moveable ?y - moveable)    ; x can move
     (inside ?x - container ?y - moveable)   ; x can move
     (in-hole ?x - ingredient ?y - ingredient)  
 
@@ -104,9 +105,9 @@
     (chopped ?x - ingredient)
     (is-buttery ?x - ingredient)
 
-    (seasoned-on ?x - ingredient ?y - seasoning)
-    (seasoning-mixed ?x - ingredient ?y - seasoning)
-    (has-seasoning ?i - ingredient ?s - seasoning ?u - measureutensil ?n - number)
+    (seasoned-on ?x - ingredient ?y - ingredient)
+    (seasoning-mixed ?x - ingredient ?y - ingredient)
+    (has-seasoning ?i - ingredient ?s - ingredient ?u - object ?n - number)
 
     (has-hole ?x - ingredient ?y - shape)
     (has-space ?x - specialcontainer)
@@ -119,11 +120,8 @@
 
     (exist-scrambled-eggs ?x - env)
     (exist-omelette ?x - env)
-    (exist-omelette-buttery ?x - env)
     (exist-sunny-side-up ?x - env)
-    (exist-sunny-side-up-buttery ?x - env)
     (exist-egg-in-hole ?x - env)
-    (exist-egg-in-hole-buttery ?x - env)
     (exist-poached-egg ?x - env)
 
     ; ----------------------
@@ -131,11 +129,8 @@
     ; ----------------------
     (enable-scrambled-eggs ?x - egg ?y - plate)
     (enable-omelette ?x - egg ?y - ingredient ?z - plate)
-    (enable-omelette-buttery ?x - egg ?y - ingredient ?z - plate)
     (enable-sunny-side-up ?x - egg ?y - plate)
-    (enable-sunny-side-up-buttery ?x - egg ?y - plate)
     (enable-egg-in-hole ?x - egg ?y - bread ?z - plate)
-    (enable-egg-in-hole-buttery ?x - egg ?y - bread ?z - plate)
     (enable-poached-egg ?x - egg ?y - plate)
 
     ( exist-two-scrambled-eggs ?env - env )
@@ -143,7 +138,6 @@
     ( exist-two-sunny-side-up ?x - env )
     ( exist-two-egg-in-hole ?x - env )
     ( exist-two-poached-egg ?x - env )
-    ( exist-two-two-egg-dishs ?env - env )
 
     ( exist-two-egg-dishs ?env - env )
     ( customer-happy ?c - customer )
@@ -151,6 +145,8 @@
     ( customer-happiest ?c - customer )
     ( customer-pay ?c - customer )
 
+    (exist-cooked-lambchop ?x - env)
+    (enable-cooked-lambchop ?x - lambchop ?y - garlic ?z - plate)
   )
 
   ; ----------------------------------------
@@ -272,7 +268,7 @@
           ( not ( on ?param2 ?param1 ) )
           ( holding ?param1 ?param3 )
           ( handsfull ?param3 )
-          ( increase ( total-cost ) 1 )
+          ( increase ( total-cost ) 2 )
       )
   )
 
@@ -295,7 +291,7 @@
                     ( burned-utensil ?param1 ?a )
             )
          )
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 2 )
       )
   )
 
@@ -308,7 +304,7 @@
       :effect( and
          ( not ( holding ?param1 ?param3 ) )
          ( not ( handsfull ?param3 ) )
-         ( on ?param2 ?param1 )
+         ( obj-on ?param2 ?param1 )
          ( increase ( total-cost ) 1 )
       )
   )
@@ -347,7 +343,6 @@
       :precondition( and
          ( holding ?param2 ?param4 )
          ( inside ?param2 ?param1 )
-         ;( not ( is-liquid ?param1 ) )
       )
       :effect( and
          ( not ( inside ?param2 ?param1 ) )
@@ -399,11 +394,13 @@
       :precondition( and
          ( inside ?from ?l )
          ( holding ?from ?r )
-         ( not ( needs-peeling ?i ) )
       )
       :effect( and
         ( forall ( ?i - ingredient ) 
-          ( when ( inside ?to ?i )
+          ( when ( and
+              ( inside ?to ?i )
+              ( not ( needs-peeling ?i ) )
+            )
             ( and 
               ( seasoned-on ?i ?l ) 
               ( has-seasoning ?i ?l ?u one )
@@ -450,7 +447,7 @@
       )
       :effect( and
           ( inside ?c ?l )
-          ( increase ( total-cost ) 1 )
+          ( increase ( total-cost ) 2 )
       )
   )
 
@@ -462,7 +459,7 @@
     )
     :effect( and
         ( inside ?c ?l )
-        ( increase ( total-cost ) 1 )
+        ( increase ( total-cost ) 2 )
     )
   )
 
@@ -515,36 +512,13 @@
          ( switchedon ?a )
          ( not ( steamed ?i ) )
          ( not ( covered ?p ) )
-         ;( at-level ?a high )
          ( not ( fried ?i ) ) 
-         ( not ( is-butter ?o ) )
       )
       :effect( and
          ( fried ?i ) 
-         ;( when ( is-butter ?o ) ( is-buttery ?i ))
-         ;( when ( steamed ?i ) ( not ( is-buttery ?i ) ))
-         ( increase ( total-cost ) 1 )
-      )
-  )
-
-  ( :action fry-buttery
-      :parameters ( ?i - ingredient ?p - pan ?a - appliance ?o - oil)
-      :precondition( and
-         ( inside ?p ?o )
-         ( inside ?p ?i )
-         ( on ?a ?p )
-         ( switchedon ?a )
-         ( not ( steamed ?i ) )
-         ( not ( covered ?p ) )
-         ;( at-level ?a high )
-         ( not ( fried ?i ) ) 
-         ( is-butter ?o ) 
-      )
-      :effect( and
-         ( fried ?i ) 
-         ( is-buttery ?i )
-         ;( when ( steamed ?i ) ( not ( is-buttery ?i ) ))
-         ( increase ( total-cost ) 1 )
+         ( when ( is-butter ?o ) ( is-buttery ?i ))
+         ( when ( steamed ?i ) ( not ( is-buttery ?i ) ))
+         ( increase ( total-cost ) 5 )
       )
   )
 
@@ -560,7 +534,7 @@
       )
       :effect( and
          ( steamed ?i )
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 5 )
       )
   )
 
@@ -616,7 +590,7 @@
         )
       )
 
-      ( increase ( total-cost ) 1 ) 
+      ( increase ( total-cost ) 5 ) 
     )
   )
 
@@ -630,7 +604,7 @@
       )
       :effect( and
          ( folded ?i ) 
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 3 )
       )
   )
 
@@ -644,7 +618,7 @@
       )
       :effect( and
          ( scrambled ?i ) 
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 3 )
       )
   )
 
@@ -658,7 +632,7 @@
       :effect( and
           ( stirred ?l ) 
           ( has-hole ?l circle )
-          ( increase ( total-cost ) 1 )
+          ( increase ( total-cost ) 3 )
       )
   )
 
@@ -679,7 +653,7 @@
                       (seasoning-mixed ?param1 ?s)
               ) 
           )
-          ( increase (total-cost) 1 )
+          ( increase ( total-cost ) 3 )
       )
   )
 
@@ -695,7 +669,7 @@
      :effect( and
          ( not ( cracked ?param1 ) )
          ( beaten ?param1 ) 
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 3 )
       )
   )
 
@@ -720,19 +694,6 @@
     )
     :effect( and
       ( enable-scrambled-eggs ?egg1 ?plate1 )
-
-      ( not ( inside ?plate1 ?egg1 ) )
-      ( not ( beaten ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( scrambled ?egg1 ) )
-      ( not ( has-seasoning ?egg1 nutmilk cup two ) )
-      ( not ( has-seasoning ?egg1 chives tablespoon1 one ) )
-      ( not ( seasoning-mixed ?egg1 chives ) )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( seasoning-mixed ?egg1 salt ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-      ( not ( seasoning-mixed ?egg1 pepper ) )
-
       ( increase ( total-cost ) 1 )
     )
   )
@@ -755,57 +716,6 @@
     )
     :effect( and
       ( enable-omelette ?egg1 ?veggies1 ?plate1 )
-
-      ( not ( beaten ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( folded ?egg1 ) )
-      ( not ( fried ?veggies1 ) )
-      ( not ( sauteed ?veggies1 ) )
-      ( not ( has-seasoning ?egg1 nutmilk cup two ) )
-      ( not ( has-seasoning ?egg1 chives tablespoon1 two ) )
-      ( not ( seasoning-mixed ?egg1 chives ) )
-      ( not ( has-seasoning ?egg1 salt gram two ) )
-      ( not ( seasoning-mixed ?egg1 salt ) )
-      ( not ( has-seasoning ?egg1 pepper gram two ) )
-      ( not ( seasoning-mixed ?egg1 pepper ) )
-
-      ( increase ( total-cost ) 1 )
-    )
-  )
-
-  ( :action declare-omelette-buttery
-    :parameters ( ?egg1 - egg ?veggies1 - ingredient ?plate1 - plate )
-    :precondition( and
-      ( beaten ?egg1 )
-      ( fried ?egg1 )
-      ( is-buttery ?egg1 )
-      ( folded ?egg1 )
-      ( fried ?veggies1 )
-      ( sauteed ?veggies1 )
-      ( has-seasoning ?egg1 nutmilk cup two )
-      ( has-seasoning ?egg1 chives tablespoon1 two )
-      ( seasoning-mixed ?egg1 chives )
-      ( has-seasoning ?egg1 salt gram two )
-      ( seasoning-mixed ?egg1 salt )
-      ( has-seasoning ?egg1 pepper gram two )
-      ( seasoning-mixed ?egg1 pepper )
-    )
-    :effect( and
-      ( enable-omelette-buttery ?egg1 ?veggies1 ?plate1 )
-
-      ( not ( beaten ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( folded ?egg1 ) )
-      ( not ( fried ?veggies1 ) )
-      ( not ( sauteed ?veggies1 ) )
-      ( not ( has-seasoning ?egg1 nutmilk cup two ) )
-      ( not ( has-seasoning ?egg1 chives tablespoon1 two ) )
-      ( not ( seasoning-mixed ?egg1 chives ) )
-      ( not ( has-seasoning ?egg1 salt gram two ) )
-      ( not ( seasoning-mixed ?egg1 salt ) )
-      ( not ( has-seasoning ?egg1 pepper gram two ) )
-      ( not ( seasoning-mixed ?egg1 pepper ) )
-
       ( increase ( total-cost ) 1 )
     )
   )
@@ -815,42 +725,12 @@
     :precondition( and
       ( inside ?plate1 ?egg1 )
       ( fried ?egg1 )
-      ( steamed ?egg1 )
+      ( steamed ?egg1 ) 
       ( has-seasoning ?egg1 salt gram one )
       ( has-seasoning ?egg1 pepper gram one )
     )
     :effect( and
       ( enable-sunny-side-up ?egg1 ?plate1 )
-
-      ( not ( inside ?plate1 ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( steamed ?egg1 )  )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-
-      ( increase ( total-cost ) 1 )
-    )
-  )
-
-  ( :action declare-sunny-side-up-buttery
-    :parameters ( ?egg1 - egg ?plate1 - plate )
-    :precondition( and
-      ( inside ?plate1 ?egg1 )
-      ( fried ?egg1 )
-      ( steamed ?egg1 )
-      ( is-buttery ?egg1 ) ; the only difference 
-      ( has-seasoning ?egg1 salt gram one )
-      ( has-seasoning ?egg1 pepper gram one )
-    )
-    :effect( and
-      ( enable-sunny-side-up-buttery ?egg1 ?plate1 )
-
-      ( not ( inside ?plate1 ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( steamed ?egg1 )  )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-
       ( increase ( total-cost ) 1 )
     )
   )
@@ -867,39 +747,6 @@
     )
     :effect( and
       ( enable-egg-in-hole ?egg1 ?bread1 ?plate1 )
-
-      ( not ( inside ?plate1 ?bread1 ) )
-      ( not ( has-hole ?bread1 circle ) )
-      ( not ( in-hole ?egg1 ?bread1 ) )
-      ( not ( fried ?bread1 ) )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-
-      ( increase ( total-cost ) 1 )
-    )
-  )
-
-  ( :action declare-egg-in-hole-buttery
-    :parameters ( ?egg1 - egg ?bread1 - bread ?plate1 - plate )
-    :precondition( and
-      ( inside ?plate1 ?bread1 )
-      ( has-hole ?bread1 circle )
-      ( in-hole ?egg1 ?bread1 ) 
-      ( fried ?bread1 )
-      ( is-buttery ?bread1 )
-      ( has-seasoning ?egg1 salt gram one )
-      ( has-seasoning ?egg1 pepper gram one )
-    )
-    :effect( and
-      ( enable-egg-in-hole-buttery ?egg1 ?bread1 ?plate1 )
-
-      ( not ( inside ?plate1 ?bread1 ) )
-      ( not ( has-hole ?bread1 circle ) )
-      ( not ( in-hole ?egg1 ?bread1 ) )
-      ( not ( fried ?bread1 ) )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-
       ( increase ( total-cost ) 1 )
     )
   )
@@ -914,15 +761,29 @@
     )
     :effect( and
       ( enable-poached-egg ?egg1 ?plate1 )
-
-      ;( not ( boiled water ) )
-      ( not ( boiled ?egg1 ) )
-      ( not ( hardness ?egg1 outerside medium-hard ) )
-      ;( not ( has-vinegar water ) )
-
       ( increase ( total-cost ) 1 )
     )
   )
+
+  ( :action declare-cooked-lambchop
+    :parameters ( ?lambchop1 - lambchop ?garlic1 - garlic ?plate1 - plate )
+    :precondition( and
+      ( has-seasoning ?lambchop1 salt gram two )
+      ( seasoning-mixed ?lambchop1 salt )
+      ( has-seasoning ?lambchop1 pepper gram two )
+      ( seasoning-mixed ?lambchop1 pepper )
+      ( has-seasoning ?lambchop1 thyme gram one )
+      ( seasoning-mixed ?lambchop1 thyme )
+      ( fried ?lambchop1 )
+      ( fried ?garlic1 )
+      ( inside ?plate1 ?lambchop1 )
+    )
+    :effect( and
+      ( enable-cooked-lambchop ?lambchop1 ?garlic1 ?plate1 )
+      ( increase ( total-cost ) 1 )
+    )
+  )
+
 
   ; ----------------------------------------
   ; -------- ingredients transition model
@@ -954,8 +815,8 @@
       (exists 
           ( ?cov - containercover ) 
           ( and 
-              ( matching-size ?cov ?con )
-            ( on ?con ?cov )
+            ( matching-size ?cov ?con )
+            ( obj-on ?con ?cov )
           )
       )
   )
@@ -1046,22 +907,9 @@
     )
   )
 
-  ( :derived ( exist-omelette-buttery ?env - env )
-    ( exists 
-      ( ?egg1 - egg ?veggies1 - ingredient ?plate1 - plate ) 
-      ( enable-omelette-buttery ?egg1 ?veggies1 ?plate1 )
-    )
-  )
-
   ( :derived ( exist-sunny-side-up ?env - env )
     ( exists 
       ( ?egg1 - egg ?plate1 - plate ) ( enable-sunny-side-up ?egg1 ?plate1 )
-    )
-  )
-
-  ( :derived ( exist-sunny-side-up-buttery ?env - env )
-    ( exists 
-      ( ?egg1 - egg ?plate1 - plate ) ( enable-sunny-side-up-buttery ?egg1 ?plate1 )
     )
   )
 
@@ -1072,19 +920,19 @@
     )
   )
 
-  ( :derived ( exist-egg-in-hole-buttery ?env - env )
-    ( exists 
-      ( ?egg1 - egg ?bread1 - bread ?plate1 - plate ) 
-      ( enable-egg-in-hole-buttery ?egg1 ?bread1 ?plate1 )
-    )
-  )
-
   ( :derived ( exist-poached-egg ?env - env )
     ( exists 
       ( ?egg1 - egg ?plate1 - plate ) ( enable-poached-egg ?egg1 ?plate1 )
     )
   )
 
+
+  ( :derived ( exist-cooked-lambchop ?env - env )
+    ( exists 
+      ( ?lambchop1 - lambchop ?garlic1 - garlic ?plate1 - plate ) 
+      ( enable-cooked-lambchop ?lambchop1 ?garlic1 ?plate1 )
+    )
+  )
 
   ; ----------------------------------------
   ; -------- serve customers
@@ -1155,13 +1003,69 @@
   )
 
   ; ----------------------------------------
-  ; -------- multiple options to make a customer happy
+  ; -------- serve customers
   ; ----------------------------------------
 
   ( :derived ( customer-happy ?c - customer ) ; option 1
     ( exists ( ?env - env )
-      ( exist-sunny-side-up ?env )
+      ( and
+        ( exist-omelette ?env )
+        ( exist-cooked-lambchop ?env )
+      )
     )
+  )
+  
+  ( :derived ( customer-happy ?c - customer ) ; option 2
+    ( exists ( ?env - env )
+      ( and
+        ( exist-egg-in-hole ?env )
+        ( exist-cooked-lambchop ?env )
+      )
+    )
+  )
+  
+  ( :derived ( customer-happy ?c - customer ) ; option 3
+    ( exists ( ?env - env )
+      ( and
+        ( exist-poached-egg ?env )
+        ( exist-cooked-lambchop ?env )
+      )
+    )
+  )
+
+  ( :derived ( customer-happier ?c - customer ) ; three options
+    ( exists ( ?env - env )
+      ( exist-two-egg-dishs ?env )
+    )
+  )
+  
+  ( :derived ( exist-two-egg-dishs ?env - env ) ; option 1
+    ( and
+      (exist-two-sunny-side-up ?env)
+    )
+  )
+  
+  ( :derived ( exist-two-egg-dishs ?env - env ) ; option 2
+    ( and
+      (exist-omelette ?env)
+      (exist-egg-in-hole ?env)
+    )
+  )
+  
+  ( :derived ( exist-two-egg-dishs ?env - env ) ; option 3
+    ( and
+      ( exist-scrambled-eggs ?env )
+      ( exist-egg-in-hole ?env )
+    )
+  )
+
+  ( :derived ( customer-pay ?c - customer ) 
+    ( customer-happy ?c )
+  )
+
+  
+  ( :derived ( customer-pay ?c - customer ) 
+    ( customer-happier ?c  )
   )
 
 )

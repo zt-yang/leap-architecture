@@ -4,7 +4,8 @@
         "location": "object",
         "agent": "object",
         "item": "object",
-        "moveable": "physicalobj",
+        "cost": "object",
+        "moveable": "object",
         "vehicle": "physicalobj",
         "bicycle": "vehicle",
         "car": "vehicle",
@@ -18,10 +19,52 @@
         "credit-card": "payment-item",
         "ingredient": "moveable",
         "utensil": "moveable",
+        "egg": "ingredient",
+        "lambchop": "ingredient",
+        "bread": "ingredient",
         "staticobject": "object",
-        "furniture": "staticobject"
+        "furniture": "staticobject",
+        "container": "utensil",
+        "cookingcontainer": "container",
+        "pot": "cookingcontainer",
+        "humans": "object",
+        "env": "object",
+        "abstract": "object",
+        "number": "abstract",
+        "measureunit": "abstract",
+        "shape": "abstract",
+        "level": "abstract",
+        "part": "abstract",
+        "surface": "staticobject",
+        "appliance": "surface",
+        "worktop": "surface",
+        "seasoning": "ingredient",
+        "liquid": "ingredient",
+        "garlic": "ingredient",
+        "oil": "liquid",
+        "vinegar": "liquid",
+        "normalutensil": "utensil",
+        "cookingutensil": "utensil",
+        "whiskutensil": "utensil",
+        "measureutensil": "utensil",
+        "cuttingutensil": "utensil",
+        "specializeduensil": "utensil",
+        "spoon": "normalutensil",
+        "normalcontainer": "container",
+        "liquidtap": "container",
+        "pan": "cookingcontainer",
+        "specialcontainer": "normalcontainer",
+        "liquidcontainer": "normalcontainer",
+        "cuisinecontainer": "normalcontainer",
+        "containercover": "specializeduensil",
+        "plate": "cuisinecontainer",
+        "customer": "humans",
+        "robot": "agent",
+        "circle": "shape",
+        "hardnesslevel": "level"
     },
     "type_ancestors": {
+        "object": [],
         "physicalobj": [
             "object"
         ],
@@ -34,8 +77,10 @@
         "item": [
             "object"
         ],
+        "cost": [
+            "object"
+        ],
         "moveable": [
-            "physicalobj",
             "object"
         ],
         "vehicle": [
@@ -89,12 +134,25 @@
         ],
         "ingredient": [
             "moveable",
-            "physicalobj",
             "object"
         ],
         "utensil": [
             "moveable",
-            "physicalobj",
+            "object"
+        ],
+        "egg": [
+            "ingredient",
+            "moveable",
+            "object"
+        ],
+        "lambchop": [
+            "ingredient",
+            "moveable",
+            "object"
+        ],
+        "bread": [
+            "ingredient",
+            "moveable",
             "object"
         ],
         "staticobject": [
@@ -103,9 +161,213 @@
         "furniture": [
             "staticobject",
             "object"
+        ],
+        "container": [
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "cookingcontainer": [
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "pot": [
+            "cookingcontainer",
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "humans": [
+            "object"
+        ],
+        "env": [
+            "object"
+        ],
+        "abstract": [
+            "object"
+        ],
+        "number": [
+            "abstract",
+            "object"
+        ],
+        "measureunit": [
+            "abstract",
+            "object"
+        ],
+        "shape": [
+            "abstract",
+            "object"
+        ],
+        "level": [
+            "abstract",
+            "object"
+        ],
+        "part": [
+            "abstract",
+            "object"
+        ],
+        "surface": [
+            "staticobject",
+            "object"
+        ],
+        "appliance": [
+            "surface",
+            "staticobject",
+            "object"
+        ],
+        "worktop": [
+            "surface",
+            "staticobject",
+            "object"
+        ],
+        "seasoning": [
+            "ingredient",
+            "moveable",
+            "object"
+        ],
+        "liquid": [
+            "ingredient",
+            "moveable",
+            "object"
+        ],
+        "garlic": [
+            "ingredient",
+            "moveable",
+            "object"
+        ],
+        "oil": [
+            "liquid",
+            "ingredient",
+            "moveable",
+            "object"
+        ],
+        "vinegar": [
+            "liquid",
+            "ingredient",
+            "moveable",
+            "object"
+        ],
+        "normalutensil": [
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "cookingutensil": [
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "whiskutensil": [
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "measureutensil": [
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "cuttingutensil": [
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "specializeduensil": [
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "spoon": [
+            "normalutensil",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "normalcontainer": [
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "liquidtap": [
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "pan": [
+            "cookingcontainer",
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "specialcontainer": [
+            "normalcontainer",
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "liquidcontainer": [
+            "normalcontainer",
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "cuisinecontainer": [
+            "normalcontainer",
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "containercover": [
+            "specializeduensil",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "plate": [
+            "cuisinecontainer",
+            "normalcontainer",
+            "container",
+            "utensil",
+            "moveable",
+            "object"
+        ],
+        "customer": [
+            "humans",
+            "object"
+        ],
+        "robot": [
+            "agent",
+            "object"
+        ],
+        "circle": [
+            "shape",
+            "abstract",
+            "object"
+        ],
+        "hardnesslevel": [
+            "level",
+            "abstract",
+            "object"
         ]
     },
     "predicates": {
+        "=": [
+            "object",
+            "object"
+        ],
+        "either": [
+            "object",
+            "object"
+        ],
         "at-loc": [
             "physicalobj",
             "location"
@@ -174,28 +436,435 @@
         "is-store": [
             "store"
         ],
+        "store-cost": [
+            "store",
+            "cost"
+        ],
         "in": [
             "furniture",
             "moveable"
+        ],
+        "impossible": [
+            "object"
+        ],
+        "is-egg": [
+            "ingredient"
+        ],
+        "is-liquid": [
+            "ingredient"
+        ],
+        "is-butter": [
+            "ingredient"
+        ],
+        "is-cookingcontainer": [
+            "utensil"
+        ],
+        "is-slotted": [
+            "slottedspoon"
+        ],
+        "has-shape": [
+            "utensil",
+            "shape"
+        ],
+        "has-vinegar": [
+            "liquid"
+        ],
+        "on": [
+            "surface",
+            "moveable"
+        ],
+        "obj-on": [
+            "moveable",
+            "moveable"
+        ],
+        "inside": [
+            "container",
+            "moveable"
+        ],
+        "in-hole": [
+            "ingredient",
+            "ingredient"
+        ],
+        "closed": [
+            "staticobject"
+        ],
+        "opened": [
+            "staticobject"
+        ],
+        "turnedon": [
+            "liquidtap"
+        ],
+        "turnedoff": [
+            "liquidtap"
+        ],
+        "switchedon": [
+            "appliance"
+        ],
+        "switchedoff": [
+            "appliance"
+        ],
+        "covered": [
+            "container"
+        ],
+        "default-level": [
+            "appliance",
+            "level"
+        ],
+        "at-level": [
+            "appliance",
+            "level"
+        ],
+        "matching-size": [
+            "utensil",
+            "utensil"
+        ],
+        "burned-ingredient": [
+            "utensil"
+        ],
+        "burned-utensil": [
+            "utensil",
+            "appliance"
+        ],
+        "burned-appliance": [
+            "appliance"
+        ],
+        "burned-kitchen": [
+            "env"
+        ],
+        "burned-food": [
+            "env"
+        ],
+        "safe-kitchen": [
+            "env"
+        ],
+        "organized": [
+            "env"
+        ],
+        "holding": [
+            "object",
+            "agent"
+        ],
+        "handsfull": [
+            "agent"
+        ],
+        "cracked": [
+            "ingredient"
+        ],
+        "beaten": [
+            "ingredient"
+        ],
+        "firm": [
+            "ingredient"
+        ],
+        "folded": [
+            "ingredient"
+        ],
+        "scrambled": [
+            "ingredient"
+        ],
+        "stirred": [
+            "liquid"
+        ],
+        "raw": [
+            "ingredient"
+        ],
+        "needs-peeling": [
+            "ingredient"
+        ],
+        "fried": [
+            "ingredient"
+        ],
+        "steamed": [
+            "ingredient"
+        ],
+        "cooked": [
+            "ingredient"
+        ],
+        "burned": [
+            "ingredient"
+        ],
+        "boiled": [
+            "ingredient"
+        ],
+        "sauteed": [
+            "ingredient"
+        ],
+        "chopped": [
+            "ingredient"
+        ],
+        "is-buttery": [
+            "ingredient"
+        ],
+        "seasoned-on": [
+            "ingredient",
+            "ingredient"
+        ],
+        "seasoning-mixed": [
+            "ingredient",
+            "ingredient"
+        ],
+        "has-seasoning": [
+            "ingredient",
+            "ingredient",
+            "object",
+            "number"
+        ],
+        "has-hole": [
+            "ingredient",
+            "shape"
+        ],
+        "has-space": [
+            "specialcontainer"
+        ],
+        "can-hold": [
+            "object"
+        ],
+        "hardness": [
+            "ingredient",
+            "part",
+            "hardnesslevel"
+        ],
+        "exist-scrambled-eggs": [
+            "env"
+        ],
+        "exist-omelette": [
+            "env"
+        ],
+        "exist-sunny-side-up": [
+            "env"
+        ],
+        "exist-egg-in-hole": [
+            "env"
+        ],
+        "exist-poached-egg": [
+            "env"
+        ],
+        "enable-scrambled-eggs": [
+            "egg",
+            "plate"
+        ],
+        "enable-omelette": [
+            "egg",
+            "ingredient",
+            "plate"
+        ],
+        "enable-sunny-side-up": [
+            "egg",
+            "plate"
+        ],
+        "enable-egg-in-hole": [
+            "egg",
+            "bread",
+            "plate"
+        ],
+        "enable-poached-egg": [
+            "egg",
+            "plate"
+        ],
+        "exist-two-scrambled-eggs": [
+            "env"
+        ],
+        "exist-two-omelette": [
+            "env"
+        ],
+        "exist-two-sunny-side-up": [
+            "env"
+        ],
+        "exist-two-egg-in-hole": [
+            "env"
+        ],
+        "exist-two-poached-egg": [
+            "env"
+        ],
+        "exist-two-egg-dishs": [
+            "env"
+        ],
+        "customer-happy": [
+            "customer"
+        ],
+        "customer-happier": [
+            "customer"
+        ],
+        "customer-happiest": [
+            "customer"
+        ],
+        "customer-pay": [
+            "customer"
+        ],
+        "exist-cooked-lambchop": [
+            "env"
+        ],
+        "enable-cooked-lambchop": [
+            "lambchop",
+            "garlic",
+            "plate"
         ]
     },
     "operators": {
-        "pay-grocery": {
+        "pay-grocery-10": {
             "params": {
                 "?o": "moveable",
                 "?l": "store",
                 "?p": "payment-item",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
+                [
+                    "agent-has",
+                    "?a",
+                    "?p"
+                ],
                 [
                     "at-loc",
                     "?o",
                     "?l"
+                ],
+                [
+                    "shopping-at",
+                    "?a",
+                    "?l"
+                ],
+                [
+                    "store-cost",
+                    "?l",
+                    "10"
                 ]
             ],
-            "cost": 1
+            "eff": [
+                [
+                    "paid",
+                    "?o"
+                ],
+                [
+                    "agent-has",
+                    "?a",
+                    "?o"
+                ],
+                [
+                    "agent-owns",
+                    "?a",
+                    "?o"
+                ],
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 10
+        },
+        "pay-grocery-20": {
+            "params": {
+                "?o": "moveable",
+                "?l": "store",
+                "?p": "payment-item",
+                "?a": "agent"
+            },
+            "pre": [
+                [
+                    "agent-has",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ],
+                [
+                    "shopping-at",
+                    "?a",
+                    "?l"
+                ],
+                [
+                    "store-cost",
+                    "?l",
+                    "20"
+                ]
+            ],
+            "eff": [
+                [
+                    "paid",
+                    "?o"
+                ],
+                [
+                    "agent-has",
+                    "?a",
+                    "?o"
+                ],
+                [
+                    "agent-owns",
+                    "?a",
+                    "?o"
+                ],
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 20
+        },
+        "pay-grocery-30": {
+            "params": {
+                "?o": "moveable",
+                "?l": "store",
+                "?p": "payment-item",
+                "?a": "agent"
+            },
+            "pre": [
+                [
+                    "agent-has",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ],
+                [
+                    "shopping-at",
+                    "?a",
+                    "?l"
+                ],
+                [
+                    "store-cost",
+                    "?l",
+                    "30"
+                ]
+            ],
+            "eff": [
+                [
+                    "paid",
+                    "?o"
+                ],
+                [
+                    "agent-has",
+                    "?a",
+                    "?o"
+                ],
+                [
+                    "agent-owns",
+                    "?a",
+                    "?o"
+                ],
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 30
         },
         "enter-building": {
             "params": {
@@ -203,12 +872,35 @@
                 "?l": "location",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "agent-at",
                     "?a",
                     "?l"
+                ],
+                [
+                    "contain-loc",
+                    "?l",
+                    "?b"
+                ],
+                [
+                    "has-parked",
+                    "?a"
+                ]
+            ],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?b"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?l"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 1
@@ -219,12 +911,31 @@
                 "?l": "location",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "agent-at",
                     "?a",
                     "?b"
+                ],
+                [
+                    "contain-loc",
+                    "?l",
+                    "?b"
+                ]
+            ],
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?b"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 1
@@ -237,15 +948,33 @@
             },
             "pre": [
                 [
+                    "at-loc",
+                    "?v",
+                    "?l"
+                ],
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ],
+                [
                     "is-store",
                     "?l"
                 ]
             ],
             "eff": [
                 [
+                    "in-veh",
+                    "?o",
+                    "?v"
+                ],
+                [
                     "at-loc",
                     "?o",
                     "?l"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 1
@@ -256,12 +985,31 @@
                 "?v": "vehicle",
                 "?l": "location"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
+                [
+                    "at-loc",
+                    "?v",
+                    "?l"
+                ],
                 [
                     "in-veh",
                     "?o",
                     "?v"
+                ]
+            ],
+            "eff": [
+                [
+                    "at-loc",
+                    "?o",
+                    "?l"
+                ],
+                [
+                    "in-veh",
+                    "?o",
+                    "?v"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 1
@@ -273,7 +1021,23 @@
                 "?l": "location",
                 "?a": "agent"
             },
-            "pre": [],
+            "pre": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?t"
+                ],
+                [
+                    "at-loc",
+                    "?t",
+                    "?l"
+                ],
+                [
+                    "contain-loc",
+                    "?l",
+                    "?p"
+                ]
+            ],
             "eff": [
                 [
                     "agent-at",
@@ -284,6 +1048,19 @@
                     "at-loc",
                     "?t",
                     "?l"
+                ],
+                [
+                    "parked-at",
+                    "?t",
+                    "?p"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 5
@@ -295,7 +1072,23 @@
                 "?l": "location",
                 "?a": "agent"
             },
-            "pre": [],
+            "pre": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "parked-at",
+                    "?t",
+                    "?p"
+                ],
+                [
+                    "contain-loc",
+                    "?l",
+                    "?p"
+                ]
+            ],
             "eff": [
                 [
                     "agent-at",
@@ -311,6 +1104,19 @@
                     "parked-at",
                     "?t",
                     "?p"
+                ],
+                [
+                    "at-loc",
+                    "?t",
+                    "?l"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?t"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 1
@@ -321,15 +1127,34 @@
                 "?l2": "area",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "agent-at",
                     "?a",
                     "?l1"
+                ],
+                [
+                    "adj-area",
+                    "?l1",
+                    "?l2"
                 ]
             ],
-            "cost": 8
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l2"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 40
         },
         "walk-btw-loc": {
             "params": {
@@ -337,15 +1162,34 @@
                 "?l2": "location",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "agent-at",
                     "?a",
                     "?l1"
+                ],
+                [
+                    "adj-loc",
+                    "?l1",
+                    "?l2"
                 ]
             ],
-            "cost": 2
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l2"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 10
         },
         "walk-within-area": {
             "params": {
@@ -354,15 +1198,39 @@
                 "?l2": "location",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "agent-at",
                     "?a",
                     "?l1"
+                ],
+                [
+                    "adj-loc",
+                    "?l",
+                    "?l1"
+                ],
+                [
+                    "adj-loc",
+                    "?l",
+                    "?l2"
                 ]
             ],
-            "cost": 4
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l2"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 20
         },
         "walk-within-loc": {
             "params": {
@@ -371,15 +1239,39 @@
                 "?l2": "location",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "agent-at",
                     "?a",
                     "?l1"
+                ],
+                [
+                    "contain-loc",
+                    "?l",
+                    "?l1"
+                ],
+                [
+                    "contain-loc",
+                    "?l",
+                    "?l2"
                 ]
             ],
-            "cost": 1
+            "eff": [
+                [
+                    "agent-at",
+                    "?a",
+                    "?l2"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?l1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 5
         },
         "drive-btw-area": {
             "params": {
@@ -388,12 +1280,41 @@
                 "?l2": "area",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "at-loc",
                     "?t",
                     "?l1"
+                ],
+                [
+                    "adj-area",
+                    "?l1",
+                    "?l2"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?t"
+                ],
+                [
+                    "agent-owns",
+                    "?a",
+                    "?t"
+                ]
+            ],
+            "eff": [
+                [
+                    "at-loc",
+                    "?t",
+                    "?l2"
+                ],
+                [
+                    "at-loc",
+                    "?t",
+                    "?l1"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 4
@@ -406,12 +1327,46 @@
                 "?l2": "location",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "at-loc",
                     "?t",
                     "?l1"
+                ],
+                [
+                    "adj-loc",
+                    "?l",
+                    "?l1"
+                ],
+                [
+                    "adj-loc",
+                    "?l",
+                    "?l2"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?t"
+                ],
+                [
+                    "agent-owns",
+                    "?a",
+                    "?t"
+                ]
+            ],
+            "eff": [
+                [
+                    "at-loc",
+                    "?t",
+                    "?l2"
+                ],
+                [
+                    "at-loc",
+                    "?t",
+                    "?l1"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 4
@@ -423,12 +1378,41 @@
                 "?l2": "location",
                 "?a": "agent"
             },
-            "pre": [],
-            "eff": [
+            "pre": [
                 [
                     "at-loc",
                     "?t",
                     "?l1"
+                ],
+                [
+                    "adj-loc",
+                    "?l1",
+                    "?l2"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "?t"
+                ],
+                [
+                    "agent-owns",
+                    "?a",
+                    "?t"
+                ]
+            ],
+            "eff": [
+                [
+                    "at-loc",
+                    "?t",
+                    "?l2"
+                ],
+                [
+                    "at-loc",
+                    "?t",
+                    "?l1"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 2
@@ -439,15 +1423,1558 @@
                 "?f": "furniture",
                 "?a": "agent"
             },
-            "pre": [],
+            "pre": [
+                [
+                    "agent-has",
+                    "?a",
+                    "?m"
+                ],
+                [
+                    "agent-at",
+                    "?a",
+                    "home"
+                ]
+            ],
             "eff": [
                 [
                     "agent-has",
                     "?a",
                     "?m"
+                ],
+                [
+                    "in",
+                    "?f",
+                    "?m"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "open": {
+            "params": {
+                "?param1": "furniture"
+            },
+            "pre": [
+                [
+                    "closed",
+                    "?param1"
+                ]
+            ],
+            "eff": [
+                [
+                    "closed",
+                    "?param1"
+                ],
+                [
+                    "opened",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "close": {
+            "params": {
+                "?param1": "furniture"
+            },
+            "pre": [
+                [
+                    "opened",
+                    "?param1"
+                ]
+            ],
+            "eff": [
+                [
+                    "opened",
+                    "?param1"
+                ],
+                [
+                    "closed",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "switchon": {
+            "params": {
+                "?a": "appliance",
+                "?c": "cookingcontainer",
+                "?u": "utensil",
+                "?l": "level"
+            },
+            "pre": [
+                [
+                    "switchedoff",
+                    "?a"
+                ],
+                [
+                    "on",
+                    "?a",
+                    "?c"
+                ]
+            ],
+            "eff": [
+                [
+                    "switchedoff",
+                    "?a"
+                ],
+                [
+                    "switchedon",
+                    "?a"
+                ],
+                [
+                    "burned-utensil",
+                    "?u",
+                    "?a"
+                ],
+                [
+                    "at-level",
+                    "?a",
+                    "?l"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "switchoff": {
+            "params": {
+                "?a": "appliance",
+                "?c": "cookingcontainer"
+            },
+            "pre": [
+                [
+                    "switchedon",
+                    "?a"
+                ],
+                [
+                    "on",
+                    "?a",
+                    "?c"
+                ]
+            ],
+            "eff": [
+                [
+                    "switchedon",
+                    "?a"
+                ],
+                [
+                    "switchedoff",
+                    "?a"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "change-level": {
+            "params": {
+                "?a": "appliance",
+                "?c": "level"
+            },
+            "pre": [
+                [
+                    "switchedon",
+                    "?a"
+                ]
+            ],
+            "eff": [
+                [
+                    "at-level",
+                    "?a",
+                    "?c"
+                ],
+                [
+                    "default-level",
+                    "?a",
+                    "?c"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "turn-tap-on": {
+            "params": {
+                "?t": "liquidtap"
+            },
+            "pre": [
+                [
+                    "turnedoff",
+                    "?t"
+                ]
+            ],
+            "eff": [
+                [
+                    "turnedoff",
+                    "?t"
+                ],
+                [
+                    "turnedon",
+                    "?t"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "turn-tap-off": {
+            "params": {
+                "?t": "liquidtap"
+            },
+            "pre": [
+                [
+                    "turnedon",
+                    "?t"
+                ]
+            ],
+            "eff": [
+                [
+                    "turnedon",
+                    "?t"
+                ],
+                [
+                    "turnedoff",
+                    "?t"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "pickup": {
+            "params": {
+                "?param1": "moveable",
+                "?param2": "surface",
+                "?param3": "agent"
+            },
+            "pre": [
+                [
+                    "on",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ]
+            ],
+            "eff": [
+                [
+                    "on",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 2
+        },
+        "putdown": {
+            "params": {
+                "?param1": "moveable",
+                "?param2": "surface",
+                "?param3": "agent",
+                "?a": "appliance"
+            },
+            "pre": [
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ]
+            ],
+            "eff": [
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ],
+                [
+                    "on",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "=",
+                    "?param2",
+                    "?a"
+                ],
+                [
+                    "is-cookingcontainer",
+                    "?param1"
+                ],
+                [
+                    "switchedon",
+                    "?a"
+                ],
+                [
+                    "burned-utensil",
+                    "?param1",
+                    "?a"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 2
+        },
+        "puton": {
+            "params": {
+                "?param1": "moveable",
+                "?param2": "moveable",
+                "?param3": "agent"
+            },
+            "pre": [
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ]
+            ],
+            "eff": [
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ],
+                [
+                    "obj-on",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "getout": {
+            "params": {
+                "?param1": "moveable",
+                "?param2": "furniture",
+                "?param3": "agent"
+            },
+            "pre": [
+                [
+                    "opened",
+                    "?param2"
+                ],
+                [
+                    "in",
+                    "?param2",
+                    "?param1"
+                ]
+            ],
+            "eff": [
+                [
+                    "in",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "putaway": {
+            "params": {
+                "?param1": "moveable",
+                "?param2": "furniture",
+                "?param3": "agent"
+            },
+            "pre": [
+                [
+                    "opened",
+                    "?param2"
+                ],
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ]
+            ],
+            "eff": [
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "handsfull",
+                    "?param3"
+                ],
+                [
+                    "in",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "transfer": {
+            "params": {
+                "?param1": "ingredient",
+                "?param2": "container",
+                "?param3": "container",
+                "?param4": "agent"
+            },
+            "pre": [
+                [
+                    "holding",
+                    "?param2",
+                    "?param4"
+                ],
+                [
+                    "inside",
+                    "?param2",
+                    "?param1"
+                ]
+            ],
+            "eff": [
+                [
+                    "inside",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "inside",
+                    "?param3",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "season": {
+            "params": {
+                "?i": "ingredient",
+                "?s": "ingredient",
+                "?c": "container",
+                "?u": "measureutensil",
+                "?r": "agent"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?c",
+                    "?s"
+                ],
+                [
+                    "holding",
+                    "?u",
+                    "?r"
+                ],
+                [
+                    "needs-peeling",
+                    "?i"
+                ]
+            ],
+            "eff": [
+                [
+                    "seasoned-on",
+                    "?i",
+                    "?s"
+                ],
+                [
+                    "has-seasoning",
+                    "?i",
+                    "?s",
+                    "?u",
+                    "one"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "sprinkle": {
+            "params": {
+                "?i": "ingredient",
+                "?s": "seasoning",
+                "?c": "container",
+                "?u": "measureunit",
+                "?r": "agent"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?c",
+                    "?s"
+                ],
+                [
+                    "holding",
+                    "?c",
+                    "?r"
+                ],
+                [
+                    "needs-peeling",
+                    "?i"
+                ]
+            ],
+            "eff": [
+                [
+                    "seasoned-on",
+                    "?i",
+                    "?s"
+                ],
+                [
+                    "has-seasoning",
+                    "?i",
+                    "?s",
+                    "?u",
+                    "one"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "pour": {
+            "params": {
+                "?to": "container",
+                "?l": "liquid",
+                "?from": "container",
+                "?u": "measureunit",
+                "?r": "agent",
+                "?i": "ingredient"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?from",
+                    "?l"
+                ],
+                [
+                    "holding",
+                    "?from",
+                    "?r"
+                ]
+            ],
+            "eff": [
+                [
+                    "inside",
+                    "?to",
+                    "?i"
+                ],
+                [
+                    "needs-peeling",
+                    "?i"
+                ],
+                [
+                    "seasoned-on",
+                    "?i",
+                    "?l"
+                ],
+                [
+                    "has-seasoning",
+                    "?i",
+                    "?l",
+                    "?u",
+                    "one"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "add-ingredient": {
+            "params": {
+                "?param1": "ingredient",
+                "?param2": "specialcontainer",
+                "?param3": "agent"
+            },
+            "pre": [
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "on",
+                    "kitchentop",
+                    "?param2"
+                ],
+                [
+                    "is-egg",
+                    "?param1"
+                ]
+            ],
+            "eff": [
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "inside",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "add-liquid": {
+            "params": {
+                "?l": "liquid",
+                "?t": "liquidtap",
+                "?c": "container",
+                "?a": "agent"
+            },
+            "pre": [
+                [
+                    "holding",
+                    "?c",
+                    "?a"
+                ],
+                [
+                    "on",
+                    "kitchentop",
+                    "?t"
+                ],
+                [
+                    "inside",
+                    "?t",
+                    "?l"
+                ],
+                [
+                    "turnedon",
+                    "?t"
+                ]
+            ],
+            "eff": [
+                [
+                    "inside",
+                    "?c",
+                    "?l"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 2
+        },
+        "pour-liquid": {
+            "params": {
+                "?l": "liquid",
+                "?fr": "liquidcontainer",
+                "?c": "container",
+                "?a": "agent"
+            },
+            "pre": [
+                [
+                    "holding",
+                    "?fr",
+                    "?a"
+                ],
+                [
+                    "inside",
+                    "?fr",
+                    "?l"
+                ]
+            ],
+            "eff": [
+                [
+                    "inside",
+                    "?c",
+                    "?l"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 2
+        },
+        "crack-egg": {
+            "params": {
+                "?param1": "egg",
+                "?param2": "moveable",
+                "?param3": "agent"
+            },
+            "pre": [
+                [
+                    "raw",
+                    "?param1"
+                ],
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "on",
+                    "kitchentop",
+                    "?param2"
+                ],
+                [
+                    "can-hold",
+                    "?param2"
+                ],
+                [
+                    "cracked",
+                    "?param1"
+                ]
+            ],
+            "eff": [
+                [
+                    "raw",
+                    "?param1"
+                ],
+                [
+                    "needs-peeling",
+                    "?param1"
+                ],
+                [
+                    "holding",
+                    "?param1",
+                    "?param3"
+                ],
+                [
+                    "inside",
+                    "?param2",
+                    "?param1"
+                ],
+                [
+                    "cracked",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "make-hole": {
+            "params": {
+                "?b": "bread",
+                "?c": "cuttingutensil",
+                "?s": "shape",
+                "?a": "agent"
+            },
+            "pre": [
+                [
+                    "has-shape",
+                    "?c",
+                    "?s"
+                ],
+                [
+                    "holding",
+                    "?c",
+                    "?a"
+                ],
+                [
+                    "on",
+                    "kitchentop",
+                    "?b"
+                ],
+                [
+                    "has-hole",
+                    "?b",
+                    "?s"
+                ]
+            ],
+            "eff": [
+                [
+                    "has-hole",
+                    "?b",
+                    "?s"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "fry": {
+            "params": {
+                "?i": "ingredient",
+                "?p": "pan",
+                "?a": "appliance",
+                "?o": "oil"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?p",
+                    "?o"
+                ],
+                [
+                    "inside",
+                    "?p",
+                    "?i"
+                ],
+                [
+                    "on",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "switchedon",
+                    "?a"
+                ],
+                [
+                    "steamed",
+                    "?i"
+                ],
+                [
+                    "covered",
+                    "?p"
+                ],
+                [
+                    "fried",
+                    "?i"
+                ]
+            ],
+            "eff": [
+                [
+                    "fried",
+                    "?i"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 5
+        },
+        "steam": {
+            "params": {
+                "?i": "ingredient",
+                "?p": "cookingcontainer",
+                "?a": "appliance"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?p",
+                    "?i"
+                ],
+                [
+                    "on",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "covered",
+                    "?p"
+                ],
+                [
+                    "switchedon",
+                    "?a"
+                ],
+                [
+                    "at-level",
+                    "?a",
+                    "medium"
+                ],
+                [
+                    "steamed",
+                    "?i"
+                ]
+            ],
+            "eff": [
+                [
+                    "steamed",
+                    "?i"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 5
+        },
+        "boil": {
+            "params": {
+                "?l": "liquid",
+                "?p": "pot",
+                "?a": "appliance",
+                "?i": "ingredient"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?p",
+                    "?l"
+                ],
+                [
+                    "on",
+                    "?a",
+                    "?p"
+                ],
+                [
+                    "switchedon",
+                    "?a"
+                ]
+            ],
+            "eff": [
+                [
+                    "boiled",
+                    "?l"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 5
+        },
+        "fold": {
+            "params": {
+                "?i": "ingredient",
+                "?p": "pan",
+                "?u": "cookingutensil",
+                "?r": "agent"
+            },
+            "pre": [
+                [
+                    "firm",
+                    "?i"
+                ],
+                [
+                    "inside",
+                    "?p",
+                    "?i"
+                ],
+                [
+                    "holding",
+                    "?u",
+                    "?r"
+                ],
+                [
+                    "folded",
+                    "?i"
+                ]
+            ],
+            "eff": [
+                [
+                    "folded",
+                    "?i"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 3
+        },
+        "scrape": {
+            "params": {
+                "?i": "ingredient",
+                "?p": "pan",
+                "?u": "cookingutensil",
+                "?r": "agent"
+            },
+            "pre": [
+                [
+                    "firm",
+                    "?i"
+                ],
+                [
+                    "inside",
+                    "?p",
+                    "?i"
+                ],
+                [
+                    "holding",
+                    "?u",
+                    "?r"
+                ],
+                [
+                    "scrambled",
+                    "?i"
+                ]
+            ],
+            "eff": [
+                [
+                    "scrambled",
+                    "?i"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 3
+        },
+        "stir": {
+            "params": {
+                "?l": "liquid",
+                "?u": "normalutensil",
+                "?p": "pot",
+                "?a": "agent"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?p",
+                    "?l"
+                ],
+                [
+                    "holding",
+                    "?u",
+                    "?a"
+                ],
+                [
+                    "stirred",
+                    "?l"
+                ]
+            ],
+            "eff": [
+                [
+                    "stirred",
+                    "?l"
+                ],
+                [
+                    "has-hole",
+                    "?l",
+                    "circle"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 3
+        },
+        "mix": {
+            "params": {
+                "?param1": "ingredient",
+                "?param2": "normalutensil",
+                "?param3": "specialcontainer",
+                "?param4": "agent",
+                "?s": "seasoning"
+            },
+            "pre": [
+                [
+                    "cooked",
+                    "?param1"
+                ],
+                [
+                    "inside",
+                    "?param3",
+                    "?param1"
+                ],
+                [
+                    "holding",
+                    "?param2",
+                    "?param4"
+                ]
+            ],
+            "eff": [
+                [
+                    "beaten",
+                    "?param1"
+                ],
+                [
+                    "beaten",
+                    "?param1"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?param1",
+                    "?s"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 3
+        },
+        "beat": {
+            "params": {
+                "?param1": "ingredient",
+                "?param2": "normalutensil",
+                "?param3": "specialcontainer",
+                "?param4": "agent"
+            },
+            "pre": [
+                [
+                    "impossible",
+                    "?param1"
+                ],
+                [
+                    "cracked",
+                    "?param1"
+                ],
+                [
+                    "cooked",
+                    "?param1"
+                ],
+                [
+                    "inside",
+                    "?param3",
+                    "?param1"
+                ],
+                [
+                    "holding",
+                    "?param2",
+                    "?param4"
+                ]
+            ],
+            "eff": [
+                [
+                    "cracked",
+                    "?param1"
+                ],
+                [
+                    "beaten",
+                    "?param1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 3
+        },
+        "declare-scrambled-eggs": {
+            "params": {
+                "?egg1": "egg",
+                "?plate1": "plate"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?plate1",
+                    "?egg1"
+                ],
+                [
+                    "beaten",
+                    "?egg1"
+                ],
+                [
+                    "fried",
+                    "?egg1"
+                ],
+                [
+                    "scrambled",
+                    "?egg1"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "nutmilk",
+                    "cup",
+                    "two"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "chives",
+                    "tablespoon1",
+                    "one"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?egg1",
+                    "chives"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "salt",
+                    "gram",
+                    "one"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?egg1",
+                    "salt"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "pepper",
+                    "gram",
+                    "one"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?egg1",
+                    "pepper"
+                ]
+            ],
+            "eff": [
+                [
+                    "enable-scrambled-eggs",
+                    "?egg1",
+                    "?plate1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "declare-omelette": {
+            "params": {
+                "?egg1": "egg",
+                "?veggies1": "ingredient",
+                "?plate1": "plate"
+            },
+            "pre": [
+                [
+                    "beaten",
+                    "?egg1"
+                ],
+                [
+                    "fried",
+                    "?egg1"
+                ],
+                [
+                    "folded",
+                    "?egg1"
+                ],
+                [
+                    "fried",
+                    "?veggies1"
+                ],
+                [
+                    "sauteed",
+                    "?veggies1"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "nutmilk",
+                    "cup",
+                    "two"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "chives",
+                    "tablespoon1",
+                    "two"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?egg1",
+                    "chives"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "salt",
+                    "gram",
+                    "two"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?egg1",
+                    "salt"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "pepper",
+                    "gram",
+                    "two"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?egg1",
+                    "pepper"
+                ]
+            ],
+            "eff": [
+                [
+                    "enable-omelette",
+                    "?egg1",
+                    "?veggies1",
+                    "?plate1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "declare-sunny-side-up": {
+            "params": {
+                "?egg1": "egg",
+                "?plate1": "plate"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?plate1",
+                    "?egg1"
+                ],
+                [
+                    "fried",
+                    "?egg1"
+                ],
+                [
+                    "steamed",
+                    "?egg1"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "salt",
+                    "gram",
+                    "one"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "pepper",
+                    "gram",
+                    "one"
+                ]
+            ],
+            "eff": [
+                [
+                    "enable-sunny-side-up",
+                    "?egg1",
+                    "?plate1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "declare-egg-in-hole": {
+            "params": {
+                "?egg1": "egg",
+                "?bread1": "bread",
+                "?plate1": "plate"
+            },
+            "pre": [
+                [
+                    "inside",
+                    "?plate1",
+                    "?bread1"
+                ],
+                [
+                    "has-hole",
+                    "?bread1",
+                    "circle"
+                ],
+                [
+                    "in-hole",
+                    "?egg1",
+                    "?bread1"
+                ],
+                [
+                    "fried",
+                    "?bread1"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "salt",
+                    "gram",
+                    "one"
+                ],
+                [
+                    "has-seasoning",
+                    "?egg1",
+                    "pepper",
+                    "gram",
+                    "one"
+                ]
+            ],
+            "eff": [
+                [
+                    "enable-egg-in-hole",
+                    "?egg1",
+                    "?bread1",
+                    "?plate1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "declare-poached-egg": {
+            "params": {
+                "?egg1": "egg",
+                "?plate1": "plate"
+            },
+            "pre": [
+                [
+                    "boiled",
+                    "water"
+                ],
+                [
+                    "boiled",
+                    "?egg1"
+                ],
+                [
+                    "hardness",
+                    "?egg1",
+                    "outerside",
+                    "medium-hard"
+                ],
+                [
+                    "has-vinegar",
+                    "water"
+                ]
+            ],
+            "eff": [
+                [
+                    "enable-poached-egg",
+                    "?egg1",
+                    "?plate1"
+                ],
+                [
+                    "total-cost"
+                ]
+            ],
+            "cost": 1
+        },
+        "declare-cooked-lambchop": {
+            "params": {
+                "?lambchop1": "lambchop",
+                "?garlic1": "garlic",
+                "?plate1": "plate"
+            },
+            "pre": [
+                [
+                    "has-seasoning",
+                    "?lambchop1",
+                    "salt",
+                    "gram",
+                    "two"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?lambchop1",
+                    "salt"
+                ],
+                [
+                    "has-seasoning",
+                    "?lambchop1",
+                    "pepper",
+                    "gram",
+                    "two"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?lambchop1",
+                    "pepper"
+                ],
+                [
+                    "has-seasoning",
+                    "?lambchop1",
+                    "thyme",
+                    "gram",
+                    "one"
+                ],
+                [
+                    "seasoning-mixed",
+                    "?lambchop1",
+                    "thyme"
+                ],
+                [
+                    "fried",
+                    "?lambchop1"
+                ],
+                [
+                    "fried",
+                    "?garlic1"
+                ],
+                [
+                    "inside",
+                    "?plate1",
+                    "?lambchop1"
+                ]
+            ],
+            "eff": [
+                [
+                    "enable-cooked-lambchop",
+                    "?lambchop1",
+                    "?garlic1",
+                    "?plate1"
+                ],
+                [
+                    "total-cost"
                 ]
             ],
             "cost": 1
         }
+    },
+    "constants": {
+        "10": "cost",
+        "20": "cost",
+        "30": "cost",
+        "home": "object",
+        "one": "number",
+        "kitchentop": "surface",
+        "medium": "level",
+        "circle": "shape",
+        "nutmilk": "ingredient",
+        "cup": "object",
+        "two": "number",
+        "chives": "ingredient",
+        "tablespoon1": "object",
+        "salt": "ingredient",
+        "gram": "object",
+        "pepper": "ingredient",
+        "water": "liquid",
+        "outerside": "part",
+        "medium-hard": "hardnesslevel",
+        "thyme": "ingredient"
     }
 }

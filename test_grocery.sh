@@ -16,7 +16,7 @@ python run.py grocery_costs.pddl shop_veggies.pddl -o obj_grocery_costs.pddl -v 
 python run.py grocery_costs.pddl shop_omelette.pddl -o obj_grocery_costs.pddl -v 3 -e 'experiments/grocery_shopping'
 python run.py grocery_costs.pddl shop_omelette.pddl -o obj_grocery_costs.pddl -v 3 -e 'experiments/grocery_shopping' -po 'lama'
 
-python run.py grocery_costs.pddl shop_lamb_plate.pddl -o obj_grocery_costs.pddl -v 3 -e 'experiments/grocery_shopping'
-python run.py grocery_costs.pddl shop_lamb_plate.pddl -o obj_grocery_costs.pddl -v 3 -e 'experiments/grocery_shopping' -po 'lama'
+python run.py grocery_costs.pddl shop_lambchop.pddl -o obj_grocery_costs.pddl -v 3 -e 'experiments/grocery_shopping'
+python run.py grocery_costs.pddl shop_lambchop.pddl -o obj_grocery_costs.pddl -v 3 -e 'experiments/grocery_shopping' -po 'lama'
 
 python generators/post_experiments.py experiments/grocery_shopping -sh test_grocery.sh -r

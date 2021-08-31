@@ -48,6 +48,7 @@
     ; ----------------------
     (in ?x - furniture ?y - moveable)       ; x cannot move
     (on ?x - surface ?y - moveable)         ; x cannot move
+    (obj-on ?x - moveable ?y - moveable)    ; x can move
     (inside ?x - container ?y - moveable)   ; x can move
     (in-hole ?x - ingredient ?y - ingredient)  
 
@@ -74,6 +75,7 @@
     (burned-food ?x - env)
     (safe-kitchen ?x - env)
     (organized ?x - env)
+    (used ?x - object)
 
     ; ----------------------
     ; agent state
@@ -104,9 +106,9 @@
     (chopped ?x - ingredient)
     (is-buttery ?x - ingredient)
 
-    (seasoned-on ?x - ingredient ?y - seasoning)
-    (seasoning-mixed ?x - ingredient ?y - seasoning)
-    (has-seasoning ?i - ingredient ?s - seasoning ?u - measureutensil ?n - number)
+    (seasoned-on ?x - ingredient ?y - ingredient)
+    (seasoning-mixed ?x - ingredient ?y - ingredient)
+    (has-seasoning ?i - ingredient ?s - ingredient ?u - object ?n - number)
 
     (has-hole ?x - ingredient ?y - shape)
     (has-space ?x - specialcontainer)
@@ -264,7 +266,7 @@
           ( not ( on ?param2 ?param1 ) )
           ( holding ?param1 ?param3 )
           ( handsfull ?param3 )
-          ( increase ( total-cost ) 1 )
+          ( increase ( total-cost ) 2 )
       )
   )
 
@@ -287,7 +289,7 @@
                     ( burned-utensil ?param1 ?a )
             )
          )
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 2 )
       )
   )
 
@@ -300,7 +302,7 @@
       :effect( and
          ( not ( holding ?param1 ?param3 ) )
          ( not ( handsfull ?param3 ) )
-         ( on ?param2 ?param1 )
+         ( obj-on ?param2 ?param1 )
          ( increase ( total-cost ) 1 )
       )
   )
@@ -339,6 +341,7 @@
       :precondition( and
          ( holding ?param2 ?param4 )
          ( inside ?param2 ?param1 )
+         ;( not ( used ?param1 ) )
       )
       :effect( and
          ( not ( inside ?param2 ?param1 ) )
@@ -353,6 +356,7 @@
          ( inside ?c ?s )
          ( holding ?u ?r )
          ( not ( needs-peeling ?i ) )
+         ;( not ( used ?i ) )
       )
       :effect( and
           ( seasoned-on ?i ?s ) 
@@ -372,6 +376,7 @@
          ( inside ?c ?s )
          ( holding ?c ?r )
          ( not ( needs-peeling ?i ) )
+         ;( not ( used ?i ) )
       )
       :effect( and
           ( seasoned-on ?i ?s ) 
@@ -390,11 +395,14 @@
       :precondition( and
          ( inside ?from ?l )
          ( holding ?from ?r )
-         ( not ( needs-peeling ?i ) )
+         ;( not ( used ?to ) )
       )
       :effect( and
         ( forall ( ?i - ingredient ) 
-          ( when ( inside ?to ?i )
+          ( when ( and
+              ( inside ?to ?i )
+              ( not ( needs-peeling ?i ) )
+            )
             ( and 
               ( seasoned-on ?i ?l ) 
               ( has-seasoning ?i ?l ?u one )
@@ -416,6 +424,7 @@
          ( holding ?param1 ?param3 )
          ( on kitchentop ?param2 )
          ( not ( is-egg ?param1 ) )
+         ;( not ( used ?param1 ) )
       )
       :effect( and
          ( not ( holding ?param1 ?param3 ) )
@@ -438,10 +447,11 @@
           ( on kitchentop ?t )
           ( inside ?t ?l )
           ( turnedon ?t )
+          ;( not ( used ?c ) )
       )
       :effect( and
           ( inside ?c ?l )
-          ( increase ( total-cost ) 1 )
+          ( increase ( total-cost ) 2 )
       )
   )
 
@@ -450,10 +460,11 @@
     :precondition( and
         ( holding ?fr ?a )
         ( inside ?fr ?l )
+        ;( not ( used ?c ) )
     )
     :effect( and
         ( inside ?c ?l )
-        ( increase ( total-cost ) 1 )
+        ( increase ( total-cost ) 2 )
     )
   )
 
@@ -465,6 +476,7 @@
          ( on kitchentop ?param2 )
          ( can-hold ?param2 )
          ( not ( cracked ?param1 ) )
+          ;( not ( used ?param1 ) )
       )
       :effect( and
          ( not ( raw ?param1 ) )
@@ -486,6 +498,7 @@
           ( holding ?c ?a )
           ( on kitchentop ?b )
           ( not ( has-hole ?b ?s ) )
+          ;( not ( used ?b ) )
       )
       :effect( and
           ( has-hole ?b ?s )
@@ -507,12 +520,13 @@
          ( not ( steamed ?i ) )
          ( not ( covered ?p ) )
          ( not ( fried ?i ) ) 
+         ;( not ( used ?i ) )
       )
       :effect( and
          ( fried ?i ) 
          ( when ( is-butter ?o ) ( is-buttery ?i ))
          ( when ( steamed ?i ) ( not ( is-buttery ?i ) ))
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 5 )
       )
   )
 
@@ -525,10 +539,11 @@
          ( switchedon ?a )
          ( at-level ?a medium )
          ( not ( steamed ?i ) )
+         ;( not ( used ?i ) )
       )
       :effect( and
          ( steamed ?i )
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 5 )
       )
   )
 
@@ -584,7 +599,7 @@
         )
       )
 
-      ( increase ( total-cost ) 1 ) 
+      ( increase ( total-cost ) 5 ) 
     )
   )
 
@@ -595,10 +610,11 @@
          ( inside ?p ?i )
          ( holding ?u ?r )
          ( not ( folded ?i ) )
+         ;( not ( used ?i ) )
       )
       :effect( and
          ( folded ?i ) 
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 3 )
       )
   )
 
@@ -609,10 +625,11 @@
          ( inside ?p ?i )
          ( holding ?u ?r )
          ( not ( scrambled ?i ) )
+         ;( not ( used ?i ) )
       )
       :effect( and
          ( scrambled ?i ) 
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 3 )
       )
   )
 
@@ -622,11 +639,13 @@
           ( inside ?p ?l )
           ( holding ?u ?a )
           ( not ( stirred ?l ) )
+         ;( not ( used ?p ) )
+         ;( not ( used ?u ) )
       )
       :effect( and
           ( stirred ?l ) 
           ( has-hole ?l circle )
-          ( increase ( total-cost ) 1 )
+          ( increase ( total-cost ) 3 )
       )
   )
 
@@ -636,6 +655,7 @@
          ( not (cooked ?param1 ) ) ; for no beaten in fry
          ( inside ?param3 ?param1 )
          ( holding ?param2 ?param4 )
+         ;( not ( used ?param1 ) )
       )
       :effect( and
          ( when  ( and ( is-egg ?param1 ) ( cracked ?param1 ) ) 
@@ -647,7 +667,7 @@
                       (seasoning-mixed ?param1 ?s)
               ) 
           )
-          ( increase (total-cost) 1 )
+          ( increase ( total-cost ) 3 )
       )
   )
 
@@ -659,11 +679,12 @@
          ( not ( cooked ?param1 ) ) ; for no beaten in fry
          ( inside ?param3 ?param1 )
          ( holding ?param2 ?param4 )
+         ;( not ( used ?param1 ) )
       )
      :effect( and
          ( not ( cracked ?param1 ) )
          ( beaten ?param1 ) 
-         ( increase ( total-cost ) 1 )
+         ( increase ( total-cost ) 3 )
       )
   )
 
@@ -688,19 +709,8 @@
     )
     :effect( and
       ( enable-scrambled-eggs ?egg1 ?plate1 )
-
-      ( not ( inside ?plate1 ?egg1 ) )
-      ( not ( beaten ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( scrambled ?egg1 ) )
-      ( not ( has-seasoning ?egg1 nutmilk cup two ) )
-      ( not ( has-seasoning ?egg1 chives tablespoon1 one ) )
-      ( not ( seasoning-mixed ?egg1 chives ) )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( seasoning-mixed ?egg1 salt ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-      ( not ( seasoning-mixed ?egg1 pepper ) )
-
+      ( used ?egg1 )
+      ( used ?plate1 )
       ( increase ( total-cost ) 1 )
     )
   )
@@ -723,20 +733,9 @@
     )
     :effect( and
       ( enable-omelette ?egg1 ?veggies1 ?plate1 )
-
-      ( not ( beaten ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( folded ?egg1 ) )
-      ( not ( fried ?veggies1 ) )
-      ( not ( sauteed ?veggies1 ) )
-      ( not ( has-seasoning ?egg1 nutmilk cup two ) )
-      ( not ( has-seasoning ?egg1 chives tablespoon1 two ) )
-      ( not ( seasoning-mixed ?egg1 chives ) )
-      ( not ( has-seasoning ?egg1 salt gram two ) )
-      ( not ( seasoning-mixed ?egg1 salt ) )
-      ( not ( has-seasoning ?egg1 pepper gram two ) )
-      ( not ( seasoning-mixed ?egg1 pepper ) )
-
+      ( used ?egg1 )
+      ( used ?veggies1 )
+      ( used ?plate1 )
       ( increase ( total-cost ) 1 )
     )
   )
@@ -752,13 +751,8 @@
     )
     :effect( and
       ( enable-sunny-side-up ?egg1 ?plate1 )
-
-      ( not ( inside ?plate1 ?egg1 ) )
-      ( not ( fried ?egg1 ) )
-      ( not ( steamed ?egg1 )  )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-
+      ( used ?egg1 )
+      ( used ?plate1 )
       ( increase ( total-cost ) 1 )
     )
   )
@@ -775,14 +769,9 @@
     )
     :effect( and
       ( enable-egg-in-hole ?egg1 ?bread1 ?plate1 )
-
-      ( not ( inside ?plate1 ?bread1 ) )
-      ( not ( has-hole ?bread1 circle ) )
-      ( not ( in-hole ?egg1 ?bread1 ) )
-      ( not ( fried ?bread1 ) )
-      ( not ( has-seasoning ?egg1 salt gram one ) )
-      ( not ( has-seasoning ?egg1 pepper gram one ) )
-
+      ( used ?egg1 )
+      ( used ?bread1 )
+      ( used ?plate1 )
       ( increase ( total-cost ) 1 )
     )
   )
@@ -797,12 +786,7 @@
     )
     :effect( and
       ( enable-poached-egg ?egg1 ?plate1 )
-
-      ;( not ( boiled water ) )
-      ( not ( boiled ?egg1 ) )
-      ( not ( hardness ?egg1 outerside medium-hard ) )
-      ;( not ( has-vinegar water ) )
-
+      ( used ?egg1 )
       ( increase ( total-cost ) 1 )
     )
   )
@@ -837,8 +821,8 @@
       (exists 
           ( ?cov - containercover ) 
           ( and 
-              ( matching-size ?cov ?con )
-            ( on ?con ?cov )
+            ( matching-size ?cov ?con )
+            ( obj-on ?con ?cov )
           )
       )
   )

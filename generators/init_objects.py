@@ -1,6 +1,7 @@
 from os.path import join
 from time import time
 import json
+import re
 
 def warning(text):
     print(f'\n[checking consistency] {text}')
@@ -22,10 +23,12 @@ def is_pred(line):
     """ at most two sets, at least one set of brackets """
     lbraket = count_char(line, '(')
     rbraket = count_char(line, ')')
-    return (lbraket == rbraket == 2) or (lbraket == rbraket == 4)
+    has_brackets = (lbraket == rbraket == 2) or (lbraket == rbraket == 1)
+    return has_brackets and get_pred(line) != None
 
 def get_pred(line):
     line = line[line.rfind('(')+1:line.index(')')]
+    if len(line) == 0: return None
     if line[0] == ' ': line = line[1:]
     if line[-1] == ' ': line = line[:-1]
     return line
@@ -38,7 +41,144 @@ def strip_comment(line):
     while ';' in line: line = line[:line.rfind(';')]
     return line
 
-def check_consistency(dmn_file, prob_file, obj_file=None, verbose=False):
+def summarize_sas(sas='output.sas'):
+
+    count_var, count_op, count_ax = 0, 0, 0
+    atoms = {}
+    variables = {}
+    operators = {}  ## operator instances
+    actions = {}  ## operators summarized by head
+    name = None
+    START = None
+
+    for line in open(sas, "r+").readlines():
+        line = line.replace('\n', '')
+
+        if 'end_' in line:
+
+            ## summarize all positive atoms to compare with other sas
+            if START == 'VARIABLE':
+                for atom in variables[name]['values']:
+                    if 'NegatedAtom' in atom: continue
+                    atoms[atom] = variables[name]['values']
+            START = None
+
+        ## ----------------------
+        ## summarize atoms
+        ## ----------------------
+        elif 'begin_variable' in line:
+            START = 'VARIABLE'
+            count_var += 1
+
+        elif START == 'VARIABLE':
+            
+            if line.startswith('var'):
+                name = line
+                variables[name] = {'values':[], 'transitions':[]}
+
+            elif 'Atom' in line or '<none of those>' in line:
+                variables[name]['values'].append(line)
+
+        ## ----------------------
+        ## summarize operators that change variables
+        ## ----------------------
+        elif 'begin_operator' in line:
+            START = 'OPERATOR'
+            count_op += 1
+
+        elif START == 'OPERATOR':
+
+            if len(strip(re.sub(r'\d', '', line)).replace('-','')) != 0:
+                name = line
+                operators[name] = {
+                    'cost': [], 'pre': [], 'eff': []
+                }
+
+            elif count_char(line, ' ') == 0: ## numbers
+                if len(operators[name]['cost']) == 2:
+                    operators[name]['cost'] = line
+                else:
+                    operators[name]['cost'].append(line)
+
+            elif count_char(line, ' ') == 1: ## pre
+                v, d = line.split(' ')
+                v = 'var'+v
+                d = variables[v]['values'][int(d)]
+                operators[name]['pre'].append((v, d))
+
+            else: ## eff
+                parts = line.split(' ')
+                n_cond = parts[0]
+                v, d, dp = parts[-3:]
+
+                parts = parts[1:-3]
+                v_cond = None
+                conds = []
+                for p in parts:
+                    if v_cond == None: 
+                        v_cond = 'var'+p
+                    else: 
+                        d_cond = variables[v_cond]['values'][int(p)]
+                        conds.append((v_cond, d_cond))
+                        v_cond = None
+
+                v = 'var'+v
+                d = variables[v]['values'][int(d)]
+                dp = variables[v]['values'][int(dp)]
+                operators[name]['eff'].append((conds, v, d, dp))
+
+                conds.extend(operators[name]['pre'])
+                variables[v]['transitions'].append({
+                    'from': d, 'to': dp, 'cond': conds, 'label': name,
+                })
+
+
+        ## ----------------------
+        ## summarize rules that change variables
+        ## ----------------------
+        elif 'begin_rule' in line:
+            START = 'RULE'
+            count_ax += 1
+
+        elif START == 'RULE':
+
+            if count_char(line, ' ') == 1: ## pre
+                v, d = line.split(' ')
+                v = 'var'+v
+                d = variables[v]['values'][int(d)]
+                name = (v, d)
+
+            elif count_char(line, ' ') == 2: ## eff
+                v, d, dp = line.split(' ')
+                v = 'var'+v
+                d = variables[v]['values'][int(d)]
+                dp = variables[v]['values'][int(dp)]
+                variables[v]['transitions'].append({
+                    'from': d, 'to': dp, 'cond': name, 'label': 'rule',
+                })
+
+
+    for operator in operators.keys():
+        head = operator.split(' ')[0]
+        if head not in actions: actions[head] = []
+        actions[head].append(operator)
+
+    output_sas = {
+        'count_var': count_var, 
+        'count_op': count_op, 
+        'count_ax': count_ax, 
+        'atoms': atoms,
+        'variables': variables,
+        'operators': actions,
+        'operator_counts': {k:len(v) for k, v in actions.items()},
+        'operator_instances': operators,
+    }
+    with open(sas.replace('sas', 'json'), 'w') as f:
+        json.dump(output_sas, f, indent=4)
+
+    return count_var, count_op, count_ax
+
+def check_consistency(dmn_files, prob_file, obj_file=None, verbose=False):
     """ debug 'return non-zero exit status 12 ' by checking:
         1. consistency within domain and obj files
         2. if all obj_types exist in dmn_types 
@@ -50,9 +190,16 @@ def check_consistency(dmn_file, prob_file, obj_file=None, verbose=False):
 
     if verbose: print(f'\n... start checking consistency of {dmn_file}, {prob_file}, {obj_file}')
 
-    ## 1. check consistency within domain and obj files
+    ## 1. check consistency within obj files
     types, obj_types, objects = check_objects(obj_file)
-    dmn_types, dmn_const, type_ancestors = check_domain(dmn_file)
+
+    ## 1b. check consistency within domain files
+    domain_summary = None
+    for dmn_file in dmn_files:
+        domain_summary = check_domain(dmn_file, domain_summary)
+    dmn_types = domain_summary['type_parents'] 
+    dmn_const = domain_summary['constants'] 
+    type_ancestors = domain_summary['type_ancestors']  
 
     ## 2. check if all obj_types exist in dmn_types 
     type_missing = [t for t in types if t not in dmn_types]
@@ -74,7 +221,7 @@ def check_consistency(dmn_file, prob_file, obj_file=None, verbose=False):
 
     if verbose: print(f'... finished checking consistency in {round(time()-start, 4)} sec')
 
-def check_domain(filename):
+def check_domain(filename, domain_summary=None):
     """ check if variable names are consistent in PDDL files """
     
     lines_types, lines_predicates, lines_body = merge_domains([filename])
@@ -89,7 +236,7 @@ def check_domain(filename):
                 if empty(sub_typ): continue
                 type_parents[strip(sub_typ)] = typ.replace('\n', '')
 
-    type_ancestors = {}
+    type_ancestors = {'object':[]}
     for typ, parent in type_parents.items():
         ancestors = [parent]
         while parent in type_parents:
@@ -99,7 +246,7 @@ def check_domain(filename):
 
 
     ## get the types of each param of predicates
-    predicates = {}  ## 
+    predicates = {'=': ['object', 'object'], 'either': ['object', 'object']}  ## 
     STARTED = None
     for line in list(lines_predicates.values())[0]:
         if '(' in line and ')' in line:
@@ -108,8 +255,22 @@ def check_domain(filename):
             line = strip_paren(line)
             line = line.split('?')
             name = strip(line[0]) 
+
+            ## there may be either
+            for i in range(1, len(line)):
+                param = line[i].split(' - ')[1]
+                if 'either' in param:
+                    param = strip_paren(param)
+                    A, B = param.split(' ')[1:]
+                    A_ans = type_ancestors[A]
+                    B_ans = type_ancestors[B]
+                    for a in A_ans:
+                        if a in B_ans:
+                            line[i] = line[i].split(' - ')[0] + ' - ' + a
+
             params = [strip(l.split(' - ')[1]) for l in line[1:]]
             predicates[name] = params
+
 
 
     ## check inside each operator (1) predicates types (2) var names (3) constants
@@ -171,25 +332,43 @@ def check_domain(filename):
         elif ':derived' in line:
             START = 'DER'
 
-        elif START == 'PRE':
-            if is_pred(line): 
-                operators[name]['pre'].append(check_pred(line))
-        
-        elif START == 'EFF':
+        if START in ['PRE', 'EFF']:
+
+            ## add new var
+            if ' - ' in line and '?' in line:
+                A, B = line.split(' - ')
+                A = strip(A[A.rfind('(')+1:])
+                B = strip(B[:B.index(')')])
+                operators[name]['params'][A] = B
+
             if 'increase ' in line and 'total-cost' in line:
                 operators[name]['cost'] = int(strip(line[line.index(')')+1:line.rfind(')')]))
-            elif is_pred(line): 
-                operators[name]['eff'].append(check_pred(line))
 
-    with open(join('generators', 'check_domain.json'), 'w') as f:
-        json.dump({
+            if is_pred(line): 
+                operators[name][START.lower()].append(check_pred(line))
+
+    ## a merged domain
+    if domain_summary != None:
+        domain_summary['type_parents'].update(type_parents)
+        domain_summary['type_ancestors'].update(type_ancestors)
+        domain_summary['predicates'].update(predicates)
+        domain_summary['operators'].update(operators)
+        domain_summary['constants'].update(constants)
+    
+    ## a single domain
+    else:
+        domain_summary = {
             'type_parents': type_parents,
             'type_ancestors': type_ancestors,
             'predicates': predicates,
             'operators': operators,
-            }, f, indent=4)
+            'constants': constants,
+        }
 
-    return type_parents, constants, type_ancestors
+    with open(join('generators', 'check_domain.json'), 'w') as f:
+        json.dump(domain_summary, f, indent=4)
+
+    return domain_summary
 
 def check_objects(filename):
     """ summarize all occurance of object instances in obj PDDL files """
@@ -200,7 +379,7 @@ def check_objects(filename):
 
     STARTED = None
     for line in lines:
-        line = line.replace('\n', '')
+        line = strip_comment(line).replace('\n', '')
         end = (len(line.replace(' ', '').replace(')', '')) == 0) and (len(line.replace(' ', '')) != 0)
 
         if ':objects' in line: 
@@ -231,7 +410,7 @@ def check_objects(filename):
                 line = line[line.index('(')+1:line.index(')')]
                 parts = line.split(' ')
                 for arg in parts[1:]:
-                    if len(arg.replace(' ','')) == 0: continue
+                    if len(arg.replace(' ','')) == 0 or 'total-cost' in arg: continue
                     predicate = f"({line})"
                     if arg in objects:
                         objects[arg].append(predicate)

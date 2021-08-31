@@ -4,6 +4,7 @@ import errno
 import signal
 import functools
 import os
+import time
 from os import listdir
 from os.path import join, isfile, isdir
 import subprocess
@@ -11,8 +12,10 @@ import glob
 from datetime import datetime
 import shutil
 import multiprocessing
+import json
+import psutil
 
-from generators.init_objects import get_defined_objects, replace_lines, comment_line, get_action_by_name, merge_domains, merge_objects, check_consistency
+from generators.init_objects import get_defined_objects, replace_lines, comment_line, get_action_by_name, merge_domains, merge_objects, check_consistency, summarize_sas
 
 
 parser = argparse.ArgumentParser()
@@ -26,8 +29,9 @@ parser.add_argument('-v', dest="verbose", type=int, default=1)
 parser.add_argument('-e', dest="exp_dir", type=str, default='experiments')
 parser.add_argument('-a', dest="action_sub", type=str, default=None)
 parser.add_argument('-g', dest="goal_ignore", type=str, default=None)
-parser.add_argument('-t', dest="timeout", type=int, default=300)
+parser.add_argument('-t', dest="timeout", type=int, default=10)
 args = parser.parse_args()
+t_started = time.time()
 
 planner_names = {'fd': 'FastDownward', 'pp': 'PyperPlan'}
 
@@ -122,9 +126,8 @@ def get_pddl(expdir, parentdir = "domains"):
             new_objects_env = open(obj_file, "r+").readlines()
             replace_lines(found_problem, '(:objects', '(:goal', new_objects_env, problem)
 
-        ## only one dmn file, check_consistency
-        if len(found_domains) == 1:
-            check_consistency(found_domains[0], found_problem, obj_file)
+        ## check_consistency
+        check_consistency(found_domains, found_problem, obj_file)
 
     else:
         shutil.copy(found_problem, problem)
@@ -189,7 +192,8 @@ def get_planner_command(domain, problem):
                 "seq-opt-bjolp", "seq-opt-lmcut"]
     if args.planner == 'fd':
         if args.planner_option in aliases:
-            return f"planners/downward/fast-downward.py --alias {args.planner_option} {domain} {problem}"
+            # if args.planner_option == "lama": args.timeout = 30
+            return f"planners/downward/fast-downward.py --keep-sas-file --alias {args.planner_option} {domain} {problem}"
 
         else: ## customer search options
             planner_options = {}
@@ -202,7 +206,7 @@ def get_planner_command(domain, problem):
                     '"lazy_greedy([hff,hlm],preferred=[hff,hlm], reopen_closed=false)"'
             ]
             planner_option = ' '.join( planner_options[args.planner_option] )
-            return f"planners/downward/fast-downward.py {domain} {problem} {planner_option}"
+            return f"planners/downward/fast-downward.py --keep-sas-file {domain} {problem} {planner_option}"
     
     elif args.planner == 'pp':
         return f"planners/pyperplan/src/run.py -H hff -s gbf {domain} {problem}"
@@ -211,7 +215,7 @@ def get_planner_command(domain, problem):
         print(f'unknown planner {args.planner}')
 
 
-def process_planner_output(output, problem, keywords=[]):
+def process_planner_output(output, problem, expdir):
 
     if isinstance(output, bytes): 
         output = output.decode()
@@ -254,10 +258,12 @@ def process_planner_output(output, problem, keywords=[]):
 
             if 'Solution found!' in line:
                 PLAN_PART = True
-            
+
+            if 'Plan cost' in line:
+                plans_costs.append(int(line[line.rfind(' ')+1:]))
+
             if 'Plan length:' in line:
                 PLAN_PART = False
-                plans_costs.append(len(plan))
                 plans.append(plan)
                 plan = []
 
@@ -282,7 +288,43 @@ def process_planner_output(output, problem, keywords=[]):
                             number = re.search(r'\d+', line).group()
                         csv_log[csv_mapping.index(k)+2] = number
 
-    if len(plans) > 1:
+    t_translate = '-'
+    t_plans = None
+    if args.planner == 'fd': ## isfile('output.sas'):
+
+        ## there must be 'output.sas', get translation time
+        exp_sas = join(expdir, 'output.sas')
+        t_translated = os.path.getmtime("output.sas")
+        t_translate = f'{t_translated-t_started:.3f}'
+        t_cutoff = f'(>{time.time()-t_translated:.2f})'
+
+        shutil.copy('output.sas', exp_sas)
+        count_var, count_op, count_ax = summarize_sas(exp_sas)
+    
+        ## if the planner failed but translation was successful, still able to get # of var, op, axiom from output.sas
+        if output == '':
+            csv_log[2:] = str(count_var), str(count_op), str(count_ax), '-', '-', t_translate, t_cutoff, '-'
+
+            ## there may also be plans computed
+            if args.planner_option == 'lama':
+                outputs = [f for f in listdir('./') if 'sas_plan' in f]
+                outputs.sort()
+                if len(outputs) > 0:
+                    t_plans = [os.path.getmtime(f)-t_translated for f in outputs]
+                    t_search = t_plans[-1]
+
+                    plans_costs = []
+                    lines_plans = []
+                    ops_costs = json.load(open(join('generators', 'check_domain.json'), "r+"))['operators']
+                    for f in outputs:
+                        ops = [l.replace('\n', '').replace('(', '').replace(')', '') for l in open(f, "r+").readlines()[:-1]]
+                        costs = [ops_costs[l[0:l.index(' ')]]['cost'] for l in ops]
+                        ops = [f'{ops[i]} ({costs[i]})' for i in range(len(ops))]
+                        plans.append(ops)
+                        plans_costs.append(sum(costs))
+
+    ## must be 'fd' and 'lama'
+    if t_plans != None:
 
         ## save all plans
         for i in range(len(plans)):
@@ -299,25 +341,21 @@ def process_planner_output(output, problem, keywords=[]):
         index = [i for i, lens in enumerate(plans_lens) if lens == min_len][0]
         plan = plans[index]
 
+        csv_log[5:7] = str(len(plan)), str(min_cost)
+        csv_log[9] = csv_log[8]
+        csv_log[8] = f'{t_plans[index]:.8f}' ## t_search
+
         ## rename the chosen optimal plan
         i = indices[index]
         os.rename(join(expdir, f"_plan_{i}.txt"), join(expdir, f"_plan_{i}_opt.txt"))
 
-    elif args.planner == 'fd':
+    ## must be 'fd'
+    elif len(plans) == 0:
+        plan = []
+
+    else:
         plan = plans[0]
 
-    ## if the planner failed but translation was successful, still able to get # of var, op, axiom from output.sas
-    if args.planner == 'fd' and output == '' and isfile('output.sas'):
-        lines = open('output.sas', "r+").readlines()
-        count_var, count_op, count_ax = 0, 0, 0
-        for line in lines:
-            if 'begin_variable' in line:
-                count_var += 1
-            elif 'begin_operator' in line:
-                count_op += 1
-            elif 'begin_rule' in line:
-                count_ax += 1
-        csv_log[2:] = str(count_var), str(count_op), str(count_ax), '-', '-', '-', '-'
 
     return plan, log, short_log, [csv_columns, csv_log]
 
@@ -349,14 +387,18 @@ def get_plan(problems, expdir, verbose=False):
         p1.start()
         p1.join(timeout=args.timeout)
         p1.terminate()
-        p1.join()
         if command in return_dict:
             output = return_dict[command]
         else:
             output = ''
+            ## kill the process in case it consumes system CPU and memory
+            for proc in psutil.process_iter():
+                if 'downward' in proc.name():
+                    proc.kill()
+                    # os.system('pkill -9 downward')
 
         ## --------------- collect planner output
-        plan, log, short_log, csv_log = process_planner_output(output, problem)
+        plan, log, short_log, csv_log = process_planner_output(output, problem, expdir)
         
         ## the only plan by LAMA-first / Pyperplan, or shortest plan by LAMA
         plan_print = '\n     '.join(plan)

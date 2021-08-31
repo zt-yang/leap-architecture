@@ -107,16 +107,133 @@
         "credit-card": [
             "card1"
         ],
-        "ingredient": [
-            "veggies1",
-            "egg1",
-            "lambchop1"
-        ],
-        "furniture": [
-            "fridge1"
+        "cost": [
+            "10",
+            "20",
+            "30"
         ],
         "agent": [
             "robot"
+        ],
+        "furniture": [
+            "fridge1",
+            "dcup1"
+        ],
+        "ingredient": [
+            "veggies1"
+        ],
+        "egg": [
+            "egg1",
+            "egg2"
+        ],
+        "lambchop": [
+            "lambchop1"
+        ],
+        "bread": [
+            "bread1"
+        ],
+        "pot": [
+            "pot1"
+        ],
+        "appliance": [
+            "burner"
+        ],
+        "worktop": [
+            "kitchentop",
+            "sink"
+        ],
+        "env": [
+            "kitchen"
+        ],
+        "customer": [
+            "customer1"
+        ],
+        "seasoning": [
+            "salt",
+            "pepper",
+            "chives",
+            "thyme"
+        ],
+        "vinegar": [
+            "whitevinegar"
+        ],
+        "oil": [
+            "oliveoil",
+            "butter"
+        ],
+        "liquid": [
+            "water",
+            "nutmilk"
+        ],
+        "liquidtap": [
+            "faucet"
+        ],
+        "garlic": [
+            "garlic1"
+        ],
+        "cuttingutensil": [
+            "holecutter1"
+        ],
+        "normalutensil": [
+            "fork1"
+        ],
+        "cookingutensil": [
+            "spatula1"
+        ],
+        "measureutensil": [
+            "tablespoon1"
+        ],
+        "plate": [
+            "plate1"
+        ],
+        "normalcontainer": [
+            "salter1",
+            "shaker1",
+            "container1",
+            "glasscontainer1"
+        ],
+        "liquidcontainer": [
+            "oilbottle1",
+            "milkbottle1",
+            "mediumbottle1",
+            "smallbottle1"
+        ],
+        "specialcontainer": [
+            "smallbowl1"
+        ],
+        "pan": [
+            "frypan1"
+        ],
+        "containercover": [
+            "pancover1"
+        ],
+        "number": [
+            "one",
+            "two",
+            "three",
+            "four"
+        ],
+        "measureunit": [
+            "gram",
+            "cup",
+            "drop"
+        ],
+        "shape": [
+            "circle"
+        ],
+        "level": [
+            "low",
+            "medium",
+            "high"
+        ],
+        "part": [
+            "outerside",
+            "innerside"
+        ],
+        "hardnesslevel": [
+            "hard",
+            "medium-hard",
+            "soft"
         ]
     },
     "obj_types": {
@@ -213,11 +330,66 @@
         "parkinglot309": "parkinglot",
         "car1": "car",
         "card1": "credit-card",
-        "veggies1": "ingredient",
-        "egg1": "ingredient",
-        "lambchop1": "ingredient",
+        "10": "cost",
+        "20": "cost",
+        "30": "cost",
+        "robot": "agent",
         "fridge1": "furniture",
-        "robot": "agent"
+        "dcup1": "furniture",
+        "veggies1": "ingredient",
+        "egg1": "egg",
+        "egg2": "egg",
+        "lambchop1": "lambchop",
+        "bread1": "bread",
+        "pot1": "pot",
+        "burner": "appliance",
+        "kitchentop": "worktop",
+        "sink": "worktop",
+        "kitchen": "env",
+        "customer1": "customer",
+        "salt": "seasoning",
+        "pepper": "seasoning",
+        "chives": "seasoning",
+        "thyme": "seasoning",
+        "whitevinegar": "vinegar",
+        "oliveoil": "oil",
+        "butter": "oil",
+        "water": "liquid",
+        "nutmilk": "liquid",
+        "faucet": "liquidtap",
+        "garlic1": "garlic",
+        "holecutter1": "cuttingutensil",
+        "fork1": "normalutensil",
+        "spatula1": "cookingutensil",
+        "tablespoon1": "measureutensil",
+        "plate1": "plate",
+        "salter1": "normalcontainer",
+        "shaker1": "normalcontainer",
+        "container1": "normalcontainer",
+        "glasscontainer1": "normalcontainer",
+        "oilbottle1": "liquidcontainer",
+        "milkbottle1": "liquidcontainer",
+        "mediumbottle1": "liquidcontainer",
+        "smallbottle1": "liquidcontainer",
+        "smallbowl1": "specialcontainer",
+        "frypan1": "pan",
+        "pancover1": "containercover",
+        "one": "number",
+        "two": "number",
+        "three": "number",
+        "four": "number",
+        "gram": "measureunit",
+        "cup": "measureunit",
+        "drop": "measureunit",
+        "circle": "shape",
+        "low": "level",
+        "medium": "level",
+        "high": "level",
+        "outerside": "part",
+        "innerside": "part",
+        "hard": "hardnesslevel",
+        "medium-hard": "hardnesslevel",
+        "soft": "hardnesslevel"
     },
     "objects_by_type": {
         "area": {
@@ -629,114 +801,149 @@
         },
         "store": {
             "market1": [
-                4,
+                6,
                 "(contain-loc brothers-market market1)",
                 "(is-store market1)",
+                "(store-cost market1 30)",
                 "(at-loc veggies1 market1)",
-                "(at-loc egg1 market1)"
+                "(at-loc egg1 market1)",
+                "(at-loc egg2 market1)"
             ],
             "market2": [
-                4,
+                7,
                 "(contain-loc wholefoods-cs market2)",
                 "(is-store market2)",
+                "(store-cost market2 20)",
                 "(at-loc veggies1 market2)",
-                "(at-loc egg1 market2)"
+                "(at-loc egg1 market2)",
+                "(at-loc egg2 market2)",
+                "(at-loc pot1 market2)"
             ],
             "market3": [
-                4,
+                7,
                 "(contain-loc wholefoods-cp market3)",
                 "(is-store market3)",
+                "(store-cost market3 20)",
                 "(at-loc veggies1 market3)",
-                "(at-loc egg1 market3)"
+                "(at-loc egg1 market3)",
+                "(at-loc egg2 market3)",
+                "(at-loc pot1 market3)"
             ],
             "market4": [
-                4,
+                6,
                 "(contain-loc wholefoods-bh market4)",
                 "(is-store market4)",
+                "(store-cost market4 20)",
                 "(at-loc veggies1 market4)",
-                "(at-loc egg1 market4)"
+                "(at-loc egg1 market4)",
+                "(at-loc egg2 market4)"
             ],
             "market5": [
-                4,
+                6,
                 "(contain-loc wholefoods-bc market5)",
                 "(is-store market5)",
+                "(store-cost market5 20)",
                 "(at-loc veggies1 market5)",
-                "(at-loc egg1 market5)"
+                "(at-loc egg1 market5)",
+                "(at-loc egg2 market5)"
             ],
             "market6": [
-                4,
+                6,
                 "(contain-loc traderjoes-ns market6)",
                 "(is-store market6)",
+                "(store-cost market6 10)",
                 "(at-loc veggies1 market6)",
-                "(at-loc egg1 market6)"
+                "(at-loc egg1 market6)",
+                "(at-loc egg2 market6)"
             ],
             "market7": [
-                4,
+                6,
                 "(contain-loc star-market-ns market7)",
                 "(is-store market7)",
+                "(store-cost market7 10)",
                 "(at-loc veggies1 market7)",
-                "(at-loc egg1 market7)"
+                "(at-loc egg1 market7)",
+                "(at-loc egg2 market7)"
             ],
             "market8": [
-                4,
+                7,
                 "(contain-loc cmart-at market8)",
                 "(is-store market8)",
+                "(store-cost market8 10)",
                 "(at-loc veggies1 market8)",
-                "(at-loc egg1 market8)"
+                "(at-loc egg1 market8)",
+                "(at-loc egg2 market8)",
+                "(at-loc pot1 market8)"
             ],
             "market9": [
-                4,
+                7,
                 "(contain-loc cmart-ct market9)",
                 "(is-store market9)",
+                "(store-cost market9 10)",
                 "(at-loc veggies1 market9)",
-                "(at-loc egg1 market9)"
+                "(at-loc egg1 market9)",
+                "(at-loc egg2 market9)",
+                "(at-loc pot1 market9)"
             ],
             "shop1": [
-                2,
+                3,
                 "(contain-loc chocolate-shop-hc shop1)",
-                "(is-store shop1)"
+                "(is-store shop1)",
+                "(store-cost shop1 20)"
             ],
             "shop2": [
-                2,
+                3,
                 "(contain-loc chocolate-shop-bh shop2)",
-                "(is-store shop2)"
+                "(is-store shop2)",
+                "(store-cost shop2 20)"
             ],
             "shop3": [
-                2,
+                3,
                 "(contain-loc chocolate-shop-ns shop3)",
-                "(is-store shop3)"
+                "(is-store shop3)",
+                "(store-cost shop3 20)"
             ],
             "shop4": [
-                3,
+                4,
                 "(contain-loc butchers-shop-bh shop4)",
                 "(is-store shop4)",
+                "(store-cost shop4 30)",
                 "(at-loc lambchop1 shop4)"
             ],
             "shop5": [
-                3,
+                4,
                 "(contain-loc butchers-shop-ne shop5)",
                 "(is-store shop5)",
+                "(store-cost shop5 30)",
                 "(at-loc lambchop1 shop5)"
             ],
             "shop6": [
-                2,
+                4,
                 "(contain-loc mikes-pastry-hc shop6)",
-                "(is-store shop6)"
+                "(is-store shop6)",
+                "(store-cost shop6 10)",
+                "(at-loc bread1 shop6)"
             ],
             "shop7": [
-                2,
+                4,
                 "(contain-loc mikes-pastry-ne shop7)",
-                "(is-store shop7)"
+                "(is-store shop7)",
+                "(store-cost shop7 10)",
+                "(at-loc bread1 shop7)"
             ],
             "shop8": [
-                2,
+                4,
                 "(contain-loc modern-pastry-ne shop8)",
-                "(is-store shop8)"
+                "(is-store shop8)",
+                "(store-cost shop8 10)",
+                "(at-loc bread1 shop8)"
             ],
             "shop9": [
-                2,
+                4,
                 "(contain-loc meixin-pastry-ct shop9)",
-                "(is-store shop9)"
+                "(is-store shop9)",
+                "(store-cost shop9 10)",
+                "(at-loc bread1 shop9)"
             ]
         },
         "car": {
@@ -752,40 +959,33 @@
                 "(agent-has robot card1)"
             ]
         },
-        "ingredient": {
-            "veggies1": [
-                9,
-                "(at-loc veggies1 market1)",
-                "(at-loc veggies1 market2)",
-                "(at-loc veggies1 market3)",
-                "(at-loc veggies1 market4)",
-                "(at-loc veggies1 market5)",
-                "(at-loc veggies1 market6)",
-                "(at-loc veggies1 market7)",
-                "(at-loc veggies1 market8)",
-                "(at-loc veggies1 market9)"
+        "cost": {
+            "10": [
+                8,
+                "(store-cost market6 10)",
+                "(store-cost market7 10)",
+                "(store-cost market8 10)",
+                "(store-cost market9 10)",
+                "(store-cost shop6 10)",
+                "(store-cost shop7 10)",
+                "(store-cost shop8 10)",
+                "(store-cost shop9 10)"
             ],
-            "egg1": [
-                9,
-                "(at-loc egg1 market1)",
-                "(at-loc egg1 market2)",
-                "(at-loc egg1 market3)",
-                "(at-loc egg1 market4)",
-                "(at-loc egg1 market5)",
-                "(at-loc egg1 market6)",
-                "(at-loc egg1 market7)",
-                "(at-loc egg1 market8)",
-                "(at-loc egg1 market9)"
+            "20": [
+                7,
+                "(store-cost market2 20)",
+                "(store-cost market3 20)",
+                "(store-cost market4 20)",
+                "(store-cost market5 20)",
+                "(store-cost shop1 20)",
+                "(store-cost shop2 20)",
+                "(store-cost shop3 20)"
             ],
-            "lambchop1": [
-                2,
-                "(at-loc lambchop1 shop4)",
-                "(at-loc lambchop1 shop5)"
-            ]
-        },
-        "furniture": {
-            "fridge1": [
-                0
+            "30": [
+                3,
+                "(store-cost market1 30)",
+                "(store-cost shop4 30)",
+                "(store-cost shop5 30)"
             ]
         },
         "agent": {
@@ -794,6 +994,345 @@
                 "(agent-at robot home)",
                 "(agent-has robot card1)",
                 "(agent-owns robot car1)"
+            ]
+        },
+        "furniture": {
+            "fridge1": [
+                4,
+                "(closed fridge1)",
+                "(in fridge1 milkbottle1)",
+                "(in fridge1 butter)",
+                "(in fridge1 glasscontainer1)"
+            ],
+            "dcup1": [
+                6,
+                "(closed dcup1)",
+                "(in dcup1 frypan1)",
+                "(in dcup1 oilbottle1)",
+                "(in dcup1 mediumbottle1)",
+                "(in dcup1 container1)",
+                "(in dcup1 pancover1)"
+            ]
+        },
+        "ingredient": {
+            "veggies1": [
+                10,
+                "(at-loc veggies1 market1)",
+                "(at-loc veggies1 market2)",
+                "(at-loc veggies1 market3)",
+                "(at-loc veggies1 market4)",
+                "(at-loc veggies1 market5)",
+                "(at-loc veggies1 market6)",
+                "(at-loc veggies1 market7)",
+                "(at-loc veggies1 market8)",
+                "(at-loc veggies1 market9)",
+                "(sauteed veggies1)"
+            ]
+        },
+        "egg": {
+            "egg1": [
+                11,
+                "(at-loc egg1 market1)",
+                "(at-loc egg1 market2)",
+                "(at-loc egg1 market3)",
+                "(at-loc egg1 market4)",
+                "(at-loc egg1 market5)",
+                "(at-loc egg1 market6)",
+                "(at-loc egg1 market7)",
+                "(at-loc egg1 market8)",
+                "(at-loc egg1 market9)",
+                "(needs-peeling egg1)",
+                "(raw egg1)"
+            ],
+            "egg2": [
+                11,
+                "(at-loc egg2 market1)",
+                "(at-loc egg2 market2)",
+                "(at-loc egg2 market3)",
+                "(at-loc egg2 market4)",
+                "(at-loc egg2 market5)",
+                "(at-loc egg2 market6)",
+                "(at-loc egg2 market7)",
+                "(at-loc egg2 market8)",
+                "(at-loc egg2 market9)",
+                "(needs-peeling egg2)",
+                "(raw egg2)"
+            ]
+        },
+        "lambchop": {
+            "lambchop1": [
+                2,
+                "(at-loc lambchop1 shop4)",
+                "(at-loc lambchop1 shop5)"
+            ]
+        },
+        "bread": {
+            "bread1": [
+                4,
+                "(at-loc bread1 shop6)",
+                "(at-loc bread1 shop7)",
+                "(at-loc bread1 shop8)",
+                "(at-loc bread1 shop9)"
+            ]
+        },
+        "pot": {
+            "pot1": [
+                4,
+                "(at-loc pot1 market2)",
+                "(at-loc pot1 market3)",
+                "(at-loc pot1 market8)",
+                "(at-loc pot1 market9)"
+            ]
+        },
+        "appliance": {
+            "burner": [
+                2,
+                "(switchedoff burner)",
+                "(default-level burner low)"
+            ]
+        },
+        "worktop": {
+            "kitchentop": [
+                10,
+                "(on kitchentop faucet)",
+                "(on kitchentop salter1)",
+                "(on kitchentop shaker1)",
+                "(on kitchentop smallbottle1)",
+                "(on kitchentop tablespoon1)",
+                "(on kitchentop holecutter1)",
+                "(on kitchentop fork1)",
+                "(on kitchentop spatula1)",
+                "(on kitchentop plate1)",
+                "(on kitchentop smallbowl1)"
+            ],
+            "sink": [
+                0
+            ]
+        },
+        "env": {
+            "kitchen": [
+                0
+            ]
+        },
+        "customer": {
+            "customer1": [
+                0
+            ]
+        },
+        "seasoning": {
+            "salt": [
+                1,
+                "(inside salter1 salt)"
+            ],
+            "pepper": [
+                1,
+                "(inside shaker1 pepper)"
+            ],
+            "chives": [
+                1,
+                "(inside container1 chives)"
+            ],
+            "thyme": [
+                1,
+                "(inside smallbottle1 thyme)"
+            ]
+        },
+        "vinegar": {
+            "whitevinegar": [
+                1,
+                "(inside mediumbottle1 whitevinegar)"
+            ]
+        },
+        "oil": {
+            "oliveoil": [
+                1,
+                "(inside oilbottle1 oliveoil)"
+            ],
+            "butter": [
+                2,
+                "(in fridge1 butter)",
+                "(is-butter butter)"
+            ]
+        },
+        "liquid": {
+            "water": [
+                1,
+                "(inside faucet water)"
+            ],
+            "nutmilk": [
+                1,
+                "(inside milkbottle1 nutmilk)"
+            ]
+        },
+        "liquidtap": {
+            "faucet": [
+                3,
+                "(turnedoff faucet)",
+                "(on kitchentop faucet)",
+                "(inside faucet water)"
+            ]
+        },
+        "garlic": {
+            "garlic1": [
+                1,
+                "(inside glasscontainer1 garlic1)"
+            ]
+        },
+        "cuttingutensil": {
+            "holecutter1": [
+                2,
+                "(on kitchentop holecutter1)",
+                "(has-shape holecutter1 circle)"
+            ]
+        },
+        "normalutensil": {
+            "fork1": [
+                1,
+                "(on kitchentop fork1)"
+            ]
+        },
+        "cookingutensil": {
+            "spatula1": [
+                1,
+                "(on kitchentop spatula1)"
+            ]
+        },
+        "measureutensil": {
+            "tablespoon1": [
+                1,
+                "(on kitchentop tablespoon1)"
+            ]
+        },
+        "plate": {
+            "plate1": [
+                1,
+                "(on kitchentop plate1)"
+            ]
+        },
+        "normalcontainer": {
+            "salter1": [
+                2,
+                "(on kitchentop salter1)",
+                "(inside salter1 salt)"
+            ],
+            "shaker1": [
+                2,
+                "(on kitchentop shaker1)",
+                "(inside shaker1 pepper)"
+            ],
+            "container1": [
+                2,
+                "(in dcup1 container1)",
+                "(inside container1 chives)"
+            ],
+            "glasscontainer1": [
+                2,
+                "(in fridge1 glasscontainer1)",
+                "(inside glasscontainer1 garlic1)"
+            ]
+        },
+        "liquidcontainer": {
+            "oilbottle1": [
+                2,
+                "(in dcup1 oilbottle1)",
+                "(inside oilbottle1 oliveoil)"
+            ],
+            "milkbottle1": [
+                2,
+                "(in fridge1 milkbottle1)",
+                "(inside milkbottle1 nutmilk)"
+            ],
+            "mediumbottle1": [
+                2,
+                "(in dcup1 mediumbottle1)",
+                "(inside mediumbottle1 whitevinegar)"
+            ],
+            "smallbottle1": [
+                2,
+                "(on kitchentop smallbottle1)",
+                "(inside smallbottle1 thyme)"
+            ]
+        },
+        "specialcontainer": {
+            "smallbowl1": [
+                1,
+                "(on kitchentop smallbowl1)"
+            ]
+        },
+        "pan": {
+            "frypan1": [
+                2,
+                "(in dcup1 frypan1)",
+                "(matching-size pancover1 frypan1)"
+            ]
+        },
+        "containercover": {
+            "pancover1": [
+                2,
+                "(matching-size pancover1 frypan1)",
+                "(in dcup1 pancover1)"
+            ]
+        },
+        "number": {
+            "one": [
+                0
+            ],
+            "two": [
+                0
+            ],
+            "three": [
+                0
+            ],
+            "four": [
+                0
+            ]
+        },
+        "measureunit": {
+            "gram": [
+                0
+            ],
+            "cup": [
+                0
+            ],
+            "drop": [
+                0
+            ]
+        },
+        "shape": {
+            "circle": [
+                1,
+                "(has-shape holecutter1 circle)"
+            ]
+        },
+        "level": {
+            "low": [
+                1,
+                "(default-level burner low)"
+            ],
+            "medium": [
+                0
+            ],
+            "high": [
+                0
+            ]
+        },
+        "part": {
+            "outerside": [
+                0
+            ],
+            "innerside": [
+                0
+            ]
+        },
+        "hardnesslevel": {
+            "hard": [
+                0
+            ],
+            "medium-hard": [
+                0
+            ],
+            "soft": [
+                0
             ]
         }
     }

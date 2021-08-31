@@ -43,7 +43,7 @@
     circle - shape
     low medium high - level
     outerside innerside - part
-    hard soft - hardnesslevel
+    hard medium-hard soft - hardnesslevel
 
   )
 

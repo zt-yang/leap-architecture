@@ -43,15 +43,20 @@
     ; ----------------------
     car1 - car 
     card1 - credit-card
+    10 20 30 - cost
 
     ; ----------------------
     ;; to merge with kitchen_extended
     ; ----------------------
-    veggies1 - ingredient
-    egg1 - ingredient
-    lambchop1 - ingredient
-    fridge1 - furniture
     robot - agent
+    fridge1 - furniture
+    dcup1 - furniture
+    veggies1 - ingredient
+    egg1 - egg
+    egg2 - egg
+    lambchop1 - lambchop
+    bread1 - bread
+    pot1 - pot
   )
 
   (:init 
@@ -199,6 +204,8 @@
     ; ----------------------
     ;; ---- shopping category
     ; ----------------------
+
+    ;; --- 9 marketplaces in supermarkets
     (is-store market1)
     (is-store market2)
     (is-store market3)
@@ -208,6 +215,16 @@
     (is-store market7)
     (is-store market8)
     (is-store market9)
+
+    (store-cost market1 30)
+    (store-cost market2 20)
+    (store-cost market3 20)
+    (store-cost market4 20)
+    (store-cost market5 20)
+    (store-cost market6 10)
+    (store-cost market7 10)
+    (store-cost market8 10)
+    (store-cost market9 10)
 
     (at-loc veggies1 market1)
     (at-loc veggies1 market2)
@@ -229,6 +246,22 @@
     (at-loc egg1 market8)
     (at-loc egg1 market9)
 
+    (at-loc egg2 market1)
+    (at-loc egg2 market2)
+    (at-loc egg2 market3)
+    (at-loc egg2 market4)
+    (at-loc egg2 market5)
+    (at-loc egg2 market6)
+    (at-loc egg2 market7)
+    (at-loc egg2 market8)
+    (at-loc egg2 market9)
+    
+    (at-loc pot1 market2)
+    (at-loc pot1 market3)
+    (at-loc pot1 market8)
+    (at-loc pot1 market9)
+
+    ;; --- 9 shops in specialized stores
     (is-store shop1)
     (is-store shop2)
     (is-store shop3)
@@ -239,8 +272,23 @@
     (is-store shop8)
     (is-store shop9)
 
+    (store-cost shop1 20)
+    (store-cost shop2 20)
+    (store-cost shop3 20)
+    (store-cost shop4 30)
+    (store-cost shop5 30)
+    (store-cost shop6 10)
+    (store-cost shop7 10)
+    (store-cost shop8 10)
+    (store-cost shop9 10)
+
     (at-loc lambchop1 shop4)
     (at-loc lambchop1 shop5)
+
+    (at-loc bread1 shop6)
+    (at-loc bread1 shop7)
+    (at-loc bread1 shop8)
+    (at-loc bread1 shop9)
 
     ; ----------------------
     ;; ---- task relevant

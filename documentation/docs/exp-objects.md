@@ -10,7 +10,7 @@
 * `obj_5.pddl` contains multiples (10) of every utensil (11) --> [[Conclusion 1]](#conclusion-1-search-time-increases-linearly-with-alternative-utensils) 
 * `obj_eggs_0.pddl` contains the bare minimum set of objects for making 10 egg recipes
 
-```
+```python
      t  problem_name      var     op    axiom    plan    parse     search    state
 ------  --------------  -----  -----  -------  ------  -------  ---------  -------
 142459  obj_0.pddl         56    932       11      48    0.483  0.0119011 *    177 
@@ -38,12 +38,24 @@ Note that 10 eggs and 10 veggies only has a small effect when the goal mentions 
 * `obj_3.pddl` + `omelette_5.pddl` (`obj_3.pddl` contains 10 eggs and 10 veggies)
 * `obj_3.pddl` + `omelette_5b.pddl`, which contains goal `(exist-omelette kitchen)` 
 
-```
+```python
      t  problem_name               var    op    axiom    plan    parse     search    state
 ------  -----------------------  -----  ----  -------  ------  -------  ---------  -------
 144457  obj_0, omelette_5.pddl      56   932       11      48    0.495  0.0104259      177
 144500  obj_3, omelette_5.pddl      92  2930       46      48    2.709  0.0198585      181
 144504  obj_3, omelette_5b.pddl    269  3524       83      49    2.763  0.0517935      409
+```
+
+the following are results containing goal of `(exist-omelette kitchen)` 
+
+```python
+     t  run_name                                         var      op    axiom    plan    cost    parse      search    state
+------  ---------------------------------------------  -----    ----  -------  ------  ------  -------  ----------  -------
+210933  kitchen_egg_1, omelette, obj_0.pddl               60     932       27      47      47    0.511   0.0102195      165
+211058  kitchen_egg_1, omelette, obj_3.pddl              294    3542      198      47      47    3.094   0.0526419      424
+214116  kitchen_egg_1, omelette, obj_4.pddl              124    2849       29      68      68    1.667    0.068268      680
+063459  kitchen_egg_1, omelette, obj_4_xl.pddl           358    9419      299      51      51   12.865     0.41591     1618
+065450  kitchen_egg_1, omelette, obj_4_xxl.pddl          444   32749      501      51      51   40.412    0.507984     1109
 ```
 
 ### Definition of an omelette in `kitchen_1.pddl`

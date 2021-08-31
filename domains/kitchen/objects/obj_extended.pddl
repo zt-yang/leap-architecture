@@ -1,7 +1,7 @@
   (:objects
 
     ; --- level 1 physical objects
-    ucup1 ucup2 dcup1 dcup2 drawer1 - furniture
+    dcup1 - furniture
     burner - appliance
     kitchentop sink - worktop
     kitchen - env 
@@ -40,7 +40,7 @@
     circle - shape
     low medium high - level
     outerside innerside - part
-    hard soft - hardnesslevel
+    hard medium-hard soft - hardnesslevel
 
     ;; to merge with grocery
     veggies1 - ingredient
@@ -52,12 +52,8 @@
     ; ----------------------
     ; properties of places that cannot move
     ; ----------------------
-    (closed drawer1)
     (closed dcup1)
     (closed fridge1)
-    (closed dcup2)
-    (closed ucup1)
-    (closed ucup2)
     (switchedoff burner)
     (default-level burner low)
     (turnedoff faucet)
@@ -67,9 +63,9 @@
     ; ----------------------
     (in dcup1 frypan1)
     (in dcup1 pot1)
-    (in dcup2 oilbottle1)
-    (in dcup2 mediumbottle1)
-    (in dcup2 container1)
+    (in dcup1 oilbottle1)
+    (in dcup1 mediumbottle1)
+    (in dcup1 container1)
 
     (in fridge1 egg1)
     (in fridge1 milkbottle1)
@@ -84,7 +80,6 @@
     (on kitchentop tablespoon1)
     (on kitchentop holecutter1)
     (on kitchentop fork1)
-    (on kitchentop slottedspoon1)
     (on kitchentop spatula1)
 
     (on kitchentop plate1)
