@@ -32,7 +32,7 @@
     pancover1 - containercover
 
     ; --- level 2 abstract objects
-    one two three four - number
+    one two three four five six - number
     gram cup drop - measureunit
     circle - shape
     low medium high - level

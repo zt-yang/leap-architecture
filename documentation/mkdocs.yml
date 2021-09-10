@@ -11,12 +11,13 @@ nav:
       # - Restaurant: domain-restaurant.md
       # - Housework: domain-housework.md
     - Experiments: 
-      - Num of Goal Predicates [ NEW ]: exp-goals.md
+      - Num of Goal Predicates: exp-goals.md
       - Num of Objects: exp-objects.md
       - All Egg Recipes: exp-egg-recipes.md
-      - Two Dishes [ NEW ]: exp-two-dishes.md
-      - Satisfising v.s. Optimizing [ NEW ]: exp-planner-options.md
-      - Merged Domains [ NEW ]: exp-merged-domains.md
+      - Two Dishes: exp-two-dishes.md
+      - Satisfising v.s. Optimizing: exp-planner-options.md
+      - Merged Domains: exp-merged-domains.md
+      - Strategist IOBIG: exp-iobig.md
     - Notes:
       - FastDownward [ NEW ]: notes-fd.md
     - Set it up: 

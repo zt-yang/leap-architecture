@@ -33,7 +33,7 @@
 
     robot - agent
 
-    one two three four - number
+    one two three four five six - number
     gram cup - measureunit
     kitchen - env 
 

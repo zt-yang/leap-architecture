@@ -122,7 +122,7 @@
 
 
     robot - agent
-    one two three four - number
+    one two three four five six - number
     gram cup - measureunit
     kitchen - env 
 
@@ -248,7 +248,7 @@
     (on kitchentop fork6)
     (on kitchentop spatula6)
     (on kitchentop whisk6)
-    (on kitchentop plate)
+    (on kitchentop plate6)
     (on kitchentop smallbowl6)
     (inside salter6 salt)
     (inside shaker6 pepper)

@@ -31,11 +31,10 @@
 
     ; --- level 3 cooking containers
     frypan1 - pan ; for reducing, sauteing, searing, or frying
-    pot1 - pot ; for simmering, poaching, or boiling
     pancover1 - containercover
 
     ; --- level 2 abstract objects
-    one two three four - number
+    one two three four five six - number
     gram cup drop - measureunit
     circle - shape
     low medium high - level
@@ -45,6 +44,7 @@
     ;; to merge with grocery
     veggies1 - ingredient
     fridge1 - furniture
+    pot1 - pot
   )
 
   (:init

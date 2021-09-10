@@ -571,7 +571,7 @@
 
   ( :derived ( safe-kitchen ?e - env )
       ( and
-          ( not ( burned-kitchen ?e ) ) 
+        ( not ( burned-kitchen ?e ) ) 
         ( not ( burned-food ?e ) ) 
       )
   )
