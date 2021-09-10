@@ -14,14 +14,8 @@ class Strategist:
         pass
 
     def init_task(self, task):
-        self._ori_domain = task[0]
-        self._ori_problem = task[1]
-        self.reset()
-
-    def reset(self):
-        self._domain = self._ori_domain
-        self._problem = self._ori_problem
-
+        self.task_original = task
+        
 
 
 class PreStrategist(Strategist):
@@ -44,12 +38,9 @@ class PostStrategist(Strategist):
     """
 
     @abc.abstractmethod
-    def __call__(self, plan, domain_file, problem_file, timeout=10):
-        """ Takes in a plan, along with a PDDL domain and problem file. 
-            Returns 
-                a refined plan 
-                or 
-                None, which triggers replanning from original problem
+    def __call__(self, outputs, expdir, trials=5, timeout=10):
+        """ Takes in outputs from planner
+            Returns refined outputs 
         """
         raise NotImplementedError("Override me!")
 

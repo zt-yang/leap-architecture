@@ -28,7 +28,10 @@ def summarize_csv(exp_dir):
             for row in rows:
                 key = row[1]
                 key = key[key.index('/')+1:]
-                key = key[:key.index('/')]
+                if 'sdbig' in key:
+                    key = key.replace('sdbig/sdbig_','')
+                else:
+                    key = key[:key.index('/')]
                 keys.append(key.split('-'))
 
             ## pad optional fields like action_sub and goal_ignore with ''

@@ -1,6 +1,15 @@
 import re
 import json
 
+
+def get_number_str(line):
+    number = '.'.join(re.findall(r'\d+', line))
+    if 'e-' in line and count_char(number, '.') == 2:
+        chars = [c for c in number]
+        chars[number.rfind('.')] = 'e-'
+        number = ''.join(chars)
+    return number
+    
 def count_char(line, sub):
     return len(line) - len(line.replace(sub, ''))
 

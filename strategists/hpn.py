@@ -3,13 +3,14 @@
 
 import abc
 import json
+import random
 from time import time
 from os.path import  join
 from os import listdir, mkdir
 from.strategist import PreStrategist
 
 from .influence_graph import InfluenceGraph
-from .utils import get_goals, get_init, merge_pdf
+from .utils import get_goals, get_init, merge_pdf, count_char
 
 import sys, os
 sys.path.insert(0, os.path.abspath('..'))
@@ -38,12 +39,25 @@ class SDBIG(PreStrategist):
     """ Separate Domains Based on Influence Graph """
 
     name = 'SDBIG'
+    RENDER_GRAPH = False
+    DEBUG = False
+    
+    def __init__(self):
+        self.proposed_subgoals = {}
+        self.proposed_tasks = {} 
 
-    def __call__(self, domain_file, problem_file, expdir, RENDER_GRAPH=True):
+
+    def __call__(self, domain_file, problem_file, expdir):
         """ Takes in a PDDL domain and problem file. 
             Return the reduced domains and corresponding sub-problems
         """
 
+        ## if samples have been generated for a task, just extract
+        if (domain_file, problem_file) in self.proposed_tasks:
+            return self.get_proposed_task((domain_file, problem_file)), 0
+        self.proposed_subgoals[(domain_file, problem_file)] = [None]
+
+        RENDER_GRAPH = self.RENDER_GRAPH
         time_spent = 0 ## exclude the time for rendering graphs
         start = time()
 
@@ -90,9 +104,9 @@ class SDBIG(PreStrategist):
         time_spent += comp_time
         start = time() 
 
-        ## generate two new dmn files 
+        ## generate a set of sequences of two new dmn files 
         tasks = self.reduce_dmn( domain_file, problem_file, 
-            dmn_json, obj_json, point, islands, gg, goals, init )
+            dmn_json, obj_json, point, islands, gg, goals, init, expdir )
         time_spent += ( time() - start )
 
         if RENDER_GRAPH:
@@ -101,7 +115,10 @@ class SDBIG(PreStrategist):
         return tasks, time_spent
 
 
-    def reduce_dmn( self, domain_file, problem_file, dmn_json, obj_json, point, islands, gg, goals, init_preds ):
+    def reduce_dmn( self, domain_file, problem_file, dmn_json, obj_json, point, islands, gg, goals, init_preds, expdir, n_trials=12, verbose=False ):
+
+        DEBUG = self.DEBUG
+        task = (domain_file, problem_file)
 
         obj_json = json.load(open(obj_json, 'r'))
         dmn_json = json.load(open(dmn_json, 'r'))
@@ -134,22 +151,71 @@ class SDBIG(PreStrategist):
             if len(found_goals) > 0: HAS_GOAL = True
             if len(found_init) > 0: HAS_INIT = True
             
-            print(f'\n\n\n   {name}  |  IS_PRE = {IS_PRE}, IS_EFF = {IS_EFF}, HAS_GOAL: {found_goals}, HAS_INIT: {found_init}')
+            if verbose: 
+                print(f'\n\n\n   {name}  |  IS_PRE = {IS_PRE}, IS_EFF = {IS_EFF}, HAS_GOAL: {found_goals}, HAS_INIT: {found_init}')
+                for k in ['nodes_pred', 'nodes_op', 'nodes_ax']:
+                    print('\n      ', k)
+                    print(island[k])
+                    print('-------------------')
 
-            for k in ['nodes_pred', 'nodes_op', 'nodes_ax']:
-                print('\n      ', k)
-                print(island[k])
-                print('-------------------')
+            if IS_PRE and HAS_INIT and not HAS_GOAL:
+                dmn_1 = name
+                dmn_2 = [n for n in islands.keys() if n != name][0]
+                if verbose: print(f'dmn_1 = {dmn_1} , dmn_2 = {dmn_2}')
+                objects = self.find_obj(obj_json, dmn_json, types, island['nodes_pred'], DEBUG=DEBUG)
+                for k in range(n_trials):
+                    self.propose_subgoal(point, objects, task, DEBUG=DEBUG )
+                break
+
+        self.proposed_subgoals[task].remove(None)
+        if verbose or self.verbose: 
+            print(f'\n  {len(self.proposed_subgoals[task])} subgoals sampled by SDBIG: {self.proposed_subgoals[task]}')
+            print(f'\n   ... using subgoal: {self.proposed_subgoals[task][0]}')
+
+        ## return a set of sequences of two sub-problems
+        tasks = []
+        expdir = join(expdir, 'sdbig')
+        for i in range(len(self.proposed_subgoals[task])):
+
+            prefix = f'sdbig_trial{i+1}'
+            subgoal = self.proposed_subgoals[task][i]
+            island_1 = islands[dmn_1]
+            island_2 = islands[dmn_2]
+            dmn_file_1 = join(expdir, f'{prefix}_dmn1.pddl')
+            prb_file_1 = join(expdir, f'{prefix}_prb1.pddl')
+            dmn_file_2 = join(expdir, f'{prefix}_dmn2.pddl')
+            prb_file_2 = join(expdir, f'{prefix}_prb2.pddl')
+
+            ## dmn_1 has the original types and preds, with op and ax in island_1
+            self.reduce_op(domain_file, dmn_json, dmn_file_1, island_1['nodes_op'], island_1['nodes_ax'])
+
+            ## prb_1 has the original objs and init, with the goal of sugboal
+            self.reduce_goal(problem_file, prb_file_1, subgoal)
+
+            ## dmn_2 has the original types and preds, with op and ax in island_2
+            self.reduce_op(domain_file, dmn_json, dmn_file_2, island_2['nodes_op'], island_2['nodes_ax'])
+
+            ## prb_2 has the original objs and goal, but init + the goal of sugboal
+            self.add_init(problem_file, prb_file_2, subgoal)
+
+            tasks.append([(dmn_file_2, prb_file_2), (dmn_file_1, prb_file_1)])
+
+        self.proposed_tasks[(domain_file, problem_file)] = tasks[1:]
+        return tasks[0] ## [(domain_file, problem_file)]
 
 
-            if IS_PRE and HAS_INIT:
-                params = self.find_obj(obj_json, types, island['nodes_pred'])
-            break
+    def get_proposed_task(self, task):
+        proposed = self.proposed_tasks[task][0]
+        if self.verbose:
+            i = len(self.proposed_subgoals[task]) - len(self.proposed_tasks[task])
+            print(f'\n   ... using subgoal: {self.proposed_subgoals[task][i]}')
+        self.proposed_tasks[task] = self.proposed_tasks[task][1:]
+        return proposed
 
-        return [(domain_file, problem_file)]
 
-    def find_obj(self, obj_json, types, nodes_pred):
+    def find_obj(self, obj_json, dmn_json, types, nodes_pred, verbose=False, DEBUG=False):
 
+        objects = {}
         appeared = []
         for pred, lst in obj_json['init'].items():
             if pred in nodes_pred:
@@ -157,12 +223,98 @@ class SDBIG(PreStrategist):
                     appeared.extend(objs)
 
         appeared = list(set(appeared))
-        print('appeared', appeared)
         
         for typ in types:
-            if typ in obj_json['types']:
-                all_obj = obj_json['types'][typ]
-                appeared_obj = [o for o in all_obj if o in appeared]
+            types = [typ]
+            if typ in dmn_json['type_offsprings']:
+                types.extend(dmn_json['type_offsprings'][typ])
+
+            all_obj = []
+            for ty in types:
+                if ty in obj_json['types']:
+                    all_obj.extend(obj_json['types'][ty])
+                
+            appeared_obj = [o for o in all_obj if o in appeared]
+            if verbose:
                 print(typ)
                 print(len(all_obj), all_obj)
                 print(len(appeared_obj), appeared_obj)
+
+            if DEBUG and 'veggies1' in appeared_obj: 
+                appeared_obj = ['veggies1', 'egg1'] ## Hack for testing
+
+            objects[typ] = {'possible': all_obj, 'appeared': appeared_obj}
+
+        return objects
+
+    def propose_subgoal(self, point, objects, task, DEBUG=False):
+        """ randomly sample a goal that hasn't been tried """
+
+        goal_literal = None
+        while goal_literal in self.proposed_subgoals[task] and not (DEBUG and goal_literal != None):
+            goal_literal = f"( {point} "
+            for typ, objs in objects.items():
+                if len(objs['possible']) > 5:
+                    goal_literal += random.choice(objs['appeared']) + ' '
+                else:
+                    goal_literal += random.choice(objs['possible']) + ' '
+            goal_literal += ')'
+            
+        self.proposed_subgoals[task].append(goal_literal)
+
+        return goal_literal
+
+    def reduce_op(self, dmn_file, dmn_json, new_dmn_file, ops, axioms):
+
+        new_lines = []
+        START = False
+        for line in open(dmn_file, 'r').readlines():
+            if ':action ' in line: break
+            new_lines.append(line)
+
+        for op in ops:
+            new_lines.append(dmn_json['operators'][op]['lines'])
+        
+        for ax in axioms:
+            new_lines.append(dmn_json['axioms'][ax]['lines'])
+
+        new_lines.append(')\n')
+
+        with open(new_dmn_file, "w") as f:
+            f.writelines(new_lines)
+
+    def reduce_goal(self, prb_file, new_prb_file, subgoal):
+
+        new_lines = []
+        START = False
+        for line in open(prb_file, 'r').readlines():
+            if ':goal' in line: 
+                START = True
+                new_lines.append(f'  (:goal\n    {subgoal}; added subgoal\n  )\n\n')
+            if ':metric ' in line: 
+                START = False
+            if not START: 
+                new_lines.append(line)
+
+        with open(new_prb_file, "w") as f:
+            f.writelines(new_lines)
+
+    def add_init(self, prb_file, new_prb_file, subgoal):
+
+        new_lines = []
+        START = False
+        for line in open(prb_file, 'r').readlines():
+
+            if ':init' in line: START = True
+            elif ':goal' in line: START = False
+
+            end = (count_char(line, ')') == 1) and (count_char(line, '(') == 0)
+            if START and end:
+                line = f'    {subgoal} ; added init\n' + line
+            
+            new_lines.append(line)
+
+        with open(new_prb_file, "w") as f:
+            f.writelines(new_lines)
+
+

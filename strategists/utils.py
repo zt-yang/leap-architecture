@@ -26,3 +26,6 @@ def merge_pdf(pdfs, outfile):
         remove(pdf.replace('.pdf',''))
     merger.write(outfile)
     merger.close()
+
+def count_char(line, sub):
+    return len(line) - len(line.replace(sub, ''))

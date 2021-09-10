@@ -226,8 +226,6 @@ def check_domain(filenames, domain_summary=None, expdir='cogmen'):
     constants = {}
     operators = {}
     axioms = {}
-    derived = []
-    START = None
     name = None
 
     def check_pred(line):
@@ -286,7 +284,7 @@ def check_domain(filenames, domain_summary=None, expdir='cogmen'):
                     checked.append(offspring)
                     if offspring in type_children:
                         offsprings.extend([oo for oo in type_children[offspring] if oo not in offsprings and oo not in checked])
-            type_offsprings[typ] = checked
+            type_offsprings[typ] = list(set(checked))
 
         ## get the types of each param of predicates
         for line in lines_predicates[n]:
@@ -314,15 +312,23 @@ def check_domain(filenames, domain_summary=None, expdir='cogmen'):
 
 
         ## check inside each operator (1) predicates types (2) var names (3) constants
+        START = None
         STARTED = None
         when = [0, 0]
         when_lines = ''
+        last_part = ''
+        derived = []
         for line in lines_body[n]:
             line = strip_comment(line).replace('\n','')
             if empty(line): continue
             
             if ':action' in line:
                 START = 'ACTION'
+
+                if len(last_part) > 0:
+                    operators[name]['lines'] = last_part
+                    last_part = ''
+
                 name = strip(line[line.index(':action')+7:])
                 operators[name] = {
                     'params':{},
@@ -354,6 +360,13 @@ def check_domain(filenames, domain_summary=None, expdir='cogmen'):
                     axioms[name] = {'pre': list(set(derived[1:]))}
                     derived = []
 
+                    axioms[name]['lines'] = last_part
+                    last_part = ''
+
+                elif len(last_part) > 0:
+                    operators[name]['lines'] = last_part
+                    last_part = ''
+
             if START in ['PRE', 'EFF']:
                 line = line.replace('( ','(').replace(' )',')')
 
@@ -382,15 +395,26 @@ def check_domain(filenames, domain_summary=None, expdir='cogmen'):
                     operators[name][START.lower()].append(check_pred(line))
 
             if START == 'DER':
-                line = line.replace(':derived (', '').replace(')',' )').replace('(','( ').replace('  ', ' ').replace('not ( ', '!')
-                pred = [p for p in line.split(' ') if p.replace('!','') in predicates]
+                part = line.replace(':derived (', '').replace(')',' )').replace('(','( ').replace('  ', ' ').replace('not ( ', '!')
+                pred = [p for p in part.split(' ') if p.replace('!','') in predicates]
                 derived.extend(pred)
+                
+            last_part += line+'\n'
+
+    last_part = last_part[:last_part.rfind(')')]
 
     ## the last derivative
     if START == 'DER' and len(derived) > 0:
         name = derived[0]
         while name in axioms: name += '+'
         axioms[name] = {'pre': list(set(derived[1:]))}
+
+        axioms[name]['lines'] = last_part
+        last_part = ''
+
+    elif START == 'EFF' and len(last_part) > 0:
+        operators[name]['lines'] = last_part
+        last_part = ''
 
     ## a merged domain
     if domain_summary != None:

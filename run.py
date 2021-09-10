@@ -1,7 +1,7 @@
 import argparse
 
 from cogmen.leap import LEAP
-from strategists.get_strategists import get_strategists
+from strategists.get_strategists import get_strategists, get_post_strategists
 from planners.planner import get_planner
 
 parser = argparse.ArgumentParser()
@@ -26,8 +26,12 @@ if __name__ == "__main__":
         get_planner( args.planner, args.planner_option, args.timeout ) 
     )
 
-    leap.init_pre_strategists( get_strategists( args.strategists ) )
+    leap.init_pre_strategists( 
+        get_strategists( args.strategists ) 
+    )
 
-    leap.init_post_strategists()
+    leap.init_post_strategists( 
+        get_post_strategists( pre_strategists=args.strategists ) 
+    )
 
     plan = leap( args.domain, args.problem, args.use_objects )

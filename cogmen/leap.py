@@ -32,6 +32,7 @@ class LEAP(CogMan):
 
         ## debug, merge, and copy files to expdir
         self.task = get_pddl(domain_name, problem_name, expdir, objectset_name, verbose=(self.verbose==1))
+        self._planner.task_original = self.task
         
         ## leap.run_pre_strategists()
         tasks = self.run_pre_strategists(self.task, expdir)
@@ -40,12 +41,10 @@ class LEAP(CogMan):
         outputs = self.run_planner(tasks, expdir)
 
         ## refines the subplans, may involve solving the problem again
-        outputs = self.run_post_strategists(outputs)
+        outputs = self.run_post_strategists(outputs, expdir)
 
         ## concatnate or select from outputs
         plan = self.get_plan(outputs)
-
-        self.report_time()
 
         return plan
 
@@ -63,11 +62,16 @@ class LEAP(CogMan):
         self._pre_strategists = pre_strategists
         for strategist in pre_strategists:
             strategist.expdir = self.expdir
+            strategist.verbose = self.verbose
         
 
     def init_post_strategists(self, post_strategists=[]):
 
         self._post_strategists = post_strategists
+        for strategist in post_strategists:
+            strategist.expdir = self.expdir
+            strategist.verbose = self.verbose
+            strategist.leap = self
 
 
     def get_exp_name(self, domain_name, problem_name, objectset_name):
@@ -110,7 +114,7 @@ class LEAP(CogMan):
         tasks = [task]
         count = 0
 
-        self.print(f'\nStep 2: Abstract with {len(self._pre_strategists)} strategists: {self._pre_strategists}')
+        self.print(f'\nStep 2: Abstract with {len(self._pre_strategists)} strategists: {[s.name for s in self._pre_strategists]}')
 
         comp_times = {}
         while count < len(self._pre_strategists):
@@ -136,36 +140,42 @@ class LEAP(CogMan):
     def run_planner(self, tasks, expdir):
 
         self.print(f'\nStep 3: Plan with {self._planner.name}')
+        self.print(f'\n  expdir: {expdir}')
 
         outputs = []
         trans_times = {}
         search_times = {}
 
-        index = 0
         for i in range(len(tasks)):
             if len(tasks) > 1:
-                self.print(f'\n---------------- Subproblem {index} ----------------')
+                self.print(f'\n---------------- Subproblem {i} ----------------')
+                self.print(f'  Sub-domain: {tasks[i][0].replace(expdir, "")}')
+                self.print(f'  Sub-problem: {tasks[i][1].replace(expdir, "")}')
             
             domain, problem = tasks[i]
             output, trans_t, search_t = self._planner(domain, problem, i, expdir)
             trans_times[i] = trans_t
             search_times[i] = search_t
             outputs.append(output)
+            if output == False: break  ## no need to solve the rest when one subproblem fails
 
         self.time_spent['trans'] = trans_times
         self.time_spent['search'] = search_times
+
         return outputs
 
 
-    def run_post_strategists(self, outputs):
+    def run_post_strategists(self, outputs, expdir):
         
         count = 0
         comp_times = {}
         while count < len(self._post_strategists):
             strategist = self._post_strategists[count]
-            outputs, comp_time = strategist(outputs)
+            outputs, comp_t = strategist(outputs, expdir)
             count += 1
-            comp_times[strategist.name] = comp_time
+            if strategist.name not in comp_times:
+                comp_times[strategist.name] = 0
+            comp_times[strategist.name] += comp_t
 
         self.time_spent['post'] = comp_times
         return outputs
@@ -173,16 +183,19 @@ class LEAP(CogMan):
 
     def get_plan(self, outputs):
 
-        return outputs[0]
+        self.report_time()
+
+        return outputs ## just return the plan 
 
 
     def report_time(self):
 
-        line = ''
+        line = '\n'
         for key, value in self.time_spent.items():
             t = sum(list(value.values()))
             line += f'{key}: {str(round(t, 4))}\t'
         # print(line)
+        self.print(line)
 
 
     def print(self, text):

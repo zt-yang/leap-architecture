@@ -4,7 +4,7 @@
 import abc
 import json
 from time import time
-from os.path import  join
+from os.path import  join, isfile, isdir
 from os import listdir, mkdir
 from.strategist import PreStrategist
 
@@ -40,19 +40,24 @@ class IOBIG(PreStrategist):
     """ Ignoring Object Based on Influence Graph """
 
     name = 'IOBIG'
+    RENDER_GRAPH = True
 
-    def __call__(self, domain_file, problem_file, expdir, RENDER_GRAPH = True):
+    def __call__(self, domain_file, problem_file, expdir):
         """ Takes in a PDDL domain and problem file. 
             Return one task tuple - original domain and one reduced problem (i.e. :objects :init), along with computational time
         """
 
+        RENDER_GRAPH = self.RENDER_GRAPH
         time_spent = 0 ## exclude the time for rendering graphs
         start = time()
 
         out_dir = join(expdir, 'iobig')
-        mkdir(out_dir)
+        if not isdir(out_dir):
+            mkdir(out_dir)
 
         dmn_json = domain_file.replace('.pddl', '.json')
+        if not isfile(dmn_json): ## in case used together with SDBIG
+            dmn_json = self.task_original[0].replace('.pddl', '.json')
         prb_pddl = problem_file
         obj_json = [join(expdir,f) for f in listdir(expdir) if 'obj_' in f and '.json' in f][0]
 
@@ -96,13 +101,16 @@ class IOBIG(PreStrategist):
 
         time_spent += ( time() - start )
         if RENDER_GRAPH:
-            merge_pdf(pdfs, join(out_dir, 'graphs.pdf'))
+            name = join(out_dir, 'graphs.pdf')
+            while isfile(name):
+                name = name.replace('.pdf', '+.pdf')
+            merge_pdf(pdfs, name)
 
         return [(domain_file, new_prob_pddl)], time_spent
 
 
-
     def reduce_obj( self, prb_pddl, obj_json, new_prob_pddl, except_types, except_objs ):
+        """ generate a new problem file with reduced obj and init """
 
         obj_json = json.load(open(obj_json, 'r'))
         except_objs_dict = {obj_json['obj_types'][o]:o for o in except_objs}

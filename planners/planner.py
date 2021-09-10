@@ -19,7 +19,7 @@ import multiprocessing
 import json
 import psutil
 
-from .utils import summarize_sas
+from .utils import summarize_sas, count_char, get_number_str
 
 
 def get_planner( args_planner, args_planner_option, args_timeout ):
@@ -95,15 +95,19 @@ class Planner:
         plan, log, short_log, [csv_cols, csv_log] = self.process_planner_output(output, expdir)
         
         ## the only plan by LAMA-first / Pyperplan, or shortest plan by LAMA
-        plan_print = '\n     '.join(plan)
-        self.print(f"\n  Plan: \n     {plan_print}")
-        with open(join(expdir, f"_{problem_index}_output.txt"), "w") as f:
-            f.writelines('\n'.join(plan))
+        if plan:
+            plan_print = '\n     '.join(plan)
+            # self.print(f"\n  Plan: \n     {plan_print}")
+            with open(join(expdir, f"_{problem_index}_output.txt"), "w") as f:
+                f.writelines('\n'.join(plan))
+        else:
+            plan_print = '\n cannot find any solution'
+            with open(join(expdir, f"_{problem_index}_output.txt"), "w") as f:
+                f.writelines([plan_print])
 
         ## log by LAMA-first / Pyperplan, or all logs + plans by by LAMA
-        if verbose:
-            log_print = '\n     '.join(log) 
-            self.print(f'\n\n  Log: \n     {log_print}')
+        log_print = '\n     '.join(log) 
+        self.print(f'\n\n  Log: \n     {log_print}')
         with open(join(expdir, f"_{problem_index}_log.txt"), "w") as f:
             f.writelines('\n'.join(log))
 
@@ -118,7 +122,8 @@ class Planner:
         with open(csv_file,'a') as f:
             f.write(','.join(csv_log) + '\n')
 
-        return plan, float(csv_log[9]), float(csv_log[9])
+        search_t = get_number_str(csv_log[9])
+        return plan, float(csv_log[8]), float(search_t)
             
 
 
@@ -169,7 +174,8 @@ class FD(Planner):
     def process_planner_output(self, output, expdir):
 
         domain, problem = self.task
-        domain_json = join(expdir, domain[domain.rfind('/')+1:].replace('.pddl','.json'))
+        domain_original = self.task_original[0]
+        domain_json = join(expdir, domain_original[domain_original.rfind('/')+1:].replace('.pddl','.json'))
         problem_index = self.problem_index
 
         if isinstance(output, bytes): 
@@ -226,7 +232,8 @@ class FD(Planner):
                     for k in csv_mapping:
                         if k in line:
                             if 'time' in k:
-                                number = '.'.join(re.findall(r'\d+', line))
+                                number = get_number_str(line)
+                                
                             else:   
                                 number = re.search(r'\d+', line).group()
                             csv_log[csv_mapping.index(k)+2] = number
@@ -250,8 +257,10 @@ class FD(Planner):
 
         ## 'LAMA-first' returned one solution
         if self.planner_option == 'lama-first':
-            plan = plans[0]
-
+            if len(plans) > 0:
+                plan = plans[0]
+            else:
+                plan = False
 
         ## there may also be plans computed
         elif self.planner_option == 'lama':
@@ -299,7 +308,7 @@ class FD(Planner):
 
             ## returned no solution
             if len(plans) == 0:
-                plan = []
+                plan = False
 
 
         return plan, log, short_log, [csv_columns, csv_log]

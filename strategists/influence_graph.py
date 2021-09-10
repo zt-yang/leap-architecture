@@ -625,29 +625,6 @@ def test_ignore_obj():
     irreversible_types = gg.find_irreversible_types(dmn_json)
     print(irreversible_types)
 
-    # reduce_obj( obj_pddl, obj_file, except_types=irreversible_types, except_objs=gg.nodes_obj )
-
-    # def reduce_objects(dmn_file, obj_file, irreversible_types):
-    #     objects_in_prb = 
-    #     objects_by_type = 
-
-    # nodes = gg.nodes_pred
-    ## inefficient
-    # for i in tqdm(range(len(nodes))): 
-    # #     print(f'\n\n..... {i}/{len(nodes)} [{nodes[i]}]')
-    #     islands, styles = gg.find_islands_by_bridge(nodes[i])
-    # #     print('..... ', list(islands.keys()))
-    #     if len(islands) > 1:
-    # #         print('\n -> ', nodes[i], len(islands))
-    #         for name, style in styles.items():
-    #             file_name = join('outputs', f'3-{i} {nodes[i]} {name}.gv')
-    #             gg.get_dot( style=style ).render(file_name, view=False)
-    #             os.remove(file_name)
-                
-    # for file in listdir(join('outputs')):
-    #     if 'pdf' not in file:
-    #         os.remove(join('outputs', file))
-
     merge_pdf(pdfs, 'graphs.pdf')
 
   

@@ -1,15 +1,18 @@
 nav:
     - Project:
       - LEAP Architecture: index.md
-      - Test Runs [ NEW ]: project-test.md
+      # - Test Runs: project-test.md
       # - Plans & Priorities: project-plans.md
       - Minutes & Notes: project-minutes.md
     - Domains: 
-      - Grocery - action costs [ NEW ]: domain-grocery.md
+      - Grocery - action costs: domain-grocery.md
       - Kitchen - large universe: domain-kitchen.md
       ## - Logistics: domain-logistics.md
       # - Restaurant: domain-restaurant.md
       # - Housework: domain-housework.md
+    - Strategists: 
+      - PLOI-like IOBIG [ NEW ]: str-iobig.md
+      - HPN-like SDBIG [ NEW ]: str-sdbig.md
     - Experiments: 
       - Num of Goal Predicates: exp-goals.md
       - Num of Objects: exp-objects.md
@@ -17,9 +20,9 @@ nav:
       - Two Dishes: exp-two-dishes.md
       - Satisfising v.s. Optimizing: exp-planner-options.md
       - Merged Domains: exp-merged-domains.md
-      - Strategist IOBIG: exp-iobig.md
+      - Combine Strategists [ NEW ]: exp-strategists.md
     - Notes:
-      - FastDownward [ NEW ]: notes-fd.md
+      - FastDownward: notes-fd.md
     - Set it up: 
       - Set up the Repository: setup-repository.md
       - Set up MkDocs: setup-mkdocs.md

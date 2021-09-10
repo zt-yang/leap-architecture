@@ -12,7 +12,7 @@
 
 
 ```python
-     t  run_name                                                            var    op    axiom    plan    cost    parse       search  state
+     t  run_name                                                         var    op    axiom    plan    cost    parse       search  state
 ------  -------------------------------------------------------------  -----  ----  -------  ------  ------  -------  -----------  --------
 222715  grocery_costs, shop_veggies, lama_first, obj_grocery_costs       148   392      170       8      75    0.09   0.000394     11
 222720  kitchen_extended, omelette, lama_first, obj_extended             187  2149       97      45      71    4.96   0.0258232    225
