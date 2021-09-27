@@ -10,26 +10,25 @@
   
   <link rel="shortcut icon" href="../css/favicon.ico">
   
-  <title>Num of Operators - LEAPdocs</title>
+  <title>More operators -> Search time increases linearly - LEAPdocs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Num of Operators";
+    var mkdocs_page_name = "More operators -> Search time increases linearly";
     var mkdocs_page_input_path = "exp-operators.md";
     var mkdocs_page_url = null;
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -43,7 +42,7 @@
         <a href=".." class="icon icon-home"> LEAPdocs</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -53,27 +52,53 @@
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Experiments</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-objects/">Num of Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Num of Operators</a>
-    <ul class="current">
-    </ul>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-egg-recipes/">All Egg Recipes</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Domains</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../domain-grocery/">Grocery - action costs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen - large universe</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-igibson/">iGibson's BEHAVIOR</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-alfred/">AI2THOR's Alfred</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-habitat/">Habitat's Rearrangement</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Strategists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-iobig/">PLOI-like IOBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-sdbig/">HPN-like SDBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-ipbig/">HPN-like IPBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-hpn/">HPN [ NEW ]</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Experiments</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-objects/">Num of Objects</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-egg-recipes/">All Egg Recipes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-two-dishes/">Two Dishes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-planner-options/">Satisfising v.s. Optimizing</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-merged-domains/">Merged Domains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-strategists/">Combine Strategists [ NEW ]</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Notes</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notes-fd/">FastDownward</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Set it up</span></p>
@@ -81,6 +106,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-notes/">Editor's Notes</a>
                     </li>
                 </ul>
       </div>
@@ -103,12 +130,8 @@
     <li><a href="..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Experiments &raquo;</li>
-        
-      
     
-    <li>Num of Operators</li>
+    <li>More operators -> Search time increases linearly</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -116,6 +139,7 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -134,7 +158,6 @@
 090722  kitchen_2-omelette-obj_1.pddl-omelette.pddl             70  1004       27      64    0.61   0.0349843      519
 090733  kitchen_egg_4-omelette-obj_egg_4.pddl-omelette.pddl    350  6680      161      52   10.058  0.115542       711
 </code></pre>
-
 <blockquote>
 <p>TODO: change the <code>obj_1.pddl</code> here to <code>obj_4</code>.pddl and <code>obj_eggs.pddl</code> to make the problem combinatorially complicated</p>
 </blockquote>
@@ -142,15 +165,6 @@
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../exp-egg-recipes/" class="btn btn-neutral float-right" title="All Egg Recipes">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../exp-goals/" class="btn btn-neutral" title="Num of Goal Predicates"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -171,17 +185,14 @@
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../exp-goals/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../exp-egg-recipes/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>

@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
@@ -27,9 +27,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -43,7 +42,7 @@
         <a href=".." class="icon icon-home"> LEAPdocs</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -53,25 +52,53 @@
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Experiments</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-objects/">Num of Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-operators/">Num of Operators</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-egg-recipes/">All Egg Recipes</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Domains</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../domain-grocery/">Grocery - action costs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen - large universe</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-igibson/">iGibson's BEHAVIOR</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-alfred/">AI2THOR's Alfred</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-habitat/">Habitat's Rearrangement</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Strategists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-iobig/">PLOI-like IOBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-sdbig/">HPN-like SDBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-ipbig/">HPN-like IPBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-hpn/">HPN [ NEW ]</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Experiments</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-objects/">Num of Objects</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-egg-recipes/">All Egg Recipes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-two-dishes/">Two Dishes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-planner-options/">Satisfising v.s. Optimizing</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-merged-domains/">Merged Domains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-strategists/">Combine Strategists [ NEW ]</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Notes</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notes-fd/">FastDownward</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Set it up</span></p>
@@ -79,6 +106,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../setup-repository/">Set up the Repository</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../setup-mkdocs/">Set up MkDocs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-notes/">Editor's Notes</a>
                     </li>
                 </ul>
       </div>
@@ -110,6 +139,7 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -133,7 +163,6 @@
 085534  omelette_6.pddl     68  1004       13      64    0.579  0.0691776      1134
 085535  omelette_7.pddl     68  1004       13      64    0.592  0.0721683      1134
 </code></pre>
-
 <h2 id="2-more-objects-search-time-increases-linearly">2. More objects -&gt; Search time increases linearly<a class="headerlink" href="#2-more-objects-search-time-increases-linearly" title="Permanent link">#</a></h2>
 <p><code>test_objects.sh</code> tests the effect of increasing the number of objects on search complexity, with the same <code>kitchen_1.pddl</code> and <code>omelette_5.pddl</code>, i.e. full omelette:
 * obj_1.pddl contains the bare minimum set of objects
@@ -150,7 +179,6 @@
 085855  obj_4.pddl        116  9510       46      50   11.723  0.0407923      219
 085909  obj_eggs.pddl     115  5416      102      50   13.549  0.031977       219
 </code></pre>
-
 <h2 id="3-different-recipes-search-time-corresponds-to-of-axioms-and-depth-of-search-instead-of-of-operators-or-length-of-plan">3. Different recipes -&gt; Search time corresponds to # of axioms and depth of search, instead of # of operators or length of plan<a class="headerlink" href="#3-different-recipes-search-time-corresponds-to-of-axioms-and-depth-of-search-instead-of-of-operators-or-length-of-plan" title="Permanent link">#</a></h2>
 <p><code>test_egg_recipes.sh</code> tests the search complexity of 10 different egg-related recipes, with the same <code>kitchen_3.pddl</code> and <code>obj_eggs.pddl</code>, i.e. with all definitions and objects for egg recipes:
 * scrambled_eggs.pddl specifies beaten, scrambled eggs
@@ -166,7 +194,6 @@
 085432  kitchen_egg_4-egg_in_hole-obj_egg_4.pddl-crack                     202  3234      172      50   10.129  2.14165      24498
 085447  kitchen_3-poached_egg-obj_eggs.pddl-poached_egg.pddl               368  4944      137      25   14.394  0.0189829      144
 </code></pre>
-
 <h2 id="4-more-operators-search-time-increases-linearly">4. More operators -&gt; Search time increases linearly<a class="headerlink" href="#4-more-operators-search-time-increases-linearly" title="Permanent link">#</a></h2>
 <p><code>test_operators</code> tests the effect of increasing the number of operators (for multiple recipes) on search complexity, with the same <code>omelette.pddl</code> and <code>obj_1.pddl</code>, i.e. minimum plan length &amp; objects:
 * kitchen_1.pddl contains all operators for omelette recipe
@@ -180,7 +207,6 @@
 090722  kitchen_2-omelette-obj_1.pddl-omelette.pddl             70  1004       27      64    0.61   0.0349843      519
 090733  kitchen_egg_4-omelette-obj_egg_4.pddl-omelette.pddl    350  6680      161      52   10.058  0.115542       711
 </code></pre>
-
 <blockquote>
 <p>TODO: change the <code>obj_1.pddl</code> here to <code>obj_4</code>.pddl and <code>obj_eggs.pddl</code> to make the problem combinatorially complicated</p>
 </blockquote>
@@ -232,13 +258,14 @@
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>

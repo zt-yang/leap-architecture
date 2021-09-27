@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" />
   <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   <link href="../css/extra.css" rel="stylesheet" />
   
   <script>
@@ -27,9 +27,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -43,7 +42,7 @@
         <a href=".." class="icon icon-home"> LEAPdocs</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -53,25 +52,53 @@
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="..">LEAP Architecture</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../project-plans/">Plans & Priorities</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../project-minutes/">Minutes & Notes</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Experiments</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-objects/">Num of Objects</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-operators/">Num of Operators</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../exp-egg-recipes/">All Egg Recipes</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Domains</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../domain-grocery/">Grocery - action costs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../domain-kitchen/">Kitchen - large universe</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-igibson/">iGibson's BEHAVIOR</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-alfred/">AI2THOR's Alfred</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../sim-habitat/">Habitat's Rearrangement</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Strategists</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-iobig/">PLOI-like IOBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-sdbig/">HPN-like SDBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-ipbig/">HPN-like IPBIG [ NEW ]</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../str-hpn/">HPN [ NEW ]</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Experiments</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-goals/">Num of Goal Predicates</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-objects/">Num of Objects</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-egg-recipes/">All Egg Recipes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-two-dishes/">Two Dishes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-planner-options/">Satisfising v.s. Optimizing</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-merged-domains/">Merged Domains</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../exp-strategists/">Combine Strategists [ NEW ]</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Notes</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../notes-fd/">FastDownward</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Set it up</span></p>
@@ -108,6 +135,8 @@
     </li>
     </ul>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../setup-notes/">Editor's Notes</a>
+                    </li>
                 </ul>
       </div>
     </div>
@@ -142,6 +171,7 @@
   
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -166,12 +196,10 @@ site/           # You can ignore thing here, MkDocs generNates them when you dep
 <pre><code>$ pip install --upgrade pip
 $ pip install mkdocs
 </code></pre>
-
 <p>To check that it is installed:</p>
 <pre><code>$ mkdocs --version
 mkdocs, version version 1.2.2 from ...
 </code></pre>
-
 <h3 id="install-with-a-package-manager">Install with a Package Manager<a class="headerlink" href="#install-with-a-package-manager" title="Permanent link">#</a></h3>
 <p>If you prefer useing another package manager (such as <code>apt-get</code>, <code>dnf</code>, <code>homebrew</code>, <code>yum</code>, <code>chocolatey</code>, etc.) to install packages on your system, then you may install <code>MkDocs</code> with your package manager.</p>
 <h2 id="step-2-start-mkdocs-server">Step 2: Start MkDocs Server<a class="headerlink" href="#step-2-start-mkdocs-server" title="Permanent link">#</a></h2>
@@ -182,7 +210,6 @@ INFO    -  Cleaning site directory
 [I 160402 15:50:43 server:271] Serving on http://127.0.0.1:8000
 [I 160402 15:50:43 handlers:58] Start watching changes ...
 </code></pre>
-
 <!--- mkdocs serve --dev-addr '127.0.0.1:9000' --->
 
 <p>Now you can view the documentation site in <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>, being updated in real time as you save your edits to the files.</p>
@@ -203,7 +230,6 @@ INFO    -  Cleaning site directory
       - ...
     -
 </code></pre>
-
 <p>The current hierarchy and order is designed so that a new student can use the documentation as a tutorial. Major reorganization is possible upon discussion with <a href="ztyang@mit.edu">Yang</a>:</p>
 <h3 id="write-in-markdown">Write in Markdown<a class="headerlink" href="#write-in-markdown" title="Permanent link">#</a></h3>
 <p>Our wiki pages are written in <a href="https://en.wikipedia.org/wiki/Markdown#Example">Markdown</a>, a lightweight markup language with plain text formatting syntax. The following cheatsheet designed by Theme Spectre showed the most frequently used syntax:</p>
@@ -221,7 +247,6 @@ INFO    -  Cleaning site directory
 <p>After you have made the changes, simply do this in the same directory as the <code>mkdocs.yml</code> file:</p>
 <pre><code>mkdocs gh-deploy --clean
 </code></pre>
-
 <p>The page will be updated on <a href="https://zt-yang.github.io/tom-minecraft/">https://ztyang-mit.github.io/tom-minecraft/</a>.</p>
 <p>Note that if you only made changes within the documentation folder, you don't have to <code>git push</code>. The deploy command does it for you.</p>
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">#</a></h2>
@@ -232,7 +257,6 @@ INFO    -  Cleaning site directory
 <pre><code>$ git pull
 $ mkdocs serve              # before editting, start the MkDocs server
 </code></pre>
-
 <ul>
 <li>During editing, you add and organize pages at the configuration page, <code>mkdocs.yml</code>.</li>
 <li>After editing, you should let Yang know of the changes you made and <code>git push</code></li>
@@ -243,6 +267,8 @@ $ mkdocs serve              # before editting, start the MkDocs server
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../setup-notes/" class="btn btn-neutral float-right" title="Editor's Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../setup-repository/" class="btn btn-neutral" title="Set up the Repository"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -268,15 +294,18 @@ $ mkdocs serve              # before editting, start the MkDocs server
   </div>
 
   <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../setup-repository/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-    </span>
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../setup-repository/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../setup-notes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
