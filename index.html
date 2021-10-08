@@ -225,7 +225,16 @@ python generators/init_objects.py
 <li><code>hpn</code>, <code>ploi</code> or <code>c2s2</code>: output the original domain and problem pddl</li>
 </ul>
 <h2 id="domains">Domains<a class="headerlink" href="#domains" title="Permanent link">#</a></h2>
-<p>You may find more classic IPC domains in <a href="https://fai.cs.uni-saarland.de/hoffmann/ff-domains.html">FF Domain Collection</a> and <a href="https://bitbucket.org/ipc2018-classical/domains/src/master/">IPC2018 domains</a>.</p>
+<p>In this project we focus on robot doing everyday household tasks instead of puzzle-like IPC domains (e.g. in <a href="https://fai.cs.uni-saarland.de/hoffmann/ff-domains.html">FF Domain Collection</a> and <a href="https://bitbucket.org/ipc2018-classical/domains/src/master/">IPC2018 domains</a>.</p>
+<p>Some of my thoughts</p>
+<ul>
+<li>Partial observability: doing the laundry requires finding dirty clothes in the room until no more can be found (as opposed to knowing how many clothes are dirty and where they are)</li>
+<li>The domain knowledge should be robot agnostic, i.e. same basic domain knowledge for robot with one arm and two arms</li>
+<li>Some aspects of the household tasks that are unable to do with PDDL 2.1 / FastDownward:<ul>
+<li>Some actions need to be prevented, like putting down a fork on the table instead of a burner because the burner would burn the fork, but because the way that axioms are derived, it cannot keep track of the fact that the fork has been burnt. so for now we write the surface must be safe to put the fork on</li>
+</ul>
+</li>
+</ul>
 <h3 id="kitchen-domain">Kitchen domain<a class="headerlink" href="#kitchen-domain" title="Permanent link">#</a></h3>
 <pre><code>    (exist-egg-in-hole ?x - env)
     (exist-poached-egg ?x - env)
